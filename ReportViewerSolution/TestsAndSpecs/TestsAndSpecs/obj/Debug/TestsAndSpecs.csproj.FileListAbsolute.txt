@@ -1,0 +1,11 @@
+E:\psod\DDD Course\ReportViewerApp\TestsAndSpecs\TestsAndSpecs\bin\Debug\TestsAndSpecs.dll.config
+E:\psod\DDD Course\ReportViewerApp\TestsAndSpecs\TestsAndSpecs\bin\Debug\TestsAndSpecs.dll
+E:\psod\DDD Course\ReportViewerApp\TestsAndSpecs\TestsAndSpecs\bin\Debug\TestsAndSpecs.pdb
+E:\psod\DDD Course\ReportViewerApp\TestsAndSpecs\TestsAndSpecs\bin\Debug\TechTalk.SpecFlow.dll
+E:\psod\DDD Course\ReportViewerApp\TestsAndSpecs\TestsAndSpecs\obj\Debug\TestsAndSpecs.dll
+E:\psod\DDD Course\ReportViewerApp\TestsAndSpecs\TestsAndSpecs\obj\Debug\TestsAndSpecs.pdb
+E:\psod\DDD Course\ReportViewerApp\TestsAndSpecs\TestsAndSpecs\obj\Debug\TestsAndSpecs.csprojResolveAssemblyReference.cache
+E:\psod\DDD Course\ReportViewerApp\TestsAndSpecs\TestsAndSpecs\bin\Debug\PatientHistoryDomain.dll
+E:\psod\DDD Course\ReportViewerApp\TestsAndSpecs\TestsAndSpecs\bin\Debug\Repository.dll
+E:\psod\DDD Course\ReportViewerApp\TestsAndSpecs\TestsAndSpecs\bin\Debug\Repository.pdb
+E:\psod\DDD Course\ReportViewerApp\TestsAndSpecs\TestsAndSpecs\bin\Debug\PatientHistoryDomain.pdb
