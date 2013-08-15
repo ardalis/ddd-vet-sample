@@ -2,3 +2,7 @@ E:\psod\DDD Course\ReportViewerApp\PatientHistoryDomain\bin\Debug\PatientHistory
 E:\psod\DDD Course\ReportViewerApp\PatientHistoryDomain\bin\Debug\PatientHistoryDomain.pdb
 E:\psod\DDD Course\ReportViewerApp\PatientHistoryDomain\obj\Debug\PatientHistoryDomain.dll
 E:\psod\DDD Course\ReportViewerApp\PatientHistoryDomain\obj\Debug\PatientHistoryDomain.pdb
+E:\psod\DDD Course\ReportViewerApp\ReportViewerSolution\PatientHistoryDomain\bin\Debug\PatientHistoryDomain.dll
+E:\psod\DDD Course\ReportViewerApp\ReportViewerSolution\PatientHistoryDomain\bin\Debug\PatientHistoryDomain.pdb
+E:\psod\DDD Course\ReportViewerApp\ReportViewerSolution\PatientHistoryDomain\obj\Debug\PatientHistoryDomain.dll
+E:\psod\DDD Course\ReportViewerApp\ReportViewerSolution\PatientHistoryDomain\obj\Debug\PatientHistoryDomain.pdb

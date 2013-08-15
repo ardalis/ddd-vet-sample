@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PatientHistory.Domain;
 using Repository;
 using TechTalk.SpecFlow;
 using System.Linq;
+using TestsAndSpecs.Helpers;
 
 namespace TestsAndSpecs.Features.Search
 {
@@ -30,9 +32,8 @@ namespace TestsAndSpecs.Features.Search
         [When(@"I press search")]
         public void WhenIPressSearch()
         {
-          var context = new DataContext();
-          context.PatientList=new List<PatientResultItem>
-          { new PatientResultItem("Sampson", "Flynn", "Newfoundland", "Dog", 5, 1) };
+          Database.SetInitializer(new PatientHistoryDBSeedingInitializer());
+          var context = new PatientHistoryDataContext();
           var patientRepo=new PatientRepository(context);
           _searchResults = patientRepo.Find(_patientFirstName,_clientLastName);
         }

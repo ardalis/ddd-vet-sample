@@ -5,3 +5,13 @@ E:\psod\DDD Course\ReportViewerApp\Infrastructure\Repository\bin\Debug\PatientHi
 E:\psod\DDD Course\ReportViewerApp\Infrastructure\Repository\obj\Debug\Infrastructure.csprojResolveAssemblyReference.cache
 E:\psod\DDD Course\ReportViewerApp\Infrastructure\Repository\obj\Debug\Repository.dll
 E:\psod\DDD Course\ReportViewerApp\Infrastructure\Repository\obj\Debug\Repository.pdb
+E:\psod\DDD Course\ReportViewerApp\ReportViewerSolution\Infrastructure\Repository\obj\Debug\Infrastructure.csprojResolveAssemblyReference.cache
+E:\psod\DDD Course\ReportViewerApp\ReportViewerSolution\Infrastructure\Repository\obj\Debug\Repository.dll
+E:\psod\DDD Course\ReportViewerApp\ReportViewerSolution\Infrastructure\Repository\obj\Debug\Repository.pdb
+E:\psod\DDD Course\ReportViewerApp\ReportViewerSolution\Infrastructure\Repository\bin\Debug\Repository.dll.config
+E:\psod\DDD Course\ReportViewerApp\ReportViewerSolution\Infrastructure\Repository\bin\Debug\Repository.dll
+E:\psod\DDD Course\ReportViewerApp\ReportViewerSolution\Infrastructure\Repository\bin\Debug\Repository.pdb
+E:\psod\DDD Course\ReportViewerApp\ReportViewerSolution\Infrastructure\Repository\bin\Debug\EntityFramework.dll
+E:\psod\DDD Course\ReportViewerApp\ReportViewerSolution\Infrastructure\Repository\bin\Debug\PatientHistoryDomain.dll
+E:\psod\DDD Course\ReportViewerApp\ReportViewerSolution\Infrastructure\Repository\bin\Debug\PatientHistoryDomain.pdb
+E:\psod\DDD Course\ReportViewerApp\ReportViewerSolution\Infrastructure\Repository\bin\Debug\EntityFramework.xml

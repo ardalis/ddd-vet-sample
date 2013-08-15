@@ -9,14 +9,18 @@ namespace PatientHistory.Domain
       Breed = breed;
       Species = species;
       Age = age;
-      Id = id;
+      PatientId = id;
     }
 
-    public string FirstName { get; private set; }
-    public string LastName { get; private set; }
-    public string Breed { get; private set; }
-    public string Species { get; private set; }
-    public int Age { get; private set; }
-    public int Id { get; private set; }
+    public PatientResultItem()
+    {
+      
+    }
+    public string FirstName { get;  set; }
+    public string LastName { get;  set; }
+    public string Breed { get;  set; }
+    public string Species { get;  set; }
+    public decimal Age { get;  set; }
+    public int PatientId { get; set; }
   }
 }
