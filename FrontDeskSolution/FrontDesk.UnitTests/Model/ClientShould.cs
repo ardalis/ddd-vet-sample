@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using FrontDesk.Core.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections;
 
 namespace FrontDesk.UnitTests.Model
 {
@@ -56,6 +58,16 @@ namespace FrontDesk.UnitTests.Model
             var expectedResult = "Mr. Steven Smith";
 
             Assert.AreEqual(expectedResult, client.ToString());
+        }
+
+        [TestMethod]
+        public void HaveAListOfPatients()
+        {
+            var client = new Client();
+
+            var patients = client.Patients;
+
+            Assert.IsNotNull(patients as IList<Patient>);
         }
     }
 }

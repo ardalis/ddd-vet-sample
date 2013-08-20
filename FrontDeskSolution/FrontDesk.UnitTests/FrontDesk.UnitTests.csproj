@@ -51,6 +51,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Model\ClientShould.cs" />
+    <Compile Include="Model\PatientShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

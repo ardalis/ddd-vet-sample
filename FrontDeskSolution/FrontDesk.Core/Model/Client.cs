@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace FrontDesk.Core.Model
@@ -9,6 +10,13 @@ namespace FrontDesk.Core.Model
         public string LastName { get; set; }
         public string Salutation { get; set; }
         public string PreferredName { get; set; }
+
+        public IList<Patient> Patients { get; private set; }
+
+        public Client()
+        {
+            Patients = new List<Patient>();
+        }
 
         public override string ToString()
         {
