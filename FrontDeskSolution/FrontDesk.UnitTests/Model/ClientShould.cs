@@ -28,7 +28,7 @@ namespace FrontDesk.UnitTests.Model
         }
 
         [TestMethod]
-        public void ReturnFormattedNameAsToString()
+        public void ReturnFormattedNameWithAllFieldsAsToString()
         {
             var client = new Client()
             {
@@ -39,6 +39,21 @@ namespace FrontDesk.UnitTests.Model
             };
 
             var expectedResult = "Mr. Steven \"Steve\" Smith";
+
+            Assert.AreEqual(expectedResult, client.ToString());
+        }
+
+        [TestMethod]
+        public void ReturnFormattedNameWithNoPreferredNameAsToString()
+        {
+            var client = new Client()
+            {
+                FirstName = "Steven",
+                LastName = "Smith",
+                Salutation = "Mr."
+            };
+
+            var expectedResult = "Mr. Steven Smith";
 
             Assert.AreEqual(expectedResult, client.ToString());
         }
