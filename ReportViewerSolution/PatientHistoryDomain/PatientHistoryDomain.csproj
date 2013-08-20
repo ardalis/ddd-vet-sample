@@ -40,10 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\OverallHealthStatus.cs" />
-    <Compile Include="PatientInfoWithHistory.cs" />
-    <Compile Include="PatientResultItem.cs" />
+    <Compile Include="Entities\PatientInfo.cs" />
+    <Compile Include="ValueObjects\PatientResultItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VisitNote.cs" />
+    <Compile Include="Entities\VisitNote.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
