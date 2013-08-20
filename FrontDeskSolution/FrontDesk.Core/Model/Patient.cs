@@ -12,5 +12,11 @@ namespace FrontDesk.Core.Model
         public string LastName { get; set; }
         public string Salutation { get; set; }
         public string PreferredName { get; set; }
+
+        private const string LongNameFormat = "{0} {1} \"{2}\" {3}";
+        public override string ToString()
+        {
+            return String.Format(LongNameFormat, Salutation, FirstName, PreferredName, LastName);
+        }
     }
 }
