@@ -1,7 +1,0 @@
-C:\Users\Steve\Documents\GitHub\ddd-vet-sample\FrontDeskSolution\FrontDesk.Infrastructure\bin\Debug\FrontDesk.Infrastructure.dll
-C:\Users\Steve\Documents\GitHub\ddd-vet-sample\FrontDeskSolution\FrontDesk.Infrastructure\bin\Debug\FrontDesk.Infrastructure.pdb
-C:\Users\Steve\Documents\GitHub\ddd-vet-sample\FrontDeskSolution\FrontDesk.Infrastructure\bin\Debug\FrontDesk.Core.dll
-C:\Users\Steve\Documents\GitHub\ddd-vet-sample\FrontDeskSolution\FrontDesk.Infrastructure\bin\Debug\FrontDesk.Core.pdb
-C:\Users\Steve\Documents\GitHub\ddd-vet-sample\FrontDeskSolution\FrontDesk.Infrastructure\obj\Debug\FrontDesk.Infrastructure.csprojResolveAssemblyReference.cache
-C:\Users\Steve\Documents\GitHub\ddd-vet-sample\FrontDeskSolution\FrontDesk.Infrastructure\obj\Debug\FrontDesk.Infrastructure.dll
-C:\Users\Steve\Documents\GitHub\ddd-vet-sample\FrontDeskSolution\FrontDesk.Infrastructure\obj\Debug\FrontDesk.Infrastructure.pdb
