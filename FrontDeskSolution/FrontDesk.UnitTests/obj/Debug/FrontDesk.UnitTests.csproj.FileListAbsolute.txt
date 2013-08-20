@@ -1,0 +1,7 @@
+C:\Users\Steve\Documents\GitHub\ddd-vet-sample\FrontDeskSolution\FrontDesk.UnitTests\obj\Debug\FrontDesk.UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\Steve\Documents\GitHub\ddd-vet-sample\FrontDeskSolution\FrontDesk.UnitTests\bin\Debug\FrontDesk.UnitTests.dll
+C:\Users\Steve\Documents\GitHub\ddd-vet-sample\FrontDeskSolution\FrontDesk.UnitTests\bin\Debug\FrontDesk.UnitTests.pdb
+C:\Users\Steve\Documents\GitHub\ddd-vet-sample\FrontDeskSolution\FrontDesk.UnitTests\bin\Debug\FrontDesk.Core.dll
+C:\Users\Steve\Documents\GitHub\ddd-vet-sample\FrontDeskSolution\FrontDesk.UnitTests\bin\Debug\FrontDesk.Core.pdb
+C:\Users\Steve\Documents\GitHub\ddd-vet-sample\FrontDeskSolution\FrontDesk.UnitTests\obj\Debug\FrontDesk.UnitTests.dll
+C:\Users\Steve\Documents\GitHub\ddd-vet-sample\FrontDeskSolution\FrontDesk.UnitTests\obj\Debug\FrontDesk.UnitTests.pdb
