@@ -22,3 +22,16 @@ E:\psod\DDD Course\ReportViewerApp\ReportViewerSolution\TestsAndSpecs\TestsAndSp
 E:\psod\DDD Course\ReportViewerApp\ReportViewerSolution\TestsAndSpecs\TestsAndSpecs\bin\Debug\PatientHistoryDomain.pdb
 E:\psod\DDD Course\ReportViewerApp\ReportViewerSolution\TestsAndSpecs\TestsAndSpecs\bin\Debug\EntityFramework.xml
 E:\psod\DDD Course\ReportViewerApp\ReportViewerSolution\TestsAndSpecs\TestsAndSpecs\obj\Debug\TestsAndSpecs.pdb
+D:\Dev\GitHub\ddd-vet-sample\ReportViewerSolution\TestsAndSpecs\TestsAndSpecs\bin\Debug\TestsAndSpecs.dll.config
+D:\Dev\GitHub\ddd-vet-sample\ReportViewerSolution\TestsAndSpecs\TestsAndSpecs\bin\Debug\TestsAndSpecs.dll
+D:\Dev\GitHub\ddd-vet-sample\ReportViewerSolution\TestsAndSpecs\TestsAndSpecs\bin\Debug\TestsAndSpecs.pdb
+D:\Dev\GitHub\ddd-vet-sample\ReportViewerSolution\TestsAndSpecs\TestsAndSpecs\bin\Debug\EntityFramework.dll
+D:\Dev\GitHub\ddd-vet-sample\ReportViewerSolution\TestsAndSpecs\TestsAndSpecs\bin\Debug\PatientHistoryDomain.dll
+D:\Dev\GitHub\ddd-vet-sample\ReportViewerSolution\TestsAndSpecs\TestsAndSpecs\bin\Debug\Repository.dll
+D:\Dev\GitHub\ddd-vet-sample\ReportViewerSolution\TestsAndSpecs\TestsAndSpecs\bin\Debug\TechTalk.SpecFlow.dll
+D:\Dev\GitHub\ddd-vet-sample\ReportViewerSolution\TestsAndSpecs\TestsAndSpecs\bin\Debug\Repository.pdb
+D:\Dev\GitHub\ddd-vet-sample\ReportViewerSolution\TestsAndSpecs\TestsAndSpecs\bin\Debug\PatientHistoryDomain.pdb
+D:\Dev\GitHub\ddd-vet-sample\ReportViewerSolution\TestsAndSpecs\TestsAndSpecs\bin\Debug\EntityFramework.xml
+D:\Dev\GitHub\ddd-vet-sample\ReportViewerSolution\TestsAndSpecs\TestsAndSpecs\obj\Debug\TestsAndSpecs.csprojResolveAssemblyReference.cache
+D:\Dev\GitHub\ddd-vet-sample\ReportViewerSolution\TestsAndSpecs\TestsAndSpecs\obj\Debug\TestsAndSpecs.dll
+D:\Dev\GitHub\ddd-vet-sample\ReportViewerSolution\TestsAndSpecs\TestsAndSpecs\obj\Debug\TestsAndSpecs.pdb
