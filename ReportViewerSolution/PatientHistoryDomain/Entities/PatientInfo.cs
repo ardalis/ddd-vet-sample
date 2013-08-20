@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PatientHistory.Domain
+namespace PatientHistory.Domain.Entities
 {
- 
   public class PatientInfo
   {
     //considering data coming via EF...

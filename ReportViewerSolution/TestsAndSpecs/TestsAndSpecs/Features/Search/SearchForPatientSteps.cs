@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PatientHistory.Domain;
+using PatientHistory.Domain.ValueObjects;
 using Repository;
 using TechTalk.SpecFlow;
 using System.Linq;

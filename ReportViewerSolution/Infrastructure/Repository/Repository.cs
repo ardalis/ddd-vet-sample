@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
-using PatientHistory.Domain;
 using System.Linq;
+using PatientHistory.Domain.Entities;
+using PatientHistory.Domain.ValueObjects;
 
 namespace Repository
 {

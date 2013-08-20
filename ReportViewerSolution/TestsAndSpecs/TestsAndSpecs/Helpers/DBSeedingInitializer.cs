@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
-using PatientHistory.Domain;
+using PatientHistory.Domain.Entities;
 using Repository;
 
 namespace TestsAndSpecs.Helpers

@@ -1,4 +1,4 @@
-namespace PatientHistory.Domain
+namespace PatientHistory.Domain.ValueObjects
 {
   public class PatientResultItem
   {

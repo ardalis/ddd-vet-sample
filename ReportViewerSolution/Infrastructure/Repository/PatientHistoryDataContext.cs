@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using PatientHistory.Domain;
-
-
+using PatientHistory.Domain.Entities;
 
 namespace Repository
 {
