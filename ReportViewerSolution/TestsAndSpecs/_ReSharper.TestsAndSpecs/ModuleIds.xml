@@ -1,6 +1,0 @@
-<Modules>
-  <Module PersistentId="FA534AA9-801A-4E63-9749-9E5288EB3DE3" ModuleId="TestsAndSpecs" />
-  <Module PersistentId="48C7FD8D-C2FD-4B45-9F3F-059A7E1F27C6" ModuleId="PatientHistoryReporting" />
-  <Module PersistentId="C4A1B17B-9D31-443C-9857-7FBB1D348261" ModuleId="PatientHistoryDomain" />
-  <Module PersistentId="E4B336D4-C643-43B4-8E68-374D305365F7" ModuleId="Repository" />
-</Modules>
