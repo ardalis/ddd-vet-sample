@@ -1,0 +1,26 @@
+﻿I know this is just a stake in the ground. Thoughts on making it more DDDish....
+
+And on creating stuff to demonstrate ideas we want to teach
+
+Base class for person?
+client can inherit person
+Name ValueObject (first name + last name)
+
+What aggregates do you anticipate:
+
+Patient (root) with visits and appointments, services/scripts, client, caretakers?
+patient: aggregate root
+create appt, create visit (including weight taken on arrival,caretaker and some notes), create appt
+appt: entity
+visit: entity
+caretaker: entity, name, contact info
+New patient needs to be tied to a client [existing]
+Client and caretaker may be the same person but does it matter?
+
+
+
+Client (root) with patients and bills/charges based on services, payments?
+This patient might be defined differently than the other patient.
+
+lock down the properties with private setters
+constrain how values are populated
