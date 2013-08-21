@@ -16,20 +16,28 @@ namespace TestsAndSpecs.Features.Search
       private string _clientLastName;
       private List<PatientResultItem> _searchResults;
 
-        [Given(@"I have entered a patient first name into the form")]
-        public void GivenIHaveEnteredAPatientFirstNameIntoTheForm()
-        {
-          _patientFirstName = "Sam";
 
-        }
-        
-        [Given(@"I have entered a client last name into the form")]
+       [Given(@"I have provided an existing patient first name into the form")]
+       public void GivenIHaveProvidedAnExistingPatientFirstNameIntoTheForm()
+       {
+         _patientFirstName = "Sam";
+       }
+
+
+        [Given(@"I have provided the same patient's client last name into the form")]
         public void GivenIHaveEnteredAClientLastNameIntoTheForm()
         {
           _clientLastName = "Flynn";
         }
-        
-        [When(@"I press search")]
+
+        [Given(@"I have provided a name that is different than that patient's client last name into the form")]
+        public void GivenIHaveProvidedANameThatIsDifferentThanThatPatientSClientLastNameIntoTheForm()
+        {
+          _clientLastName = "abcdefg";
+        }
+
+
+        [When(@"I execute a patient search")]
         public void WhenIPressSearch()
         {
           Database.SetInitializer(new PatientHistoryDBSeedingInitializer());
@@ -44,6 +52,15 @@ namespace TestsAndSpecs.Features.Search
           Assert.AreNotEqual(0,
                              _searchResults.Count(r => r.FirstName.Contains(_patientFirstName) && r.LastName.Contains(_clientLastName)));
         }
+
+        [Then(@"the result should be an empty list")]
+        public void ThenTheResultShouldBeAnEmptyList()
+        {
+          Assert.AreEqual(0,
+                   _searchResults.Count(r => r.FirstName.Contains(_patientFirstName) && r.LastName.Contains(_clientLastName)));
+
+        }
+
         
  
     }
