@@ -1,5 +1,7 @@
 ﻿using System;
-using FrontDesk.Core.Model;
+using FrontDesk.Core.Enums;
+using FrontDesk.Core.Model.ClientAggregate;
+using FrontDesk.Core.Model.PatientAggregate;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FrontDesk.UnitTests.Model

@@ -9,13 +9,24 @@ Name ValueObject (first name + last name)
 What aggregates do you anticipate:
 
 Patient (root) with visits and appointments, services/scripts, client, caretakers?
+client: aggregate root
 patient: aggregate root
 create appt, create visit (including weight taken on arrival,caretaker and some notes), create appt
 appt: entity
 visit: entity
-caretaker: entity, name, contact info
+(caretaker: entity, name, contact info)
 New patient needs to be tied to a client [existing]
 Client and caretaker may be the same person but does it matter?
+
+Typical workflows:
+Create a visit from an appointment [e.g. appt.CreateVisit() or Visit.FromAppointment(appt) ]
+Create a visit from nothing (a walk-in)
+
+What domain events?
+AppointmentScheduled (send reminder)
+CheckinCompleted (send notification to doctor, create a visit record)
+CheckoutCompleted (update UI, send follow-up email)
+NewPatientCreated (send a welcome email)
 
 
 

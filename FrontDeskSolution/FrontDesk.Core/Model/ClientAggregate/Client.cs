@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FrontDesk.Core.Interfaces;
 
-namespace FrontDesk.Core.Model
+namespace FrontDesk.Core.Model.ClientAggregate
 {
-    public class Client
+    public class Client : IEntity
     {
+        public Guid Id { get; private set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Salutation { get; set; }
         public string PreferredName { get; set; }
 
-        public IList<Patient> Patients { get; private set; }
+        public IList<PatientInfo> Patients { get; private set; }
 
         public Client()
         {
-            Patients = new List<Patient>();
+            Patients = new List<PatientInfo>();
         }
 
         public override string ToString()

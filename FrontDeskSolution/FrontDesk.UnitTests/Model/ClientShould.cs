@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using FrontDesk.Core.Model;
+using FrontDesk.Core.Model.ClientAggregate;
+using FrontDesk.Core.Model.PatientAggregate;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections;
 
@@ -67,7 +68,7 @@ namespace FrontDesk.UnitTests.Model
 
             var patients = client.Patients;
 
-            Assert.IsNotNull(patients as IList<Patient>);
+            Assert.IsNotNull(patients as IList<PatientInfo>);
         }
     }
 }

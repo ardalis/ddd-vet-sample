@@ -39,13 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Client.cs" />
-    <Compile Include="Model\Gender.cs" />
-    <Compile Include="Model\Patient.cs" />
+    <Compile Include="Model\ClientAggregate\Client.cs" />
+    <Compile Include="Enums\Gender.cs" />
+    <Compile Include="Interfaces\IEntity.cs" />
+    <Compile Include="Model\PatientAggregate\Patient.cs" />
+    <Compile Include="Model\ClientAggregate\PatientInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
