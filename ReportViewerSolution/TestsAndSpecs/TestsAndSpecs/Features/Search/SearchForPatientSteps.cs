@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using PatientHistory.Domain.ValueObjects;
 using Repository;
 using TechTalk.SpecFlow;
@@ -14,7 +14,7 @@ namespace TestsAndSpecs.Features.Search
     {
       private string _patientFirstName;
       private string _clientLastName;
-      private List<PatientResultItem> _searchResults;
+      private IEnumerable<PatientResultItem> _searchResults;
 
 
        [Given(@"I have provided an existing patient first name into the form")]

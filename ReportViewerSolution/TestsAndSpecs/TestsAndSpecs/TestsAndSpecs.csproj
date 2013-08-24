@@ -35,8 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -88,7 +92,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Repository\Infrastructure.csproj">
       <Project>{E4B336D4-C643-43B4-8E68-374D305365F7}</Project>
-      <Name>Infrastructure</Name>
+      <Name>Infrastructure %28Infrastructure\Infrastructure%29</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\PatientHistoryDomain\PatientHistoryDomain.csproj">
       <Project>{c4a1b17b-9d31-443c-9857-7fbb1d348261}</Project>

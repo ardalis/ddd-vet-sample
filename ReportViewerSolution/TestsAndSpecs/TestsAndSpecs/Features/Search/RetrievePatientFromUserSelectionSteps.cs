@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PatientHistory.Domain.Entities;
 using PatientHistory.Domain.ValueObjects;
 using Repository;
 using TechTalk.SpecFlow;
 using TestsAndSpecs.Helpers;
+using NUnit.Framework;
 
 namespace TestsAndSpecs.Features.Search
 {
@@ -43,7 +43,7 @@ namespace TestsAndSpecs.Features.Search
           Database.SetInitializer(new PatientHistoryDBSeedingInitializer());
    var patientRepo = new PatientRepository(new PatientHistoryDataContext());
           _patient = patientRepo.Find(_selectedItem.PatientId);
-          Assert.IsNotNull(_patient);
+         Assert.IsNotNull(_patient);
         }
 
         [Then(@"patient info with history should be displayed")]

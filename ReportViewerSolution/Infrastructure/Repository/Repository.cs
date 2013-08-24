@@ -5,7 +5,13 @@ using PatientHistory.Domain.ValueObjects;
 
 namespace Repository
 {
-  public class PatientRepository
+  public interface IPatientRepository
+  {
+    IEnumerable<PatientResultItem> Find(string patientFirstName, string clientLastName);
+    PatientInfo Find(int patientId);
+  }
+
+  public class PatientRepository : IPatientRepository
   {
     private readonly PatientHistoryDataContext _context;
 
@@ -14,7 +20,12 @@ namespace Repository
       _context = context;
     }
 
-    public List<PatientResultItem> Find(string patientFirstName, string clientLastName)
+    public PatientRepository()
+    {
+      _context = new PatientHistoryDataContext();
+    }
+
+    public IEnumerable<PatientResultItem> Find(string patientFirstName, string clientLastName)
     {
       var results =
         _context.Patients.Where(p => p.PatientFirstName.Contains(patientFirstName)
@@ -37,10 +48,16 @@ namespace Repository
     {
       var results =
         _context.Patients.Where(p => p.Id == patientId)
-        .Select(p=>new {Patient=p,VisitNotes=p.VisitNotes.OrderByDescending(v=>v.VisitDateTime)}).SingleOrDefault();
-      var patient = results.Patient;
-      patient.SetVisitHistory(results.VisitNotes);
-      return patient;
+        .Select(p=>new {Patient=p,VisitNotes=p.VisitNotes.OrderByDescending(v=>v.VisitDateTime)})
+        .SingleOrDefault();
+
+      if (results != null)
+      {
+        var patient = results.Patient;
+        patient.SetVisitHistory(results.VisitNotes);
+        return patient;
+      }
+      return null;
     }
   }
 }
