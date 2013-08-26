@@ -10,6 +10,7 @@ namespace PatientHistory.Domain
     public DateTime  VisitDateTime { get; private set; }
     public OverallHealthStatus OverallStatus { get; private set; }
     public string Notes { get; private set; }
+    public int VisitId { get; private set; }
 
   }
 }

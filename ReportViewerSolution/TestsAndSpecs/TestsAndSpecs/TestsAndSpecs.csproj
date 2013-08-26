@@ -39,8 +39,27 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0">
+      <HintPath>..\..\..\..\..\EntityFramework.Profiler-Build-761\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.core">
+      <HintPath>..\..\packages\NUnitTestAdapter.0.96.0\lib\nunit.core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="nunit.core.interfaces">
+      <HintPath>..\..\packages\NUnitTestAdapter.0.96.0\lib\nunit.core.interfaces.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.util">
+      <HintPath>..\..\packages\NUnitTestAdapter.0.96.0\lib\nunit.util.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NUnit.VisualStudio.TestAdapter">
+      <HintPath>..\..\packages\NUnitTestAdapter.0.96.0\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -62,28 +81,38 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Features\Search\Retrieve Patient from User Selection.feature.cs">
+    <Compile Include="Features\Checked In Patients\SelectPatientFromCheckedInList.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SelectPatientFromCheckedInList.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Name Search\Retrieve Patient from User Selection.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Retrieve Patient from User Selection.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\Search\RetrievePatientFromUserSelectionSteps.cs" />
-    <Compile Include="Features\Search\SearchForPatient.feature.cs">
+    <Compile Include="Features\Name Search\RetrievePatientFromUserSelectionSteps.cs" />
+    <Compile Include="Features\Name Search\SearchForPatient.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SearchForPatient.feature</DependentUpon>
     </Compile>
-    <Compile Include="Features\Search\SearchForPatientSteps.cs" />
+    <Compile Include="Features\Name Search\SearchForPatientSteps.cs" />
     <Compile Include="Helpers\DBSeedingInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Features\Checked In Patients\SelectPatientFromCheckedInListSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Features\Search\Retrieve Patient from User Selection.feature">
+    <None Include="Features\Checked In Patients\SelectPatientFromCheckedInList.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SelectPatientFromCheckedInList.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Name Search\Retrieve Patient from User Selection.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Retrieve Patient from User Selection.feature.cs</LastGenOutput>
     </None>
-    <None Include="Features\Search\SearchForPatient.feature">
+    <None Include="Features\Name Search\SearchForPatient.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SearchForPatient.feature.cs</LastGenOutput>
     </None>

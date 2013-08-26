@@ -39,8 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Visit.cs" />
     <Compile Include="Enums\OverallHealthStatus.cs" />
     <Compile Include="Entities\PatientInfo.cs" />
+    <Compile Include="ValueObjects\CheckedInPatientResultItem.cs" />
     <Compile Include="ValueObjects\PatientResultItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\VisitNote.cs" />

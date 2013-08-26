@@ -7,6 +7,8 @@ namespace Repository
   public class PatientHistoryDataContext:DbContext
   {
     public IDbSet<PatientInfo> Patients { get; set; }
-  
+
+    public IDbSet<Visit> Visits{ get; set; }
+   
   }
 }
