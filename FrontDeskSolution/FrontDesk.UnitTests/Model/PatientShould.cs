@@ -2,14 +2,14 @@
 using FrontDesk.Core.Enums;
 using FrontDesk.Core.Model.ClientAggregate;
 using FrontDesk.Core.Model.PatientAggregate;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace FrontDesk.UnitTests.Model
 {
-    [TestClass]
+    [TestFixture]
     public class PatientShould
     {
-        [TestMethod]
+        [Test]
         public void HaveAFewProperties()
         {
             var testName = "Darwin";
@@ -24,7 +24,7 @@ namespace FrontDesk.UnitTests.Model
             Assert.AreEqual(testGender, patient.Gender);
         }
 
-        [TestMethod]
+        [Test]
         public void HaveAnOwner()
         {
             var client = new Client();

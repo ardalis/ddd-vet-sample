@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using FrontDesk.Core.Model.ClientAggregate;
 using FrontDesk.Core.Model.PatientAggregate;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections;
+using NUnit.Framework;
 
 namespace FrontDesk.UnitTests.Model
 {
-    [TestClass]
+    [TestFixture]
     public class ClientShould
     {
-        [TestMethod]
+        [Test]
         public void HaveAFewNameProperties()
         {
             var client = new Client();
@@ -30,7 +30,7 @@ namespace FrontDesk.UnitTests.Model
             Assert.AreEqual(preferredName, client.PreferredName);
         }
 
-        [TestMethod]
+        [Test]
         public void ReturnFormattedNameWithAllFieldsAsToString()
         {
             var client = new Client()
@@ -46,7 +46,7 @@ namespace FrontDesk.UnitTests.Model
             Assert.AreEqual(expectedResult, client.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void ReturnFormattedNameWithNoPreferredNameAsToString()
         {
             var client = new Client()
@@ -61,7 +61,7 @@ namespace FrontDesk.UnitTests.Model
             Assert.AreEqual(expectedResult, client.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void HaveAListOfPatients()
         {
             var client = new Client();
