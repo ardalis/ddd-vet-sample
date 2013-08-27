@@ -17,6 +17,7 @@ build/
 
 # Enable "build/" folder in the NuGet Packages folder since NuGet packages use it for MSBuild targets
 !packages/*/build/
+!HibernatingRhinos.Profiler.Appender.v4.0.dll
 
 # MSTest test Results
 FrontDeskSolution/TestResult.xml
