@@ -19,6 +19,7 @@ build/
 !packages/*/build/
 
 # MSTest test Results
+FrontDeskSolution/TestResult.xml
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
