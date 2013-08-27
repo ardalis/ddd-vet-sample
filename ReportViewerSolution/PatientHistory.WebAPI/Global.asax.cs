@@ -23,7 +23,7 @@ namespace WebAPI
       RouteConfig.RegisterRoutes(RouteTable.Routes);
       ConfigureApi(GlobalConfiguration.Configuration);
       System.Data.Entity.Database.SetInitializer(new Repository.Helpers.PatientHistoryDbSeedingInitializer());
-      HibernatingRhinos.Profiler.Appender.EntityFramework.EntityFrameworkProfiler.Initialize();
+      //HibernatingRhinos.Profiler.Appender.EntityFramework.EntityFrameworkProfiler.Initialize();
     }
     void ConfigureApi(HttpConfiguration config)
     {
