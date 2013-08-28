@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FrontDesk.Core.Interfaces;
 using FrontDesk.Core.Model.PatientAggregate;
 
 namespace FrontDesk.Core.Services
@@ -43,10 +44,5 @@ namespace FrontDesk.Core.Services
                 NewPatientCreated(this, e);
             }
         }
-    }
-
-    public interface IPatientRepository
-    {
-        void CreateOrUpdate(Patient patient);
     }
 }

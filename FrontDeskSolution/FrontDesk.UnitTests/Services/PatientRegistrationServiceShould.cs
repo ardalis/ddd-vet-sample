@@ -1,4 +1,5 @@
 ﻿using System;
+using FrontDesk.Core.Interfaces;
 using FrontDesk.Core.Model.ClientAggregate;
 using FrontDesk.Core.Model.PatientAggregate;
 using FrontDesk.Core.Services;

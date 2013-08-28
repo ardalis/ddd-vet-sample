@@ -292,9 +292,9 @@
       <Project>{8f96d44a-0f71-4103-ae75-42b6fda2371f}</Project>
       <Name>FrontDesk.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FrontDesk.Infrastructure\FrontDesk.Infrastructure.csproj">
+    <ProjectReference Include="..\FrontDesk.Infrastructure\FrontDesk.Data.csproj">
       <Project>{d21ff152-3336-4c6b-bbba-df034fdc9236}</Project>
-      <Name>FrontDesk.Infrastructure</Name>
+      <Name>FrontDesk.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

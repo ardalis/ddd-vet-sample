@@ -72,6 +72,7 @@
     <Compile Include="Model\ClientShould.cs" />
     <Compile Include="Model\PatientShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\MessageBusNotificationServiceShould.cs" />
     <Compile Include="Services\PatientRegistrationServiceShould.cs" />
   </ItemGroup>
   <ItemGroup>
