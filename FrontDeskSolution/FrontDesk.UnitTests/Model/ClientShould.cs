@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Common;
 using FrontDesk.Core.Model.ClientAggregate;
 using FrontDesk.Core.Model.PatientAggregate;
 using System.Collections;
@@ -19,13 +20,12 @@ namespace FrontDesk.UnitTests.Model
             string salutation = "Mr.";
             string preferredName = "Billy Joe";
 
-            client.FirstName = firstName;
-            client.LastName = lastName;
+            client.FullName = new FullName(firstName, lastName);
             client.Salutation = salutation;
             client.PreferredName = preferredName;
 
-            Assert.AreEqual(firstName, client.FirstName);
-            Assert.AreEqual(lastName, client.LastName);
+            Assert.AreEqual(firstName, client.FullName.FirstName);
+            Assert.AreEqual(lastName, client.FullName.LastName);
             Assert.AreEqual(salutation, client.Salutation);
             Assert.AreEqual(preferredName, client.PreferredName);
         }
@@ -35,13 +35,12 @@ namespace FrontDesk.UnitTests.Model
         {
             var client = new Client()
             {
-                FirstName = "Steven",
-                LastName = "Smith",
+                FullName = new FullName("Steven", "Smith"),
                 Salutation = "Mr.",
                 PreferredName = "Steve"
             };
 
-            var expectedResult = "Mr. Steven \"Steve\" Smith";
+            var expectedResult = "Mr. Steven Smith (Steve)";
 
             Assert.AreEqual(expectedResult, client.ToString());
         }
@@ -51,8 +50,7 @@ namespace FrontDesk.UnitTests.Model
         {
             var client = new Client()
             {
-                FirstName = "Steven",
-                LastName = "Smith",
+                FullName = new FullName("Steven", "Smith"),
                 Salutation = "Mr."
             };
 

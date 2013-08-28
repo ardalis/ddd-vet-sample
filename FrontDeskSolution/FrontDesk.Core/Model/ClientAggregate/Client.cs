@@ -8,8 +8,7 @@ namespace FrontDesk.Core.Model.ClientAggregate
     public class Client : IEntity
     {
         public Guid Id { get; private set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public Common.FullName FullName { get; set; }
         public string Salutation { get; set; }
         public string PreferredName { get; set; }
 
@@ -27,19 +26,11 @@ namespace FrontDesk.Core.Model.ClientAggregate
             {
                 result += this.Salutation;
             }
-            if (!String.IsNullOrWhiteSpace(this.FirstName))
-            {
-                result = string.Format("{0} {1}", result, this.FirstName).Trim();
-            }
+            result = string.Format("{0} {1}", result, this.FullName.AsFormattedName()).Trim();
 
             if (!String.IsNullOrWhiteSpace(this.PreferredName))
             {
-                result = string.Format("{0} \"{1}\"", result, this.PreferredName).Trim();
-            }
-
-            if (!String.IsNullOrWhiteSpace(this.LastName))
-            {
-                result = string.Format("{0} {1}", result, this.LastName).Trim();
+                result = string.Format("{0} ({1})", result, this.PreferredName).Trim();
             }
 
             return result;
