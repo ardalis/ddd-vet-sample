@@ -1,8 +1,10 @@
-﻿namespace CommonData
+﻿using System;
+
+namespace Common
 {
   public abstract class Identity
   {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     public FullName FullName{get;set;}
   }

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace CommonData
+namespace Common
 {
   //no ID because it's a value object
   //EF will recognized this as a complex type

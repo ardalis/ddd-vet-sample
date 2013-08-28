@@ -5,7 +5,7 @@ using System.Reflection;
 //this base class comes from Jimmy Bogard
 //http://grabbagoft.blogspot.com/2007/06/generic-value-object-equality.html
 
-namespace CommonData
+namespace Common
 {
   public abstract class ValueObject<T> : IEquatable<T>
     where T : ValueObject<T>

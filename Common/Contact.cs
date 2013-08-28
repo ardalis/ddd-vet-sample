@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace CommonData
+namespace Common
 {
   public class Contact: Identity
   {
