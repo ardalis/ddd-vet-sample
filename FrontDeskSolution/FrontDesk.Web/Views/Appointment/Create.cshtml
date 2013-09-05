@@ -1,0 +1,73 @@
+﻿@model FrontDesk.Web.Models.CreateAppointmentViewModel
+
+@{
+    ViewBag.Title = "New Appointment";
+}
+
+<h2>New Appointment</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <div class="editor-label">
+            Appointment For (choose client)
+        </div>
+        <div class="editor-field">
+            <input type="text" value="Type Client Name To Search" />
+            <input type="button" value="Search" />
+        </div>
+                <div class="editor-label">
+            Patient / Pet Name
+        </div>
+        <div class="editor-field">
+            (dropdown)
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DateOfAppointment)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DateOfAppointment)
+            @Html.ValidationMessageFor(model => model.DateOfAppointment)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Duration)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Duration)
+            @Html.ValidationMessageFor(model => model.Duration)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Doctors)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.SelectedDoctor, Model.Doctors);
+            @Html.ValidationMessageFor(model => model.SelectedDoctor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Details)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Details)
+            @Html.ValidationMessageFor(model => model.Details)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

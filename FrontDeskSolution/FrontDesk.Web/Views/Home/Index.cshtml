@@ -1,45 +1,37 @@
 ﻿<div id="body">
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>Welcome to ASP.NET Web API!</h1>
-                <h2>Modify the code in this template to jump-start your ASP.NET Web API development.</h2>
-            </hgroup>
-            <p>
-                ASP.NET Web API allows you to expose your applications, data and services to the
-                web directly over HTTP.
-            </p>
-            <p>
-                To learn more about ASP.NET Web API visit the
-                <a href="http://go.microsoft.com/fwlink/?LinkID=238195" title="ASP.NET Web API Website">ASP.NET Web API Website</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET Web API.
-                If you have any questions about ASP.NET Web API, visit
-                <a href="http://go.microsoft.com/fwlink/?LinkID=238196" title="ASP.NET Web API Forum">our forums</a>.
-            </p>
-        </div>
-    </section>
-    <section class="content-wrapper main-content clear-fix">
-        <h3>We suggest the following steps:</h3>
-        <ol class="round">
-            <li class="one">
-                <h5>Getting Started</h5>
-                ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-                a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-                is an ideal platform for building RESTful applications on the .NET Framework.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245160">Learn more…</a>
-            </li>
+    <h2>Appointments</h2>
+    <p>Add a grid with today's appointments and pictures of the patients</p>
+    <table>
+        <tr>
+            <th>Check In / Out</th>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Patient</th>
+            <th>Client</th>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="Check Out" /></td>
+            <td>8:00 AM</td>
+            <td>Exam Room One</td>
+            <td>
+                <img src="" alt="Darwin" />Darwin</td>
+            <td>Steve Smith<br />
+                123 Main Street<br />
+                Kent, OH 44240</td>
 
-            <li class="two">
-                <h5>Add NuGet packages and jump-start your coding</h5>
-                NuGet makes it easy to install and update free libraries and tools.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245161">Learn more…</a>
-            </li>
-            <li class="three">
-                <h5>Find Web Hosting</h5>
-                You can easily find a web hosting company that offers the right mix of features
-                and price for your applications.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245164">Learn more…</a>
-            </li>
-        </ol>
-    </section>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="Check In" /></td>
+            <td>9:00 AM</td>
+            <td>Not Arrived</td>
+            <td>
+                <img src="http://thedatafarm.com/blog/files/media/image/WindowsLiveWriter/Sampsongetsagroomingandawalkinthewoods_7F6B/handsome%20sampson_thumb.png" alt="Sampson" style="max-height:100px;"/><br />Sampson</td>
+            <td>Julie Lerman<br />
+                123 Main Street<br />
+                Burlington, VT 11111</td>
+            
+        </tr>
+    </table>
 </div>
