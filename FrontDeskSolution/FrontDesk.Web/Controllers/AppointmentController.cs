@@ -31,13 +31,13 @@ namespace FrontDesk.Web.Controllers
         public ActionResult Create()
         {
             var model = new CreateAppointmentViewModel();
-            model.Doctors = new SelectList(new List<SelectListItem>() 
+            model.Doctors = new List<SelectListItem>() 
             { 
-                new SelectListItem() { Text="Doctor McDreamy", Value="Doct McDreamy" },
+                new SelectListItem() { Text="Doctor McDreamy", Value="Doctor McDreamy" },
                 new SelectListItem() { Text="Doctor Smith" },
                 new SelectListItem() { Text="Doctor Who" },
                 new SelectListItem() { Text="Doctor Zhivago" }
-            });
+            };
 
             return View(model);
         }

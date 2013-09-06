@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -11,7 +12,7 @@ namespace FrontDesk.Web.Models
         public DateTime DateOfAppointment { get; set; }
         public TimeSpan Duration { get; set; }
         public Guid SelectedDoctor { get; set; }
-        public SelectList Doctors { get; set; }
+        public List<SelectListItem> Doctors { get; set; }
         public string Details { get; set; }
     }
 
@@ -19,5 +20,23 @@ namespace FrontDesk.Web.Models
     {
         public Guid DoctorId { get; set; }
         public string Name { get; set; }
+    }
+
+    public class ClientViewModel
+    {
+        public ClientViewModel()
+        {
+            ClientId = Guid.NewGuid();
+        }
+        public Guid ClientId { get; set; }
+        public string Name { get; set; }
+       // public List<PatientViewModel> Patients { get; set; }
+    }
+
+    public class PatientViewModel
+    {
+        public Guid PatientId { get; set; }
+        public String Name { get; set; }
+        public string PhotoUrl { get; set; }
     }
 }
