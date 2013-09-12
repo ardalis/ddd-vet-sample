@@ -26,7 +26,7 @@
                     Patient / Pet Name
                 </div>
                 <div class="editor-field">
-                    <select id="patientDropDown" data-role="dropdownlist"
+                    <select id="patientDropDown" data-role="dropdownlist" name="patientDropDown"
                         data-value-field="PatientId" data-text-field="Name"
                         data-bind="source: selectedClient.Patients">
                     </select>
@@ -35,9 +35,9 @@
                     @Html.LabelFor(model => model.DateOfAppointment)
                 </div>
                 <div class="editor-field">
-                    <input id="datePicker" style="width: 150px"
+                    <input id="datePicker" name="datePicker" style="width: 150px"
                         data-role="datepicker" data-bind="value: appointment.date" />
-                    <input id="timePicker" style="width: 150px"
+                    <input id="timePicker" name="timePicker" style="width: 150px"
                         data-role="timepicker" data-bind="value: appointment.date" />
                 </div>
 
@@ -45,7 +45,7 @@
                     @Html.LabelFor(model => model.Duration)
                 </div>
                 <div class="editor-field">
-                    <select id="durationDropDown" data-role="dropdownlist"
+                    <select id="durationDropDown" name="durationDropDown" data-role="dropdownlist"
                         data-bind="source: durationValues">
                     </select>
                 </div>
@@ -54,7 +54,7 @@
                     @Html.LabelFor(model => model.SelectedDoctor)
                 </div>
                 <div class="editor-field">
-                    <select id="doctorsDropDown" data-role="dropdownlist"
+                    <select id="doctorsDropDown" data-role="dropdownlist" name="doctorsDropDown"
                         data-text-field="Name" data-value-field="DoctorId" data-template="doctorTemplate"
                         data-bind="source: doctors" style="width: 400px">
                     </select>
@@ -69,7 +69,7 @@
                 </div>
 
                 <p>
-                    <input type="submit" value="Create" />
+                    <input type="submit" value="Create" id="CreateButton" />
                 </p>
             </div>
         </fieldset>
