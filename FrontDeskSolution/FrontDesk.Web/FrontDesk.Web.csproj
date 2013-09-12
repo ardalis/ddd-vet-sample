@@ -288,6 +288,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\Clients\" />
+    <Folder Include="Images\Patients\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

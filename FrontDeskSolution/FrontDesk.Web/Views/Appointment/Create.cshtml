@@ -15,11 +15,11 @@
         <div class="editor-label">
             Appointment For (choose client)
         </div>
-        @*        <div class="editor-field">*@
         <div class="k-content">
-            <input type="text" id="client" />
+            <input type="text" id="client" style="width: 400px;" />
             <p>Start typing to find a client</p>
-            <input type="button" value="Search" />
+            <input type="button" value="Select" />
+            <input type="button" value="Add New" />
         </div>
         <div class="editor-label">
             Patient / Pet Name
@@ -72,12 +72,22 @@
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
     <script id="template" type="text/x-kendo-template">
-    <h3>${data.Name}</h3>
+        <img src="/Images/Clients/Steve_Smith.jpg" alt="${data.Name}" />
+        <span>${data.Name}</span><br />
+        #= renderPatientTemplate(data) #
     </script>
+    <script id="patient-template" type="text/x-kendo-template">
+        # $.each(data.Patients, function (index, item) {
+            # <img src="/Images/Patients/darwin.jpg" alt="${item}" style="max-height:50px" /> #
+        });
+        #
+    </script>
+
     <script type="text/javascript">
         $(document).ready(function () {
-            var clients2 = new kendo.data.DataSource({
+            var clients = new kendo.data.DataSource({
                 type: "json",
                 transport: {
                     read: {
@@ -87,8 +97,6 @@
                 }
             });
 
-            var clients = [{ "ClientId": "000-000", "Name": "Steve" }, { "ClientId": "000-001", "Name": "Julie" }];
-
             $("#client").kendoAutoComplete({
                 minLength: 1,
                 filter: "contains",
@@ -96,10 +104,13 @@
                 dataTextField: "Name",
                 dataValueField: "ClientId",
                 template: kendo.template($("#template").html()),
-                dataSource: clients2,
-                height: 370,
+                dataSource: clients,
             }).data("kendoAutoComplete");
         });
+
+        function renderPatientTemplate(data) {
+            return kendo.Template.compile($('#patient-template').html())(data);
+        }
     </script>
     <style scoped>
         .demo-section {

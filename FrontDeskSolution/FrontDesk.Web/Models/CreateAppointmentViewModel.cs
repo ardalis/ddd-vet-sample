@@ -30,13 +30,16 @@ namespace FrontDesk.Web.Models
         }
         public Guid ClientId { get; set; }
         public string Name { get; set; }
-       // public List<PatientViewModel> Patients { get; set; }
+        public List<PatientViewModel> Patients { get; set; }
     }
 
     public class PatientViewModel
     {
+        public PatientViewModel()
+        {
+            PatientId = Guid.NewGuid();
+        }
         public Guid PatientId { get; set; }
         public String Name { get; set; }
-        public string PhotoUrl { get; set; }
     }
 }

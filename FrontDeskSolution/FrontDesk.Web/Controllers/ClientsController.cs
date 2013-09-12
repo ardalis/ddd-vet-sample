@@ -13,17 +13,14 @@ namespace FrontDesk.Web.Controllers
         {
             return new ClientViewModel[] { 
                 new ClientViewModel() {
-                    //ClientId= Guid.Empty,
-                    Name="Steve Smith"
-                    //Patients = new List<PatientViewModel>()
-                    //{
-                    //    //new PatientViewModel()
-                    //    //{
-                    //    //    Name="Darwin",
-                    //    //    PatientId=Guid.Empty,
-                    //    //    PhotoUrl="darwin.jpg"
-                    //    //}
-                    //}
+                    Name="Steve Smith",
+                    Patients = new List<PatientViewModel>()
+                    {
+                        new PatientViewModel()
+                        {
+                            Name="Darwin"
+                        }
+                    }
                 },
                 new ClientViewModel() { Name="Julie" }
             };
