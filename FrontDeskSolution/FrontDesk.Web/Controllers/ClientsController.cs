@@ -19,6 +19,10 @@ namespace FrontDesk.Web.Controllers
                         new PatientViewModel()
                         {
                             Name="Darwin"
+                        },
+                        new PatientViewModel()
+                        {
+                            Name="Rumor"
                         }
                     }
                 },

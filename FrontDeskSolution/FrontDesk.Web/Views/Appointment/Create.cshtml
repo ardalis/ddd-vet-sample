@@ -10,61 +10,65 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
+    <div id="form-container">
+        <fieldset>
+            <div class="editor-label">
+                Appointment For (choose client)
+            </div>
+            <div class="k-content">
+                <input type="text" id="client" style="width: 400px;" /><input type="button" value="Add New" id="newClientButton" />
 
-    <fieldset>
-        <div class="editor-label">
-            Appointment For (choose client)
-        </div>
-        <div class="k-content">
-            <input type="text" id="client" style="width: 400px;" />
-            <p>Start typing to find a client</p>
-            <input type="button" value="Select" />
-            <input type="button" value="Add New" />
-        </div>
-        <div class="editor-label">
-            Patient / Pet Name
-        </div>
-        <div class="editor-field">
-            (dropdown)
-        </div>
+                <p>Start typing to find a client</p>
+            </div>
+            <div data-bind="visible: showPatientForm">
+            <div class="editor-label">
+                Patient / Pet Name
+            </div>
+            <div class="editor-field">
+                <select id="patientDropDown" data-role="dropdownlist"
+                    data-value-field="PatientId" data-text-field="Name"
+                    data-bind="source: selectedClient.Patients"></select>
+            </div>
+                </div>
+            <div data-bind="visible: showAppointmentForm">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DateOfAppointment)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DateOfAppointment)
+                @Html.ValidationMessageFor(model => model.DateOfAppointment)
+            </div>
 
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Duration)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Duration)
+                @Html.ValidationMessageFor(model => model.Duration)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.DateOfAppointment)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.DateOfAppointment)
-            @Html.ValidationMessageFor(model => model.DateOfAppointment)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Doctors)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.SelectedDoctor, Model.Doctors)
+                @Html.ValidationMessageFor(model => model.SelectedDoctor)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Duration)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Duration)
-            @Html.ValidationMessageFor(model => model.Duration)
-        </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Details)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Details)
+                @Html.ValidationMessageFor(model => model.Details)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Doctors)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.SelectedDoctor, Model.Doctors)
-            @Html.ValidationMessageFor(model => model.SelectedDoctor)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Details)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Details)
-            @Html.ValidationMessageFor(model => model.Details)
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+                </div>
+        </fieldset>
+    </div>
 }
 
 <div>
@@ -80,12 +84,22 @@
     </script>
     <script id="patient-template" type="text/x-kendo-template">
         # $.each(data.Patients, function (index, item) {
-            # <img src="/Images/Patients/darwin.jpg" alt="${item}" style="max-height:50px" /> #
+            # <img src="/Images/Patients/${item.Name}.jpg" alt="${item.Name}" style="max-height:50px" />${item.Name} #
         });
         #
     </script>
 
     <script type="text/javascript">
+        var viewModel = kendo.observable({
+            selectedClient: { Patients: [] },
+            selectedPatient: null,
+            showPatientForm: function () {
+                return this.get("selectedClient") !== null;
+            },
+            showAppointmentForm: function () {
+                return this.get("selectedPatient") !== null;
+            }
+        });
         $(document).ready(function () {
             var clients = new kendo.data.DataSource({
                 type: "json",
@@ -98,6 +112,7 @@
             });
 
             $("#client").kendoAutoComplete({
+                select: onSelect,
                 minLength: 1,
                 filter: "contains",
                 placeholder: "Type client name...",
@@ -106,11 +121,25 @@
                 template: kendo.template($("#template").html()),
                 dataSource: clients,
             }).data("kendoAutoComplete");
+
+            $("#patients").kendoDropDownList({
+                dataTextField: "Name",
+                dataValueField: "PatientId",
+            });
+            kendo.bind($("#form-container"), viewModel);
         });
 
+        function onSelect(clientItem) {
+            var client = this.dataItem(clientItem.item.index());
+            viewModel.set("selectedClient", client);
+        }
         function renderPatientTemplate(data) {
             return kendo.Template.compile($('#patient-template').html())(data);
         }
+
+        $('#newClientButton').click(function () {
+            alert('Not done.');
+        });
     </script>
     <style scoped>
         .demo-section {

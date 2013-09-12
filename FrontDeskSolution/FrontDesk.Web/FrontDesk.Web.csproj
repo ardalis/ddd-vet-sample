@@ -238,6 +238,9 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Images\Clients\Steve_Smith.jpg" />
+    <Content Include="Images\Patients\darwin.jpg" />
+    <Content Include="Images\Patients\rumor.jpg" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
@@ -288,8 +291,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\Clients\" />
-    <Folder Include="Images\Patients\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
