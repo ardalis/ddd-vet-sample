@@ -52,8 +52,8 @@
             </div>
             <div class="editor-field">
                 <select id="doctorsDropDown" data-role="dropdownlist"
-                    data-text-field="Text" data-value-field="uid"
-                    data-bind="source: doctors"></select>
+                    data-text-field="Name" data-value-field="DoctorId" data-template="doctorTemplate"
+                    data-bind="source: doctors" style="width:400px"></select>
             </div>
 
             <div class="editor-label">
@@ -77,6 +77,11 @@
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script id="doctorTemplate" type="text/x-kendo-template">
+        <img src="/Images/Doctors/${data.DoctorId}.jpg" alt="${data.Name}" style="max-height:125px" />
+        <span>${data.Name}</span><br />
+    </script>
 
     <script id="template" type="text/x-kendo-template">
         <img src="/Images/Clients/Steve_Smith.jpg" alt="${data.Name}" />
@@ -113,6 +118,16 @@
                     }
                 }
             });
+            var doctors = new kendo.data.DataSource({
+                type: "json",
+                transport: {
+                    read: {
+                        dataType: "json",
+                        url: "/api/doctors"
+                    }
+                }
+            });
+            viewModel.set("doctors", doctors);
 
             $("#client").kendoAutoComplete({
                 select: onSelect,

@@ -1,6 +1,4 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
 using FrontDesk.Web.Models;
 
@@ -11,22 +9,24 @@ namespace FrontDesk.Web.Controllers
         // GET api/values
         public IEnumerable<ClientViewModel> Get()
         {
-            return new ClientViewModel[] { 
-                new ClientViewModel() {
-                    Name="Steve Smith",
+            return new ClientViewModel[]
+            {
+                new ClientViewModel()
+                {
+                    Name = "Steve Smith",
                     Patients = new List<PatientViewModel>()
                     {
                         new PatientViewModel()
                         {
-                            Name="Darwin"
+                            Name = "Darwin"
                         },
                         new PatientViewModel()
                         {
-                            Name="Rumor"
+                            Name = "Rumor"
                         }
                     }
                 },
-                new ClientViewModel() { Name="Julie" }
+                new ClientViewModel() { Name = "Julie" }
             };
         }
 
@@ -37,12 +37,14 @@ namespace FrontDesk.Web.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]string value)
+        public void Post([FromBody]
+                         string value)
         {
         }
 
         // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]
+                        string value)
         {
         }
 
