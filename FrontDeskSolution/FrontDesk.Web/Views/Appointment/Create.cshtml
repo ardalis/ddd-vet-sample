@@ -33,24 +33,27 @@
                 @Html.LabelFor(model => model.DateOfAppointment)
             </div>
             <div class="editor-field">
-                @Html.EditorFor(model => model.DateOfAppointment)
-                @Html.ValidationMessageFor(model => model.DateOfAppointment)
+                <input id="datePicker" style="width:150px"
+                    data-role="datepicker" data-bind="value: appointment.date" />
+                <input id="timePicker" style="width:150px"
+                    data-role="timepicker" data-bind="value: appointment.date" />
             </div>
 
             <div class="editor-label">
                 @Html.LabelFor(model => model.Duration)
             </div>
             <div class="editor-field">
-                @Html.EditorFor(model => model.Duration)
-                @Html.ValidationMessageFor(model => model.Duration)
+                <select id="durationDropDown" data-role="dropdownlist"
+                    data-bind="source: durationValues"></select>
             </div>
 
             <div class="editor-label">
                 @Html.LabelFor(model => model.Doctors)
             </div>
             <div class="editor-field">
-                @Html.DropDownListFor(model => model.SelectedDoctor, Model.Doctors)
-                @Html.ValidationMessageFor(model => model.SelectedDoctor)
+                <select id="durationDropDown" data-role="dropdownlist"
+                    data-text-field="Text" data-value-field="uid"
+                    data-bind="source: doctors"></select>
             </div>
 
             <div class="editor-label">
@@ -91,9 +94,14 @@
         var viewModel = kendo.observable({
             selectedClient: { Patients: [] },
             selectedPatient: null,
+            appointment: {
+                date: new Date()
+            },
+            durationValues: ["30 Minutes", "1 hour"],
+            doctors: @Html.Raw(Json.Encode(Model.Doctors)),
             showForm: function () {
                 return this.get("selectedClient").Patients.length > 0;
-            }
+            },
         });
         $(document).ready(function () {
             var clients = new kendo.data.DataSource({
@@ -127,6 +135,7 @@
         function onSelect(clientItem) {
             var client = this.dataItem(clientItem.item.index());
             viewModel.set("selectedClient", client);
+            viewModel.set("selectedPatient", client.Patients[0]);
         }
         function renderPatientTemplate(data) {
             return kendo.Template.compile($('#patient-template').html())(data);
