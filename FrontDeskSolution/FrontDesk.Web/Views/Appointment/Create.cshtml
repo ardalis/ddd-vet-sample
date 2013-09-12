@@ -12,6 +12,7 @@
     @Html.ValidationSummary(true)
     <div id="form-container">
         <fieldset>
+            <legend></legend>
             <div class="editor-label">
                 Appointment For (choose client)
             </div>
@@ -21,53 +22,56 @@
                 <p>Start typing to find a client</p>
             </div>
             <div data-bind="visible: showForm">
-            <div class="editor-label">
-                Patient / Pet Name
-            </div>
-            <div class="editor-field">
-                <select id="patientDropDown" data-role="dropdownlist"
-                    data-value-field="PatientId" data-text-field="Name"
-                    data-bind="source: selectedClient.Patients"></select>
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.DateOfAppointment)
-            </div>
-            <div class="editor-field">
-                <input id="datePicker" style="width:150px"
-                    data-role="datepicker" data-bind="value: appointment.date" />
-                <input id="timePicker" style="width:150px"
-                    data-role="timepicker" data-bind="value: appointment.date" />
-            </div>
-
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Duration)
-            </div>
-            <div class="editor-field">
-                <select id="durationDropDown" data-role="dropdownlist"
-                    data-bind="source: durationValues"></select>
-            </div>
-
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Doctors)
-            </div>
-            <div class="editor-field">
-                <select id="doctorsDropDown" data-role="dropdownlist"
-                    data-text-field="Name" data-value-field="DoctorId" data-template="doctorTemplate"
-                    data-bind="source: doctors" style="width:400px"></select>
-            </div>
-
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Details)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Details)
-                @Html.ValidationMessageFor(model => model.Details)
-            </div>
-
-            <p>
-                <input type="submit" value="Create" />
-            </p>
+                <div class="editor-label">
+                    Patient / Pet Name
                 </div>
+                <div class="editor-field">
+                    <select id="patientDropDown" data-role="dropdownlist"
+                        data-value-field="PatientId" data-text-field="Name"
+                        data-bind="source: selectedClient.Patients">
+                    </select>
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.DateOfAppointment)
+                </div>
+                <div class="editor-field">
+                    <input id="datePicker" style="width: 150px"
+                        data-role="datepicker" data-bind="value: appointment.date" />
+                    <input id="timePicker" style="width: 150px"
+                        data-role="timepicker" data-bind="value: appointment.date" />
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Duration)
+                </div>
+                <div class="editor-field">
+                    <select id="durationDropDown" data-role="dropdownlist"
+                        data-bind="source: durationValues">
+                    </select>
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.SelectedDoctor)
+                </div>
+                <div class="editor-field">
+                    <select id="doctorsDropDown" data-role="dropdownlist"
+                        data-text-field="Name" data-value-field="DoctorId" data-template="doctorTemplate"
+                        data-bind="source: doctors" style="width: 400px">
+                    </select>
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Details)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Details)
+                    @Html.ValidationMessageFor(model => model.Details)
+                </div>
+
+                <p>
+                    <input type="submit" value="Create" />
+                </p>
+            </div>
         </fieldset>
     </div>
 }
@@ -103,7 +107,7 @@
                 date: new Date()
             },
             durationValues: ["30 Minutes", "1 hour"],
-            doctors: @Html.Raw(Json.Encode(Model.Doctors)),
+            doctors: null,
             showForm: function () {
                 return this.get("selectedClient").Patients.length > 0;
             },
@@ -144,7 +148,7 @@
                 dataTextField: "Name",
                 dataValueField: "PatientId",
             });
-            viewModel.appointment.date.setHours(10,0,0,0);
+            viewModel.appointment.date.setHours(10, 0, 0, 0);
             kendo.bind($("#form-container"), viewModel);
         });
 
