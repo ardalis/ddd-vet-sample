@@ -20,7 +20,7 @@
 
                 <p>Start typing to find a client</p>
             </div>
-            <div data-bind="visible: showPatientForm">
+            <div data-bind="visible: showForm">
             <div class="editor-label">
                 Patient / Pet Name
             </div>
@@ -29,8 +29,6 @@
                     data-value-field="PatientId" data-text-field="Name"
                     data-bind="source: selectedClient.Patients"></select>
             </div>
-                </div>
-            <div data-bind="visible: showAppointmentForm">
             <div class="editor-label">
                 @Html.LabelFor(model => model.DateOfAppointment)
             </div>
@@ -93,11 +91,8 @@
         var viewModel = kendo.observable({
             selectedClient: { Patients: [] },
             selectedPatient: null,
-            showPatientForm: function () {
-                return this.get("selectedClient") !== null;
-            },
-            showAppointmentForm: function () {
-                return this.get("selectedPatient") !== null;
+            showForm: function () {
+                return this.get("selectedClient").Patients.length > 0;
             }
         });
         $(document).ready(function () {
