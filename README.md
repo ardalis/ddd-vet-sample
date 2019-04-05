@@ -17,3 +17,5 @@ Finally, if you have to adjust the connection strings for the database to use yo
 * FrontDesk web.config
 * VetClinicPublic web.config
 * MessagingConfig.cs in both solutions
+
+Basically you should search both solutions for `(LocalDb)\MSSQLLocalDB` and replace it with whatever local SQL Server database you're using.
