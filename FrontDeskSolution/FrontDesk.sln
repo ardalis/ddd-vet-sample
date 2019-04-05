@@ -1,0 +1,142 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontDesk.Web", "FrontDesk.Web\FrontDesk.Web.csproj", "{995F0991-AA60-43AC-B3A3-65438A5C2A6F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{603975AC-5279-408F-B7CD-1A68DE4B053D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{01BD2B53-5EC0-4A0F-A8A8-ED06B46D43CD}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AppointmentScheduling", "AppointmentScheduling", "{63686ED5-C5A9-4F43-B648-8DF8E6E6BC04}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClientPatientManagement", "ClientPatientManagement", "{B948A57B-ACD8-436C-B1BC-008C97B1D1D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ResourceScheduling", "ResourceScheduling", "{4B29DF7D-1DDD-4098-A921-07240C365FAC}"
+	ProjectSection(SolutionItems) = preProject
+		README.txt = README.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientPatientManagement.Core", "ClientPatientManagement.Core\ClientPatientManagement.Core.csproj", "{760D74FC-2E7E-4D73-BEFA-43D8C5678892}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedKernel", "SharedKernel", "{59405093-8ADC-467D-80CD-D690578E6E2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontDesk.SharedKernel", "FrontDesk.SharedKernel\FrontDesk.SharedKernel.csproj", "{EF61F90A-2E68-4930-B811-D1CFDB429A68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientPatientManagement.UnitTests", "ClientPatientManagement.UnitTests\ClientPatientManagement.UnitTests.csproj", "{DB838FC0-E1E0-4A10-B62C-D261810173D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientPatientManagement.Data", "ClientPatientManagement.Data\ClientPatientManagement.Data.csproj", "{F643B4C2-4BE4-495C-92D6-F987BC494751}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VetOffice.SharedDatabase", "SharedDatabaseManagement\VetOffice.SharedDatabase.csproj", "{105D1DAC-2C0F-41B7-87FB-4076FE93610B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedDatabaseManagementTools", "SharedDatabaseManagementTools", "{6A7875AB-F039-462B-91D8-AF4643FE434C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedDatabaseTests", "SharedDatabaseTests\SharedDatabaseTests.csproj", "{E34CF60F-529A-416D-B62D-D5B76978A174}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientPatientManagement.IntegrationTests", "ClientPatientManagement.IntegrationTests\ClientPatientManagement.IntegrationTests.csproj", "{72CBA334-CBA8-4089-A2BB-D7A5DD34F1AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppointmentScheduling.Core", "AppointmentScheduling.Core\AppointmentScheduling.Core.csproj", "{8F96D44A-0F71-4103-AE75-42B6FDA2371F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppointmentScheduling.UnitTests", "AppointmentScheduling.UnitTests\AppointmentScheduling.UnitTests.csproj", "{1D9F440B-2F07-405F-ABE3-5104E9661973}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppointmentScheduling.Data", "AppointmentScheduling.Data\AppointmentScheduling.Data.csproj", "{D21FF152-3336-4C6B-BBBA-DF034FDC9236}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppointmentScheduling.IntegrationTests", "AppointmentScheduling.IntegrationTests\AppointmentScheduling.IntegrationTests.csproj", "{4ABF860B-4F8E-49E9-AD83-DFEB36533BA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernel.UnitTests", "SharedKernel.UnitTests\SharedKernel.UnitTests.csproj", "{358813FB-24F0-4370-AE45-8B7B7E667F38}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FrontDeskDatabase", "FrontDeskDatabase\FrontDeskDatabase.sqlproj", "{357C4652-34CF-421F-A4B2-0A387ACB4742}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{995F0991-AA60-43AC-B3A3-65438A5C2A6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{995F0991-AA60-43AC-B3A3-65438A5C2A6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{995F0991-AA60-43AC-B3A3-65438A5C2A6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{995F0991-AA60-43AC-B3A3-65438A5C2A6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{760D74FC-2E7E-4D73-BEFA-43D8C5678892}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{760D74FC-2E7E-4D73-BEFA-43D8C5678892}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{760D74FC-2E7E-4D73-BEFA-43D8C5678892}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{760D74FC-2E7E-4D73-BEFA-43D8C5678892}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF61F90A-2E68-4930-B811-D1CFDB429A68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF61F90A-2E68-4930-B811-D1CFDB429A68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF61F90A-2E68-4930-B811-D1CFDB429A68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF61F90A-2E68-4930-B811-D1CFDB429A68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB838FC0-E1E0-4A10-B62C-D261810173D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB838FC0-E1E0-4A10-B62C-D261810173D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB838FC0-E1E0-4A10-B62C-D261810173D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB838FC0-E1E0-4A10-B62C-D261810173D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F643B4C2-4BE4-495C-92D6-F987BC494751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F643B4C2-4BE4-495C-92D6-F987BC494751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F643B4C2-4BE4-495C-92D6-F987BC494751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F643B4C2-4BE4-495C-92D6-F987BC494751}.Release|Any CPU.Build.0 = Release|Any CPU
+		{105D1DAC-2C0F-41B7-87FB-4076FE93610B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{105D1DAC-2C0F-41B7-87FB-4076FE93610B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{105D1DAC-2C0F-41B7-87FB-4076FE93610B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{105D1DAC-2C0F-41B7-87FB-4076FE93610B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E34CF60F-529A-416D-B62D-D5B76978A174}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E34CF60F-529A-416D-B62D-D5B76978A174}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E34CF60F-529A-416D-B62D-D5B76978A174}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E34CF60F-529A-416D-B62D-D5B76978A174}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72CBA334-CBA8-4089-A2BB-D7A5DD34F1AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72CBA334-CBA8-4089-A2BB-D7A5DD34F1AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72CBA334-CBA8-4089-A2BB-D7A5DD34F1AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72CBA334-CBA8-4089-A2BB-D7A5DD34F1AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F96D44A-0F71-4103-AE75-42B6FDA2371F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F96D44A-0F71-4103-AE75-42B6FDA2371F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F96D44A-0F71-4103-AE75-42B6FDA2371F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F96D44A-0F71-4103-AE75-42B6FDA2371F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D9F440B-2F07-405F-ABE3-5104E9661973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D9F440B-2F07-405F-ABE3-5104E9661973}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D9F440B-2F07-405F-ABE3-5104E9661973}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D9F440B-2F07-405F-ABE3-5104E9661973}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D21FF152-3336-4C6B-BBBA-DF034FDC9236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D21FF152-3336-4C6B-BBBA-DF034FDC9236}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D21FF152-3336-4C6B-BBBA-DF034FDC9236}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D21FF152-3336-4C6B-BBBA-DF034FDC9236}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ABF860B-4F8E-49E9-AD83-DFEB36533BA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ABF860B-4F8E-49E9-AD83-DFEB36533BA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ABF860B-4F8E-49E9-AD83-DFEB36533BA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ABF860B-4F8E-49E9-AD83-DFEB36533BA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{358813FB-24F0-4370-AE45-8B7B7E667F38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{358813FB-24F0-4370-AE45-8B7B7E667F38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{358813FB-24F0-4370-AE45-8B7B7E667F38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{358813FB-24F0-4370-AE45-8B7B7E667F38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{357C4652-34CF-421F-A4B2-0A387ACB4742}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{357C4652-34CF-421F-A4B2-0A387ACB4742}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{357C4652-34CF-421F-A4B2-0A387ACB4742}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{357C4652-34CF-421F-A4B2-0A387ACB4742}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{357C4652-34CF-421F-A4B2-0A387ACB4742}.Release|Any CPU.Build.0 = Release|Any CPU
+		{357C4652-34CF-421F-A4B2-0A387ACB4742}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{603975AC-5279-408F-B7CD-1A68DE4B053D} = {63686ED5-C5A9-4F43-B648-8DF8E6E6BC04}
+		{760D74FC-2E7E-4D73-BEFA-43D8C5678892} = {B948A57B-ACD8-436C-B1BC-008C97B1D1D4}
+		{EF61F90A-2E68-4930-B811-D1CFDB429A68} = {59405093-8ADC-467D-80CD-D690578E6E2B}
+		{DB838FC0-E1E0-4A10-B62C-D261810173D3} = {B948A57B-ACD8-436C-B1BC-008C97B1D1D4}
+		{F643B4C2-4BE4-495C-92D6-F987BC494751} = {B948A57B-ACD8-436C-B1BC-008C97B1D1D4}
+		{105D1DAC-2C0F-41B7-87FB-4076FE93610B} = {6A7875AB-F039-462B-91D8-AF4643FE434C}
+		{E34CF60F-529A-416D-B62D-D5B76978A174} = {6A7875AB-F039-462B-91D8-AF4643FE434C}
+		{72CBA334-CBA8-4089-A2BB-D7A5DD34F1AB} = {B948A57B-ACD8-436C-B1BC-008C97B1D1D4}
+		{8F96D44A-0F71-4103-AE75-42B6FDA2371F} = {63686ED5-C5A9-4F43-B648-8DF8E6E6BC04}
+		{1D9F440B-2F07-405F-ABE3-5104E9661973} = {63686ED5-C5A9-4F43-B648-8DF8E6E6BC04}
+		{D21FF152-3336-4C6B-BBBA-DF034FDC9236} = {603975AC-5279-408F-B7CD-1A68DE4B053D}
+		{4ABF860B-4F8E-49E9-AD83-DFEB36533BA3} = {603975AC-5279-408F-B7CD-1A68DE4B053D}
+		{358813FB-24F0-4370-AE45-8B7B7E667F38} = {59405093-8ADC-467D-80CD-D690578E6E2B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35
+	EndGlobalSection
+EndGlobal

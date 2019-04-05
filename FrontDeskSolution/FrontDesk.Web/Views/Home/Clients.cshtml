@@ -1,0 +1,140 @@
+﻿@{
+    ViewBag.Title = "Clients";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Clients</h2>
+<div id="grid"></div>
+@section scripts {
+    <script>
+        var doctorList = [
+{
+    doctorId: 0,
+    Name: "N/A"
+},
+{
+    doctorId: 1,
+    Name: "Dr. Smith"
+},
+{
+    doctorId: 2,
+    Name: "Dr. Jones"
+},
+{
+    doctorId: 3,
+    Name: "Dr. Who"
+},
+        ]
+
+        function doctorDropDownEditor(container, options) {
+            $('<input data-bind="value:' + options.field + '"/>')
+            .appendTo(container)
+            .kendoDropDownList({
+                dataTextField: "Name",
+                dataValueField: "doctorId",
+                dataSource: doctorList,
+                optionLabel: ""
+            });
+        }
+
+        var getDoctorName = function (doctorId) {
+            if (!doctorId) doctorId = 0;
+            for (var idx = 0, length = doctorList.length; idx < length; idx++) {
+                if (doctorList[idx].doctorId === doctorId) {
+                    return doctorList[idx].Name;
+                }
+            }
+        }
+
+        $(function () {
+
+
+            var serviceUrl = "/api/crudclients";
+            var dataSource = new kendo.data.DataSource({
+                type: "json",
+                transport: {
+                    read: {
+                        url: serviceUrl,
+                        contentType: "application/json"
+                    },
+                    update: {
+                        url: function (client) { return serviceUrl + "/" + client.Id },
+                        type: "PUT",
+                        contentType: "application/json"
+                    },
+                    destroy: {
+                        url: function (client) { return serviceUrl + "/" + client.Id },
+                        type: "DELETE",
+                        contentType: "application/json"
+                    },
+                    create: {
+                        url: serviceUrl,
+                        type: "POST",
+                        contentType: "application/json"
+                    },
+                    parameterMap: function (options, operation) {
+                        return JSON.stringify(options);
+                    }
+                },
+                pageSize: 10,
+                schema: {
+                    model: {
+                        id: "Id",
+                        fields: {
+                            Id: { type: "number", editable: false },
+                            FullName: { editable: true },
+                            Salutation: { editable: true },
+                            PreferredName: { editable: true },
+                            PreferredDoctorId: { type: "number", nullable: true, editable: true }
+                        }
+                    }
+                }
+            });
+            $("#grid").kendoGrid({
+                dataSource: dataSource,
+                editable: "inline",
+                toolbar: ["create"],
+                columns: [
+                    {
+                        field: "Id",
+                        filterable: false,
+                        editable: false,
+                        width: 50,
+                    },
+                    {
+                        field: "Salutation",
+                        title: "Salutation",
+                        filterable: false
+                    },
+                    {
+                        field: "FullName",
+                        title: "Full Name",
+                        filterable: true
+                    },
+                    {
+                        field: "EmailAddress",
+                        title: "Email Address",
+                        filterable: true
+                    },
+                    {
+                        field: "PreferredName",
+                        title: "Preferred Name",
+                        filterable: true
+                    },
+                    {
+                        field: "PreferredDoctorId",
+                        title: "Preferred Doctor",
+                        editor: doctorDropDownEditor,
+                        template: "#=getDoctorName(PreferredDoctorId)#"
+                    },
+                    {
+                        command: ["edit", "destroy"], title: "&nbsp;", width: "210px"
+                    }
+                ]
+            });
+
+        });
+    </script>
+}
+
+

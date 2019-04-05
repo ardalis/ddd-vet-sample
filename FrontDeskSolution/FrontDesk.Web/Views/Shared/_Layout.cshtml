@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="http://cdn.kendostatic.com/2014.1.318/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="http://cdn.kendostatic.com/2014.1.318/styles/kendo.default.min.css" rel="stylesheet" />
+    <link href="http://cdn.kendostatic.com/2014.1.318/styles/kendo.silver.min.css" rel="stylesheet" />
+    <link href="http://cdn.kendostatic.com/2014.1.318/styles/kendo.silver.mobile.min.css" rel="stylesheet" />
+    <link href="http://cdn.kendostatic.com/2014.1.318/styles/kendo.dataviz.min.css" rel="stylesheet" />
+    <link href="http://cdn.kendostatic.com/2014.1.318/styles/kendo.dataviz.silver.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <header>
+        <script id="template" type="text/x-kendo-template">
+            <div>
+                <h3>${data.FullName}</h3>
+                    #= renderPatientTemplate(data) #
+                </div>
+        </script>
+        <script id="patient-template" type="text/x-kendo-template">
+            # $.each(data.Patients, function (index, item) {
+            #
+            <div style="display: inline-block; width: 100px; height: 100px">
+                <img src="/Images/Patients/${item.Name}.jpg" alt="${item.Name}"
+                     style="max-height:50px" />${item.Name}
+            </div>
+            #
+            });
+            #
+        </script>
+
+        <div id="window">
+            <div class="k-content">
+                <div class="editor-label">
+                    @Html.Label("Client")
+                </div>
+                <div class="editor-field">
+                    <input type="text" id="client" style="width: 400px;" />
+                    <p>Start typing to find a client</p>
+                </div>
+            </div>
+            <div id="patientSelection">
+                <div class="editor-label">
+                    @Html.Label("Patient")
+                </div>
+                <div class="editor-field">
+                    <select id="patientDropDown" data-role="dropdownlist" name="patientDropDown" 
+                      data-value-field="PatientId" 
+                      data-text-field="Name"
+                      data-bind="source: selectedClient.Patients, events:{dataBound:onPatientDataBound}"></select>
+                </div>
+            </div>
+            <input type="button" value="Select" id="selectPatientButton" />
+        </div>
+        <div class="content-wrapper">
+            <div class="client-picker">
+                <span class="label">Client:</span> <span data-bind="text: selectedClient.FullName"></span><br />
+                <span class="label">Patient:</span> <span data-bind="text: selectedPatient.Name"></span><br />
+            </div>
+            <div class="site-title">
+                <a href="~/">Vet Manager</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <ul id="menu">
+                        <li>@Html.ActionLink("Schedule", "Index", "Home", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Clients", "Clients", "Home", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Doctors", "Doctors", "Home", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Rooms", "Rooms", "Home", new { area = "" }, null)</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+
+    @*    @Scripts.Render("~/bundles/jquery")*@
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2014.1.318/js/kendo.all.min.js"></script>
+    @*<script src="http://cdn.kendostatic.com/2013.3.1316/js/kendo.all.min.js"></script>*@
+    @*<script src="http://cdn.kendostatic.com/2013.3.1316/js/kendo.timezones.min.js"></script>*@
+    <script src="/scripts/console.js"></script>
+    @*    <script type="text/javascript" src="/Scripts/kendo.all.min.js"></script>*@
+    @RenderSection("scripts", required: false)
+    <script src="/scripts/header.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,308 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebAPI.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:WebAPI.Controllers.Fakes.ShimPatientNotesController">
+            <summary>Shim type of WebAPI.Controllers.PatientNotesController</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.Fakes.ShimPatientNotesController.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.Fakes.ShimPatientNotesController.#ctor(WebAPI.Controllers.PatientNotesController)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.Fakes.ShimPatientNotesController.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.Fakes.ShimPatientNotesController.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.Fakes.ShimPatientNotesController.Bind(System.Web.Http.Controllers.IHttpController)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.Fakes.ShimPatientNotesController.Bind(System.IDisposable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:WebAPI.Controllers.Fakes.ShimPatientNotesController.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:WebAPI.Controllers.Fakes.ShimPatientNotesController.Constructor">
+            <summary>Sets the shim of PatientNotesController.PatientNotesController()</summary>
+        </member>
+        <member name="P:WebAPI.Controllers.Fakes.ShimPatientNotesController.ConstructorIPatientRepository">
+            <summary>Sets the shim of PatientNotesController.PatientNotesController(IPatientRepository repo)</summary>
+        </member>
+        <member name="P:WebAPI.Controllers.Fakes.ShimPatientNotesController.DeleteInt32">
+            <summary>Sets the shim of PatientNotesController.Delete(Int32 id)</summary>
+        </member>
+        <member name="P:WebAPI.Controllers.Fakes.ShimPatientNotesController.GetPatientInfoWithHistoryInt32">
+            <summary>Sets the shim of PatientNotesController.GetPatientInfoWithHistory(Int32 id)</summary>
+        </member>
+        <member name="P:WebAPI.Controllers.Fakes.ShimPatientNotesController.GetPatientListStringString">
+            <summary>Sets the shim of PatientNotesController.GetPatientList(String patientFirst, String clientLast)</summary>
+        </member>
+        <member name="P:WebAPI.Controllers.Fakes.ShimPatientNotesController.PostString">
+            <summary>Sets the shim of PatientNotesController.Post(String value)</summary>
+        </member>
+        <member name="P:WebAPI.Controllers.Fakes.ShimPatientNotesController.PutInt32String">
+            <summary>Sets the shim of PatientNotesController.Put(Int32 id, String value)</summary>
+        </member>
+        <member name="T:WebAPI.Controllers.Fakes.ShimPatientNotesController.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:WebAPI.Controllers.Fakes.ShimPatientNotesController.AllInstances.DeleteInt32">
+            <summary>Sets the shim of PatientNotesController.Delete(Int32 id)</summary>
+        </member>
+        <member name="P:WebAPI.Controllers.Fakes.ShimPatientNotesController.AllInstances.GetPatientInfoWithHistoryInt32">
+            <summary>Sets the shim of PatientNotesController.GetPatientInfoWithHistory(Int32 id)</summary>
+        </member>
+        <member name="P:WebAPI.Controllers.Fakes.ShimPatientNotesController.AllInstances.GetPatientListStringString">
+            <summary>Sets the shim of PatientNotesController.GetPatientList(String patientFirst, String clientLast)</summary>
+        </member>
+        <member name="P:WebAPI.Controllers.Fakes.ShimPatientNotesController.AllInstances.PostString">
+            <summary>Sets the shim of PatientNotesController.Post(String value)</summary>
+        </member>
+        <member name="P:WebAPI.Controllers.Fakes.ShimPatientNotesController.AllInstances.PutInt32String">
+            <summary>Sets the shim of PatientNotesController.Put(Int32 id, String value)</summary>
+        </member>
+        <member name="T:WebAPI.Controllers.Fakes.StubPatientNotesController">
+            <summary>Stub type of WebAPI.Controllers.PatientNotesController</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.Fakes.StubPatientNotesController.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.Fakes.StubPatientNotesController.#ctor(Repository.IPatientRepository)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.Fakes.StubPatientNotesController.Dispose(System.Boolean)">
+            <summary>Sets the stub of ApiController.Dispose(Boolean disposing)</summary>
+        </member>
+        <member name="F:WebAPI.Controllers.Fakes.StubPatientNotesController.DisposeBoolean">
+            <summary>Sets the stub of ApiController.Dispose(Boolean disposing)</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.Fakes.StubPatientNotesController.ExecuteAsync(System.Web.Http.Controllers.HttpControllerContext,System.Threading.CancellationToken)">
+            <summary>Sets the stub of ApiController.ExecuteAsync(HttpControllerContext controllerContext, CancellationToken cancellationToken)</summary>
+        </member>
+        <member name="F:WebAPI.Controllers.Fakes.StubPatientNotesController.ExecuteAsyncHttpControllerContextCancellationToken">
+            <summary>Sets the stub of ApiController.ExecuteAsync(HttpControllerContext controllerContext, CancellationToken cancellationToken)</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.Fakes.StubPatientNotesController.Initialize(System.Web.Http.Controllers.HttpControllerContext)">
+            <summary>Sets the stub of ApiController.Initialize(HttpControllerContext controllerContext)</summary>
+        </member>
+        <member name="F:WebAPI.Controllers.Fakes.StubPatientNotesController.InitializeHttpControllerContext">
+            <summary>Sets the stub of ApiController.Initialize(HttpControllerContext controllerContext)</summary>
+        </member>
+        <member name="M:WebAPI.Controllers.Fakes.StubPatientNotesController.InitializeStub">
+            <summary>Initializes a new instance of type StubPatientNotesController</summary>
+        </member>
+        <member name="P:WebAPI.Controllers.Fakes.StubPatientNotesController.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:WebAPI.Controllers.Fakes.StubPatientNotesController.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:WebAPI.Controllers.Fakes.StubPatientNotesController.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:WebAPI.Fakes.ShimFilterConfig">
+            <summary>Shim type of WebAPI.FilterConfig</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.ShimFilterConfig.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.ShimFilterConfig.#ctor(WebAPI.FilterConfig)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.ShimFilterConfig.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.ShimFilterConfig.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.ShimFilterConfig.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.ShimFilterConfig.Constructor">
+            <summary>Sets the shim of FilterConfig.FilterConfig()</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.ShimFilterConfig.RegisterGlobalFiltersGlobalFilterCollection">
+            <summary>Sets the shim of FilterConfig.RegisterGlobalFilters(GlobalFilterCollection filters)</summary>
+        </member>
+        <member name="T:WebAPI.Fakes.ShimFilterConfig.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:WebAPI.Fakes.ShimMvcApplication">
+            <summary>Shim type of WebAPI.MvcApplication</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.ShimMvcApplication.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.ShimMvcApplication.#ctor(WebAPI.MvcApplication)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.ShimMvcApplication.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.ShimMvcApplication.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.ShimMvcApplication.Bind(System.ComponentModel.IComponent)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.ShimMvcApplication.Bind(System.Web.IHttpAsyncHandler)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.ShimMvcApplication.Bind(System.Web.IHttpHandler)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.ShimMvcApplication.Bind(System.IDisposable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.ShimMvcApplication.Application_Start">
+            <summary>Sets the shim of MvcApplication.Application_Start()</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.ShimMvcApplication.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.ShimMvcApplication.ConfigureApiHttpConfiguration">
+            <summary>Sets the shim of MvcApplication.ConfigureApi(HttpConfiguration config)</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.ShimMvcApplication.Constructor">
+            <summary>Sets the shim of MvcApplication.MvcApplication()</summary>
+        </member>
+        <member name="T:WebAPI.Fakes.ShimMvcApplication.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.ShimMvcApplication.AllInstances.Application_Start">
+            <summary>Sets the shim of MvcApplication.Application_Start()</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.ShimMvcApplication.AllInstances.ConfigureApiHttpConfiguration">
+            <summary>Sets the shim of MvcApplication.ConfigureApi(HttpConfiguration config)</summary>
+        </member>
+        <member name="T:WebAPI.Fakes.ShimRouteConfig">
+            <summary>Shim type of WebAPI.RouteConfig</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.ShimRouteConfig.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.ShimRouteConfig.#ctor(WebAPI.RouteConfig)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.ShimRouteConfig.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.ShimRouteConfig.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.ShimRouteConfig.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.ShimRouteConfig.Constructor">
+            <summary>Sets the shim of RouteConfig.RouteConfig()</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.ShimRouteConfig.RegisterRoutesRouteCollection">
+            <summary>Sets the shim of RouteConfig.RegisterRoutes(RouteCollection routes)</summary>
+        </member>
+        <member name="T:WebAPI.Fakes.ShimRouteConfig.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="T:WebAPI.Fakes.ShimWebApiConfig">
+            <summary>Shim type of WebAPI.WebApiConfig</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.ShimWebApiConfig.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.ShimWebApiConfig.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.ShimWebApiConfig.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.ShimWebApiConfig.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.ShimWebApiConfig.RegisterHttpConfiguration">
+            <summary>Sets the shim of WebApiConfig.Register(HttpConfiguration config)</summary>
+        </member>
+        <member name="T:WebAPI.Fakes.StubFilterConfig">
+            <summary>Stub type of WebAPI.FilterConfig</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.StubFilterConfig.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.StubFilterConfig.InitializeStub">
+            <summary>Initializes a new instance of type StubFilterConfig</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.StubFilterConfig.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.StubFilterConfig.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.StubFilterConfig.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:WebAPI.Fakes.StubMvcApplication">
+            <summary>Stub type of WebAPI.MvcApplication</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.StubMvcApplication.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.StubMvcApplication.Dispose">
+            <summary>Sets the stub of HttpApplication.Dispose()</summary>
+        </member>
+        <member name="F:WebAPI.Fakes.StubMvcApplication.Dispose01">
+            <summary>Sets the stub of HttpApplication.Dispose()</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.StubMvcApplication.GetOutputCacheProviderName(System.Web.HttpContext)">
+            <summary>Sets the stub of HttpApplication.GetOutputCacheProviderName(HttpContext context)</summary>
+        </member>
+        <member name="F:WebAPI.Fakes.StubMvcApplication.GetOutputCacheProviderNameHttpContext">
+            <summary>Sets the stub of HttpApplication.GetOutputCacheProviderName(HttpContext context)</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.StubMvcApplication.GetVaryByCustomString(System.Web.HttpContext,System.String)">
+            <summary>Sets the stub of HttpApplication.GetVaryByCustomString(HttpContext context, String custom)</summary>
+        </member>
+        <member name="F:WebAPI.Fakes.StubMvcApplication.GetVaryByCustomStringHttpContextString">
+            <summary>Sets the stub of HttpApplication.GetVaryByCustomString(HttpContext context, String custom)</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.StubMvcApplication.Init">
+            <summary>Sets the stub of HttpApplication.Init()</summary>
+        </member>
+        <member name="F:WebAPI.Fakes.StubMvcApplication.Init01">
+            <summary>Sets the stub of HttpApplication.Init()</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.StubMvcApplication.InitializeStub">
+            <summary>Initializes a new instance of type StubMvcApplication</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.StubMvcApplication.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.StubMvcApplication.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.StubMvcApplication.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:WebAPI.Fakes.StubRouteConfig">
+            <summary>Stub type of WebAPI.RouteConfig</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.StubRouteConfig.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:WebAPI.Fakes.StubRouteConfig.InitializeStub">
+            <summary>Initializes a new instance of type StubRouteConfig</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.StubRouteConfig.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.StubRouteConfig.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:WebAPI.Fakes.StubRouteConfig.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+    </members>
+</doc>

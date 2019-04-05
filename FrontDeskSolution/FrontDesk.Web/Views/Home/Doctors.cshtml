@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Doctors";
+}
+<h2>Doctors</h2>
+<div id="grid"></div>
+@section scripts {
+    <script>
+        $(function () {
+            var serviceUrl = "/api/cruddoctors";
+            var dataSource = new kendo.data.DataSource({
+                type: "json",
+                transport: {
+                    read: {
+                        url: serviceUrl,
+                        contentType: "application/json"
+                    },
+                    update: {
+                        url: function (doctor) { return serviceUrl + "/" + doctor.Id },
+                        type: "PUT",
+                        contentType: "application/json"
+                    },
+                    destroy: {
+                        url: function (doctor) { return serviceUrl + "/" + doctor.Id },
+                        type: "DELETE",
+                        contentType: "application/json"
+                    },
+                    create: {
+                        url: serviceUrl,
+                        type: "POST",
+                        contentType: "application/json"
+                    },
+                    parameterMap: function (options, operation) {
+                        return JSON.stringify(options);
+                    }
+                },
+                pageSize: 10,
+                schema: {
+                    model: {
+                        id: "Id",
+                        fields: {
+                            Id: { type: "number", editable: false },
+                            Name: { editable: true }
+                        }
+                    }
+                }
+            });
+            $("#grid").kendoGrid({
+                dataSource: dataSource,
+                editable: "inline",
+                toolbar: ["create"],
+                columns: [
+                    {
+                        field: "Id",
+                        filterable: false,
+                        editable: false,
+                        width: 50,
+                    },
+                    {
+                        field: "Name",
+                        title: "Name",
+                        filterable: false
+                    },
+                    {
+                        command: ["edit", "destroy"], title: "&nbsp;", width: "210px"
+                    }
+                ]
+            });
+        });
+    </script>
+}

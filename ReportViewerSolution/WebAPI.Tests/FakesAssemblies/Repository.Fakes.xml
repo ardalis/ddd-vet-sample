@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Repository.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:Repository.Fakes.ShimPatientHistoryDataContext">
+            <summary>Shim type of Repository.PatientHistoryDataContext</summary>
+        </member>
+        <member name="M:Repository.Fakes.ShimPatientHistoryDataContext.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Repository.Fakes.ShimPatientHistoryDataContext.#ctor(Repository.PatientHistoryDataContext)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Repository.Fakes.ShimPatientHistoryDataContext.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Repository.Fakes.ShimPatientHistoryDataContext.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Repository.Fakes.ShimPatientHistoryDataContext.Bind(System.Data.Entity.Infrastructure.IObjectContextAdapter)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:Repository.Fakes.ShimPatientHistoryDataContext.Bind(System.IDisposable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:Repository.Fakes.ShimPatientHistoryDataContext.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Repository.Fakes.ShimPatientHistoryDataContext.Constructor">
+            <summary>Sets the shim of PatientHistoryDataContext.PatientHistoryDataContext()</summary>
+        </member>
+        <member name="P:Repository.Fakes.ShimPatientHistoryDataContext.PatientsGet">
+            <summary>Sets the shim of PatientHistoryDataContext.get_Patients()</summary>
+        </member>
+        <member name="P:Repository.Fakes.ShimPatientHistoryDataContext.PatientsSetIDbSetOfPatientInfo">
+            <summary>Sets the shim of PatientHistoryDataContext.set_Patients(IDbSet`1&lt;PatientInfo&gt; value)</summary>
+        </member>
+        <member name="T:Repository.Fakes.ShimPatientHistoryDataContext.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:Repository.Fakes.ShimPatientHistoryDataContext.AllInstances.PatientsGet">
+            <summary>Sets the shim of PatientHistoryDataContext.get_Patients()</summary>
+        </member>
+        <member name="P:Repository.Fakes.ShimPatientHistoryDataContext.AllInstances.PatientsSetIDbSetOfPatientInfo">
+            <summary>Sets the shim of PatientHistoryDataContext.set_Patients(IDbSet`1&lt;PatientInfo&gt; value)</summary>
+        </member>
+        <member name="T:Repository.Fakes.ShimPatientRepository">
+            <summary>Shim type of Repository.PatientRepository</summary>
+        </member>
+        <member name="M:Repository.Fakes.ShimPatientRepository.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:Repository.Fakes.ShimPatientRepository.#ctor(Repository.PatientRepository)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="M:Repository.Fakes.ShimPatientRepository.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Repository.Fakes.ShimPatientRepository.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:Repository.Fakes.ShimPatientRepository.Bind(Repository.IPatientRepository)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:Repository.Fakes.ShimPatientRepository.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:Repository.Fakes.ShimPatientRepository.Constructor">
+            <summary>Sets the shim of PatientRepository.PatientRepository()</summary>
+        </member>
+        <member name="P:Repository.Fakes.ShimPatientRepository.ConstructorPatientHistoryDataContext">
+            <summary>Sets the shim of PatientRepository.PatientRepository(PatientHistoryDataContext context)</summary>
+        </member>
+        <member name="P:Repository.Fakes.ShimPatientRepository.FindInt32">
+            <summary>Sets the shim of PatientRepository.Find(Int32 patientId)</summary>
+        </member>
+        <member name="P:Repository.Fakes.ShimPatientRepository.FindStringString">
+            <summary>Sets the shim of PatientRepository.Find(String patientFirstName, String clientLastName)</summary>
+        </member>
+        <member name="T:Repository.Fakes.ShimPatientRepository.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:Repository.Fakes.ShimPatientRepository.AllInstances.FindInt32">
+            <summary>Sets the shim of PatientRepository.Find(Int32 patientId)</summary>
+        </member>
+        <member name="P:Repository.Fakes.ShimPatientRepository.AllInstances.FindStringString">
+            <summary>Sets the shim of PatientRepository.Find(String patientFirstName, String clientLastName)</summary>
+        </member>
+        <member name="T:Repository.Fakes.StubIPatientRepository">
+            <summary>Stub type of Repository.IPatientRepository</summary>
+        </member>
+        <member name="M:Repository.Fakes.StubIPatientRepository.#ctor">
+            <summary>Initializes a new instance of type StubIPatientRepository</summary>
+        </member>
+        <member name="F:Repository.Fakes.StubIPatientRepository.FindInt32">
+            <summary>Sets the stub of IPatientRepository.Find(Int32 patientId)</summary>
+        </member>
+        <member name="F:Repository.Fakes.StubIPatientRepository.FindStringString">
+            <summary>Sets the stub of IPatientRepository.Find(String patientFirstName, String clientLastName)</summary>
+        </member>
+        <member name="M:Repository.Fakes.StubIPatientRepository.r::Repository#IPatientRepository#Find(System.Int32)">
+            <summary>Sets the stub of IPatientRepository.Find(Int32 patientId)</summary>
+        </member>
+        <member name="M:Repository.Fakes.StubIPatientRepository.r::Repository#IPatientRepository#Find(System.String,System.String)">
+            <summary>Sets the stub of IPatientRepository.Find(String patientFirstName, String clientLastName)</summary>
+        </member>
+        <member name="T:Repository.Fakes.StubPatientHistoryDataContext">
+            <summary>Stub type of Repository.PatientHistoryDataContext</summary>
+        </member>
+        <member name="M:Repository.Fakes.StubPatientHistoryDataContext.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Repository.Fakes.StubPatientHistoryDataContext.Dispose(System.Boolean)">
+            <summary>Sets the stub of DbContext.Dispose(Boolean disposing)</summary>
+        </member>
+        <member name="F:Repository.Fakes.StubPatientHistoryDataContext.DisposeBoolean">
+            <summary>Sets the stub of DbContext.Dispose(Boolean disposing)</summary>
+        </member>
+        <member name="M:Repository.Fakes.StubPatientHistoryDataContext.Equals(System.Object)">
+            <summary>Sets the stub of DbContext.Equals(Object obj)</summary>
+        </member>
+        <member name="F:Repository.Fakes.StubPatientHistoryDataContext.EqualsObject">
+            <summary>Sets the stub of DbContext.Equals(Object obj)</summary>
+        </member>
+        <member name="M:Repository.Fakes.StubPatientHistoryDataContext.GetHashCode">
+            <summary>Sets the stub of DbContext.GetHashCode()</summary>
+        </member>
+        <member name="F:Repository.Fakes.StubPatientHistoryDataContext.GetHashCode01">
+            <summary>Sets the stub of DbContext.GetHashCode()</summary>
+        </member>
+        <member name="M:Repository.Fakes.StubPatientHistoryDataContext.InitializeStub">
+            <summary>Initializes a new instance of type StubPatientHistoryDataContext</summary>
+        </member>
+        <member name="M:Repository.Fakes.StubPatientHistoryDataContext.OnModelCreating(System.Data.Entity.DbModelBuilder)">
+            <summary>Sets the stub of DbContext.OnModelCreating(DbModelBuilder modelBuilder)</summary>
+        </member>
+        <member name="F:Repository.Fakes.StubPatientHistoryDataContext.OnModelCreatingDbModelBuilder">
+            <summary>Sets the stub of DbContext.OnModelCreating(DbModelBuilder modelBuilder)</summary>
+        </member>
+        <member name="M:Repository.Fakes.StubPatientHistoryDataContext.SaveChanges">
+            <summary>Sets the stub of DbContext.SaveChanges()</summary>
+        </member>
+        <member name="F:Repository.Fakes.StubPatientHistoryDataContext.SaveChanges01">
+            <summary>Sets the stub of DbContext.SaveChanges()</summary>
+        </member>
+        <member name="M:Repository.Fakes.StubPatientHistoryDataContext.ShouldValidateEntity(System.Data.Entity.Infrastructure.DbEntityEntry)">
+            <summary>Sets the stub of DbContext.ShouldValidateEntity(DbEntityEntry entityEntry)</summary>
+        </member>
+        <member name="F:Repository.Fakes.StubPatientHistoryDataContext.ShouldValidateEntityDbEntityEntry">
+            <summary>Sets the stub of DbContext.ShouldValidateEntity(DbEntityEntry entityEntry)</summary>
+        </member>
+        <member name="M:Repository.Fakes.StubPatientHistoryDataContext.ToString">
+            <summary>Sets the stub of DbContext.ToString()</summary>
+        </member>
+        <member name="F:Repository.Fakes.StubPatientHistoryDataContext.ToString01">
+            <summary>Sets the stub of DbContext.ToString()</summary>
+        </member>
+        <member name="M:Repository.Fakes.StubPatientHistoryDataContext.ValidateEntity(System.Data.Entity.Infrastructure.DbEntityEntry,System.Collections.Generic.IDictionary{System.Object,System.Object})">
+            <summary>Sets the stub of DbContext.ValidateEntity(DbEntityEntry entityEntry, IDictionary`2&lt;Object,Object&gt; items)</summary>
+        </member>
+        <member name="F:Repository.Fakes.StubPatientHistoryDataContext.ValidateEntityDbEntityEntryIDictionaryOfObjectObject">
+            <summary>Sets the stub of DbContext.ValidateEntity(DbEntityEntry entityEntry, IDictionary`2&lt;Object,Object&gt; items)</summary>
+        </member>
+        <member name="P:Repository.Fakes.StubPatientHistoryDataContext.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Repository.Fakes.StubPatientHistoryDataContext.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Repository.Fakes.StubPatientHistoryDataContext.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+        <member name="T:Repository.Fakes.StubPatientRepository">
+            <summary>Stub type of Repository.PatientRepository</summary>
+        </member>
+        <member name="M:Repository.Fakes.StubPatientRepository.#ctor">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Repository.Fakes.StubPatientRepository.#ctor(Repository.PatientHistoryDataContext)">
+            <summary>Initializes a new instance</summary>
+        </member>
+        <member name="M:Repository.Fakes.StubPatientRepository.InitializeStub">
+            <summary>Initializes a new instance of type StubPatientRepository</summary>
+        </member>
+        <member name="P:Repository.Fakes.StubPatientRepository.CallBase">
+            <summary>Gets or sets a value that indicates if the base method should be called instead of the fallback behavior</summary>
+        </member>
+        <member name="P:Repository.Fakes.StubPatientRepository.InstanceBehavior">
+            <summary>Gets or sets the instance behavior.</summary>
+        </member>
+        <member name="P:Repository.Fakes.StubPatientRepository.InstanceObserver">
+            <summary>Gets or sets the instance observer.</summary>
+        </member>
+    </members>
+</doc>

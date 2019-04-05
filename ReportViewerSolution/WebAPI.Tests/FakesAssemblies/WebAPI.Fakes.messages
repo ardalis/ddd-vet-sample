@@ -1,0 +1,7 @@
+E:\psod\DDD Course\ReportViewerSolution\WebAPI.Tests\Fakes\WebAPI.fakes : warning : Cannot generate stub for WebAPI.Controllers.PatientsNotesContainer: type is not visible to exported or assembly(WebAPI.Fakes).
+E:\psod\DDD Course\ReportViewerSolution\WebAPI.Tests\Fakes\WebAPI.fakes : warning : Cannot generate stub for WebAPI.WebApiConfig: type is sealed.
+E:\psod\DDD Course\ReportViewerSolution\WebAPI.Tests\Fakes\WebAPI.fakes : warning : Cannot generate stub for <>f__AnonymousType0`3: type is sealed.
+E:\psod\DDD Course\ReportViewerSolution\WebAPI.Tests\Fakes\WebAPI.fakes : warning : Cannot generate stub for <>f__AnonymousType1`1: type is sealed.
+E:\psod\DDD Course\ReportViewerSolution\WebAPI.Tests\Fakes\WebAPI.fakes : warning : Cannot generate shim for WebAPI.Controllers.PatientsNotesContainer: type is not visible to exported or assembly(WebAPI.Fakes).
+E:\psod\DDD Course\ReportViewerSolution\WebAPI.Tests\Fakes\WebAPI.fakes : warning : Cannot generate shim for <>f__AnonymousType0`3: type is not supported because of internal limitations.
+E:\psod\DDD Course\ReportViewerSolution\WebAPI.Tests\Fakes\WebAPI.fakes : warning : Cannot generate shim for <>f__AnonymousType1`1: type is not supported because of internal limitations.

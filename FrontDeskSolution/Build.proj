@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectName>FrontDesk</ProjectName>
+    <ShortName>FrontDesk</ShortName>
+  </PropertyGroup>
+  <Target Name="DebugBuild">
+    <Message Text="Building $(ProjectName)" />
+	<Exec Command=".nuget\nuget.exe restore $(ShortName).sln" />
+    <MSBuild Projects="$(ShortName).sln" Targets="Clean" Properties="Configuration=Debug" />
+    <MSBuild Projects="$(ShortName).sln" Targets="Build" Properties="Configuration=Debug" />
+  </Target>
+  <Target Name="UnitTests" DependsOnTargets="DebugBuild">
+    <Message Text="Running $(ProjectName) Core Tests" />
+    <Exec Command="..\lib\nunit\nunit-console.exe &quot;AppointmentScheduling.UnitTests\bin\debug\AppointmentScheduling.UnitTests.dll&quot;"/>
+    <Message Text="Running ClientPatientManagement Unit Tests" />
+    <Exec Command="..\lib\nunit\nunit-console.exe &quot;ClientPatientManagement.UnitTests\bin\debug\ClientPatientManagement.UnitTests.dll&quot;"/>
+  </Target>
+</Project>

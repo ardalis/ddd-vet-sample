@@ -1,0 +1,1 @@
+﻿Create the database by running the unit test in SharedDatabaseTests to BuildModel.
