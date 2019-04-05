@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading;
 using VetClinicPublic.Web.Interfaces;
 using VetClinicPublic.Web.Models;
@@ -32,10 +32,7 @@ namespace VetClinicPublic.Web.AppStart
 
         private class MessageBroker
         {
-            // Copy Data Source from web.config
-            // Keep Initial Catalog as ServiceBrokerTest
             // Make sure this matches MessagingConfig in FrontDeskSolution
-            private readonly string ConnectionString = "Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=ServiceBrokerTest;";
             private readonly string MessageType = "SBMessage";
             private readonly string Contract = "SBContract";
             private readonly string NotifierQueue = "NotifierQueue";
@@ -45,9 +42,11 @@ namespace VetClinicPublic.Web.AppStart
             public void CheckMessages(object sender, System.Timers.ElapsedEventArgs e)
             {
                 Debug.Print("PW: Checking notifier queue for messages");
+                // Make sure this matches MessagingConfig in FrontDeskSolution
+                var connectionString = ConfigurationManager.ConnectionStrings["ServiceBroker"].ConnectionString;
                 try
                 {
-                    using (var sqlConnection = new SqlConnection(ConnectionString))
+                    using (var sqlConnection = new SqlConnection(connectionString))
                     {
                         sqlConnection.Open();
                         using (var sqlTransaction = sqlConnection.BeginTransaction())
@@ -77,7 +76,7 @@ namespace VetClinicPublic.Web.AppStart
 
             public void SendConfirmationMessageToScheduler(AppointmentConfirmedEvent confirmationEvent)
             {
-                using (var sqlConnection = new SqlConnection(ConnectionString))
+                using (var sqlConnection = new SqlConnection(connectionString))
                 {
                     sqlConnection.Open();
                     using (var sqlTransaction = sqlConnection.BeginTransaction())

@@ -2,8 +2,6 @@
 using AppointmentScheduling.Core.Model;
 using AppointmentScheduling.Core.Model.Events;
 using FrontDesk.SharedKernel.Interfaces;
-using System;
-using System.Linq;
 
 namespace AppointmentScheduling.Core.Services
 {
@@ -13,7 +11,6 @@ namespace AppointmentScheduling.Core.Services
     public class RelayAppointmentScheduledService : IHandle<AppointmentScheduledEvent>
     {
         private readonly IAppointmentDTORepository _apptRepository;
-
         private readonly IMessagePublisher _messagePublisher;
 
         public RelayAppointmentScheduledService(IAppointmentDTORepository apptRepository, IMessagePublisher messagePublisher)
@@ -27,7 +24,7 @@ namespace AppointmentScheduling.Core.Services
             AppointmentDTO appointment = _apptRepository.GetFromAppointment(appointmentScheduledEvent.AppointmentScheduled);
 
             // we are translating from a domain event to an application event here
-            var newEvent = new AppointmentScheduling.Core.Model.ApplicationEvents.AppointmentScheduledEvent(appointment);
+            var newEvent = new Model.ApplicationEvents.AppointmentScheduledEvent(appointment);
 
             _messagePublisher.Publish(newEvent);
         }

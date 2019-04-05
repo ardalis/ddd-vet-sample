@@ -54,6 +54,7 @@ namespace FrontDesk.Web.Controllers.Api
                          AppointmentViewModel appointment)
         {
             Debug.Print("--> POST: " + JsonConvert.SerializeObject(appointment));
+
             var schedule = _scheduleRepository.GetScheduleForDate(_settings.ClinicId, _settings.TestDate);
 
             var newAppointment = Appointment.Create(schedule.Id,
