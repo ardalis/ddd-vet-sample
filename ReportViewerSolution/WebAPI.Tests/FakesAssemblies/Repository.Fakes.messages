@@ -1,5 +1,0 @@
-E:\psod\DDD Course\ReportViewerSolution\WebAPI.Tests\Fakes\Repository.fakes : warning : Cannot generate stub for <>f__AnonymousType0`2: type is sealed.
-E:\psod\DDD Course\ReportViewerSolution\WebAPI.Tests\Fakes\Repository.fakes : warning : Cannot generate shim for Repository.IPatientRepository: type is an interface.
-E:\psod\DDD Course\ReportViewerSolution\WebAPI.Tests\Fakes\Repository.fakes : warning : Cannot generate shim for Repository.PatientRepository+<>c__DisplayClass0: type is not supported because of internal limitations.
-E:\psod\DDD Course\ReportViewerSolution\WebAPI.Tests\Fakes\Repository.fakes : warning : Cannot generate shim for Repository.PatientRepository+<>c__DisplayClass2: type is not supported because of internal limitations.
-E:\psod\DDD Course\ReportViewerSolution\WebAPI.Tests\Fakes\Repository.fakes : warning : Cannot generate shim for <>f__AnonymousType0`2: type is not supported because of internal limitations.
