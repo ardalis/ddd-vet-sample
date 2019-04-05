@@ -150,3 +150,5 @@ $RECYCLE.BIN/
 
 # Mac crap
 .DS_Store
+/FrontDeskSolution/.vs/FrontDesk/v16/Server/sqlite3
+/VetClinicPublic.Web/.vs/VetClinicPublic.Web/v16/Server/sqlite3

@@ -3,9 +3,9 @@ using AppointmentScheduling.Data.Events;
 using FrontDesk.SharedKernel;
 using Newtonsoft.Json;
 using System;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading;
 
 namespace FrontDesk.Web.App_Start
@@ -33,17 +33,16 @@ namespace FrontDesk.Web.App_Start
 
         private class MessageBroker
         {
-            // Must match connection in VetClinicPublic.Web MessagingConfig
-            // Also must match ServiceBrokerMessagePublisher
-            private readonly string ConnectionString = "Data Source=(LocalDb)\\MSSQLLocalDB;Initial Catalog=ServiceBrokerTest;MultipleActiveResultSets=True";
             private readonly string SchedulerQueue = "SchedulerQueue";
 
             public void CheckMessages(object sender, System.Timers.ElapsedEventArgs e)
             {
+                string connectionString = ConfigurationManager.ConnectionStrings["ServiceBroker"].ConnectionString;
+
                 Debug.Print("FD: Checking scheduler queue for messages");
                 try
                 {
-                    using (var sqlConnection = new SqlConnection(ConnectionString))
+                    using (var sqlConnection = new SqlConnection(connectionString))
                     {
                         sqlConnection.Open();
                         using (var sqlTransaction = sqlConnection.BeginTransaction())
