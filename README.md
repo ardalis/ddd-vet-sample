@@ -2,6 +2,9 @@
 
 A sample meant to demonstrate domain driven design using a veterinary hospital management system. This sample is used in the [Domain-Driven Design Fundamentals course on Pluralsight](https://app.pluralsight.com/library/courses/domain-driven-design-fundamentals).
 
+## Give a Star! :star:
+If you like or are using this project to learn, please give it a star. Thanks!
+
 ## Getting Started
 
 The main application is in the FrontDeskSolution folder. Open the FrontDesk.sln file for the main sample.
