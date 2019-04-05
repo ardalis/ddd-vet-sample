@@ -15,7 +15,14 @@ The communication between the two web apps is done using SQL Server Service Brok
 Finally, if you have to adjust the connection strings for the database to use your version of LocalDB (or SQL Express or whatever) you will need to update these in several places:
 
 * FrontDesk web.config
+* FrontDesk SharedDatabaseManagementTools SharedDatabaseTests app.config
 * VetClinicPublic web.config
 * MessagingConfig.cs in both solutions
 
 Basically you should search both solutions for `(LocalDb)\MSSQLLocalDB` and replace it with whatever local SQL Server database you're using.
+
+To create the application/domain database you should run the unit test in SharedDatabaseTests - `SharedDatabaseContextShould.BuildModel`
+
+The message queue database is created by the SetupSQLServiceBroker script above, and is called `ServiceBrokerTest`. 
+
+
