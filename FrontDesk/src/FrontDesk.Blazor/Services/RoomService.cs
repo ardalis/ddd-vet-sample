@@ -16,24 +16,24 @@ namespace FrontDesk.Blazor.Services
             _logger = logger;
         }
 
-        public async Task<RoomDto> Create(CreateRoomRequest catalogItem)
+        public async Task<RoomDto> Create(CreateRoomRequest room)
         {
-            return (await _httpService.HttpPost<CreateRoomResponse>("rooms", catalogItem)).Room;
+            return (await _httpService.HttpPost<CreateRoomResponse>("rooms", room)).Room;
         }
 
-        public async Task<RoomDto> Edit(RoomDto catalogItem)
+        public async Task<RoomDto> Edit(RoomDto room)
         {
-            return (await _httpService.HttpPut<UpdateRoomResponse>("rooms", catalogItem)).Room;
+            return (await _httpService.HttpPut<UpdateRoomResponse>("rooms", room)).Room;
         }
 
-        public async Task<string> Delete(int catalogItemId)
+        public async Task<string> Delete(int roomId)
         {
-            return (await _httpService.HttpDelete<DeleteRoomResponse>("rooms", catalogItemId)).Status;
+            return (await _httpService.HttpDelete<DeleteRoomResponse>("rooms", roomId)).Status;
         }
 
-        public async Task<RoomDto> GetById(int id)
+        public async Task<RoomDto> GetById(int roomId)
         {
-            return (await _httpService.HttpGet<GetByIdRoomResponse>($"rooms/{id}")).Room;
+            return (await _httpService.HttpGet<GetByIdRoomResponse>($"rooms/{roomId}")).Room;
         }
 
         public async Task<List<RoomDto>> ListPaged(int pageSize)

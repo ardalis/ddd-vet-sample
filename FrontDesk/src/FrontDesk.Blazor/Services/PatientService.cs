@@ -16,24 +16,24 @@ namespace FrontDesk.Blazor.Services
             _logger = logger;
         }
 
-        public async Task<PatientDto> Create(CreatePatientRequest catalogItem)
+        public async Task<PatientDto> Create(CreatePatientRequest patient)
         {
-            return (await _httpService.HttpPost<CreatePatientResponse>("patients", catalogItem)).Patient;
+            return (await _httpService.HttpPost<CreatePatientResponse>("patients", patient)).Patient;
         }
 
-        public async Task<PatientDto> Edit(PatientDto catalogItem)
+        public async Task<PatientDto> Edit(PatientDto patient)
         {
-            return (await _httpService.HttpPut<UpdatePatientResponse>("patients", catalogItem)).Patient;
+            return (await _httpService.HttpPut<UpdatePatientResponse>("patients", patient)).Patient;
         }
 
-        public async Task<string> Delete(int catalogItemId)
+        public async Task<string> Delete(int patientId)
         {
-            return (await _httpService.HttpDelete<DeletePatientResponse>("patients", catalogItemId)).Status;
+            return (await _httpService.HttpDelete<DeletePatientResponse>("patients", patientId)).Status;
         }
 
-        public async Task<PatientDto> GetById(int id)
+        public async Task<PatientDto> GetById(int patientId)
         {
-            return (await _httpService.HttpGet<GetByIdPatientResponse>($"patients/{id}")).Patient;
+            return (await _httpService.HttpGet<GetByIdPatientResponse>($"patients/{patientId}")).Patient;
         }
 
         public async Task<List<PatientDto>> ListPaged(int pageSize)
