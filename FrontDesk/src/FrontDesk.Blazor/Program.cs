@@ -22,7 +22,11 @@ namespace FrontDesk.Blazor
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddScoped<HttpService>();
+
             builder.Services.AddScoped<DoctorService>();
+            builder.Services.AddScoped<ClientService>();
+            builder.Services.AddScoped<PatientService>();
+            builder.Services.AddScoped<RoomService>();
 
             await builder.Build().RunAsync();
         }
