@@ -1,0 +1,64 @@
+﻿@page "/doctors"
+@inject DoctorService DoctorService
+
+<h1>Doctors</h1>
+
+@if (doctors == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var doctor in doctors)
+            {
+                <tr>
+                    <td>@doctor.Id</td>
+                    <td>@doctor.Name</td>
+                    <td>
+                        <button @onclick="@(() => EditClick(doctor.Id))" @onclick:stopPropagation="true" class="btn btn-primary">
+                            Edit
+                        </button>
+
+                        <button @onclick="@(() => DeleteClick(doctor.Id))" @onclick:stopPropagation="true" class="btn btn-danger">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    private List<BlazorShared.Models.Doctor.DoctorDto> doctors;
+
+    protected override async Task OnInitializedAsync()
+    {
+        doctors = await DoctorService.List();
+    }
+
+    private async Task CreateClick()
+    {
+        
+    }
+
+    private async Task EditClick(int id)
+    {
+        
+    }
+
+    private async Task DeleteClick(int id)
+    {
+        
+    }
+}

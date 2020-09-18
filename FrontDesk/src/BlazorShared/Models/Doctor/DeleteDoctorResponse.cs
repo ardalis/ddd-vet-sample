@@ -4,7 +4,7 @@ namespace BlazorShared.Models.Doctor
 {
     public class DeleteDoctorResponse : BaseResponse
     {
-        public DoctorDto Doctor { get; set; } = new DoctorDto();
+        public string Status { get; set; } = "Deleted";
 
         public DeleteDoctorResponse(Guid correlationId) : base(correlationId)
         {
