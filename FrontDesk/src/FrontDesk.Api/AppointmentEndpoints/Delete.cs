@@ -22,14 +22,14 @@ namespace FrontDesk.Api.AppointmentEndpoints
             _mapper = mapper;
         }
 
-        [HttpDelete("api/appointments")]
+        [HttpDelete("api/appointments/{id}")]
         [SwaggerOperation(
             Summary = "Deletes a Appointment",
             Description = "Deletes a Appointment",
             OperationId = "appointments.delete",
             Tags = new[] { "AppointmentEndpoints" })
         ]
-        public override async Task<ActionResult<DeleteAppointmentResponse>> HandleAsync(DeleteAppointmentRequest request, CancellationToken cancellationToken)
+        public override async Task<ActionResult<DeleteAppointmentResponse>> HandleAsync([FromRoute]DeleteAppointmentRequest request, CancellationToken cancellationToken)
         {
             var response = new DeleteAppointmentResponse(request.CorrelationId());
 

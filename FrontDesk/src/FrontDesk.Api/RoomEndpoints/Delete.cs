@@ -21,14 +21,14 @@ namespace FrontDesk.Api.RoomEndpoints
             _mapper = mapper;
         }
 
-        [HttpDelete("api/rooms")]
+        [HttpDelete("api/rooms/{id}")]
         [SwaggerOperation(
             Summary = "Deletes a Room",
             Description = "Deletes a Room",
             OperationId = "rooms.delete",
             Tags = new[] { "RoomEndpoints" })
         ]
-        public override async Task<ActionResult<DeleteRoomResponse>> HandleAsync(DeleteRoomRequest request, CancellationToken cancellationToken)
+        public override async Task<ActionResult<DeleteRoomResponse>> HandleAsync([FromRoute]DeleteRoomRequest request, CancellationToken cancellationToken)
         {
             var response = new DeleteRoomResponse(request.CorrelationId());
 

@@ -9,6 +9,10 @@
 }
 else
 {
+    <button @onclick="@(() => CreateClick())" @onclick:stopPropagation="true" class="btn btn-primary">
+        Add
+    </button>
+
     <table class="table">
         <thead>
             <tr>
@@ -40,25 +44,31 @@ else
 
 @code {
 
-    private List<BlazorShared.Models.Doctor.DoctorDto> doctors;
+    private List<BlazorShared.Models.Doctor.DoctorDto> doctors = new List<BlazorShared.Models.Doctor.DoctorDto>();
 
     protected override async Task OnInitializedAsync()
     {
-        doctors = await DoctorService.List();
+        await ReloadData();
     }
 
     private async Task CreateClick()
     {
-        
+
     }
 
     private async Task EditClick(int id)
     {
-        
+
     }
 
     private async Task DeleteClick(int id)
     {
-        
+        await DoctorService.Delete(id);
+        await ReloadData();
+    }
+
+    private async Task ReloadData()
+    {
+        doctors = await DoctorService.List();
     }
 }
