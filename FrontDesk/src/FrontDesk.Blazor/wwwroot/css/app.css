@@ -48,3 +48,7 @@ a, .btn-link {
         right: 0.75rem;
         top: 0.5rem;
     }
+
+.main-action {
+    margin-bottom: 10px;
+}
