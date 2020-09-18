@@ -35,7 +35,7 @@ else
                         @doctor.Id
                     </td>
                     <td>
-                        @if (IsEdit(@doctor.Id))
+                        @if (IsAddOrEdit(@doctor.Id))
                         {
                             <input @bind="ToSave.Name" />
                         }
@@ -45,13 +45,13 @@ else
                         }
                     </td>
                     <td class="action-buttons">
-                        @if (IsEdit(@doctor.Id))
+                        @if (IsAddOrEdit(@doctor.Id))
                         {
-                            <button @onclick="@(() => SaveEditClick())" @onclick:stopPropagation="true" class="btn btn-primary margin-5">
+                            <button @onclick="@(() => SaveClick())" @onclick:stopPropagation="true" class="btn btn-primary margin-5">
                                 
                                 Save
                             </button>
-                            <button @onclick="@(() => CancelEditClick())" @onclick:stopPropagation="true" class="btn btn-danger margin-5">
+                            <button @onclick="@(() => CancelClick())" @onclick:stopPropagation="true" class="btn btn-danger margin-5">
                               
                                 Cancel
                             </button>
@@ -91,9 +91,10 @@ else
         await ReloadData();
     }
 
-    private async Task CreateClick()
+    private void CreateClick()
     {
-
+        ToSave = new BlazorShared.Models.Doctor.DoctorDto();
+        Doctors.Add(ToSave);
     }
 
     private void EditClick(int id)
@@ -107,19 +108,30 @@ else
         await ReloadData();
     }
 
-    private async Task SaveEditClick()
+    private async Task SaveClick()
     {
-        await DoctorService.Edit(ToSave);
-        CancelEditClick();
+        if (ToSave.Id == 0)
+        {
+            await DoctorService.Create(ToSave);
+        }else
+        {
+            await DoctorService.Edit(ToSave);
+        }
+
+        CancelClick();
         await ReloadData();
     }
 
-    private void CancelEditClick()
+    private void CancelClick()
     {
+        if(ToSave.Id == 0)
+        {
+            Doctors.RemoveAt(Doctors.Count - 1);
+        }
         ToSave = new BlazorShared.Models.Doctor.DoctorDto();
     }
 
-    private bool IsEdit(int id)
+    private bool IsAddOrEdit(int id)
     {
         return ToSave.Id == id;
     }
