@@ -20,13 +20,18 @@ namespace FrontDesk.Blazor
             builder.Configuration.Bind(BaseUrlConfiguration.CONFIG_NAME, baseUrlConfig);
             builder.Services.AddScoped(sp => baseUrlConfig);
 
+            // register the HttpClient and HttpService
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddScoped<HttpService>();
 
+            // register the services
             builder.Services.AddScoped<DoctorService>();
             builder.Services.AddScoped<ClientService>();
             builder.Services.AddScoped<PatientService>();
             builder.Services.AddScoped<RoomService>();
+
+            // register the Telerik services
+            builder.Services.AddTelerikBlazor();
 
             await builder.Build().RunAsync();
         }
