@@ -16,7 +16,7 @@ namespace FrontDesk.Blazor.Services
             _logger = logger;
         }
 
-        public async Task<RoomDto> Create(CreateRoomRequest room)
+        public async Task<RoomDto> Create(RoomDto room)
         {
             return (await _httpService.HttpPost<CreateRoomResponse>("rooms", room)).Room;
         }

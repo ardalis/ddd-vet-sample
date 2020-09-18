@@ -16,7 +16,7 @@ namespace FrontDesk.Blazor.Services
             _logger = logger;
         }
 
-        public async Task<ClientDto> Create(CreateClientRequest client)
+        public async Task<ClientDto> Create(ClientDto client)
         {
             return (await _httpService.HttpPost<CreateClientResponse>("clients", client)).Client;
         }
