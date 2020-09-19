@@ -39,7 +39,7 @@ namespace FrontDesk.Api.ScheduleEndpoints
             var dto = _mapper.Map<ScheduleDto>(toUpdate);
             response.Schedule = dto;
 
-            return response;
+            return Ok(response);
         }
     }
 }

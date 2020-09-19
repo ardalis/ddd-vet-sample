@@ -38,7 +38,7 @@ namespace FrontDesk.Api.DoctorEndpoints
             var dto = _mapper.Map<DoctorDto>(toUpdate);
             response.Doctor = dto;
 
-            return response;
+            return Ok(response);
         }
     }
 }

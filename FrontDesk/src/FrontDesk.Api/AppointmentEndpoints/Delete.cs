@@ -36,7 +36,7 @@ namespace FrontDesk.Api.AppointmentEndpoints
             var toDelete = _mapper.Map<Appointment>(request);
             await _repository.DeleteAsync<Appointment, Guid>(toDelete);
 
-            return response;
+            return Ok(response);
         }
     }
 }

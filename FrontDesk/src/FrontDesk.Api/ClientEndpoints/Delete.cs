@@ -35,7 +35,7 @@ namespace FrontDesk.Api.ClientEndpoints
             var toDelete = _mapper.Map<Client>(request);
             await _repository.DeleteAsync<Client, int>(toDelete);
 
-            return response;
+            return Ok(response);
         }
     }
 }

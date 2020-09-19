@@ -1,11 +1,9 @@
 using AutoMapper;
 using BlazorShared;
-using FrontDesk.Core.Constants;
 using FrontDesk.Core.Interfaces;
 using FrontDesk.Infrastructure.Data;
 using FrontDesk.SharedKernel.Interfaces;
 using MediatR;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FrontDesk.Api
 {
@@ -113,7 +109,7 @@ namespace FrontDesk.Api
             services.AddMediatR(typeof(Startup).Assembly);
 
             // Wire up application settings
-            services.AddSingleton(typeof(IApplicationSettings), typeof(OfficeSettings));
+            services.AddSingleton(typeof(IApplicationSettings), typeof(OfficeSettings));            
 
             services.AddAutoMapper(typeof(Startup).Assembly);
             services.AddSwaggerGen(c =>

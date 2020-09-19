@@ -39,7 +39,7 @@ namespace FrontDesk.Api.AppointmentEndpoints
             var dto = _mapper.Map<AppointmentDto>(toAdd);
             response.Appointment = dto;
 
-            return response;
+            return Ok(response);
         }
     }
 }

@@ -112,9 +112,9 @@ namespace FrontDesk.Infrastructure.Data
         {
             var result = new List<AppointmentType>();
 
-            result.Add(new AppointmentType("WE", "Wellness Exam", 30));
-            result.Add(new AppointmentType("DE", "Diagnostic Exam", 60));
-            result.Add(new AppointmentType("NT", "Nail Trim", 30));
+            result.Add(new AppointmentType("Wellness Exam", "WE", 30));
+            result.Add(new AppointmentType("Diagnostic Exam", "DE", 60));
+            result.Add(new AppointmentType("Nail Trim", "NT", 30));
 
             return result;
         }

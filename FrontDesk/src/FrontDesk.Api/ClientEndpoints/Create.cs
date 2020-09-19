@@ -38,7 +38,7 @@ namespace FrontDesk.Api.ClientEndpoints
             var dto = _mapper.Map<ClientDto>(toAdd);
             response.Client = dto;
 
-            return response;
+            return Ok(response);
         }
     }
 }

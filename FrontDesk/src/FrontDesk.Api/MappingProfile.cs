@@ -33,9 +33,9 @@ namespace FrontDesk.Api
             CreateMap<DeleteAppointmentRequest, Appointment>();            
 
             CreateMap<AppointmentType, AppointmentTypeDto>()
-                .ForMember(dto => dto.AppointmentTypeId, options => options.MapFrom(src => src.Id.ToString()));
+                .ForMember(dto => dto.AppointmentTypeId, options => options.MapFrom(src => src.Id));
             CreateMap<AppointmentTypeDto, AppointmentType>()
-                .ForMember(dto => dto.Id, options => options.MapFrom(src => int.Parse(src.AppointmentTypeId)));
+                .ForMember(dto => dto.Id, options => options.MapFrom(src => src.AppointmentTypeId));
 
 
             CreateMap<Client, ClientDto>()

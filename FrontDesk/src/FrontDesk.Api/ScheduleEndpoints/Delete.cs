@@ -36,7 +36,7 @@ namespace FrontDesk.Api.ScheduleEndpoints
             var toDelete = _mapper.Map<Schedule>(request);
             await _repository.DeleteAsync<Schedule, Guid>(toDelete);
 
-            return response;
+            return Ok(response);
         }
     }
 }

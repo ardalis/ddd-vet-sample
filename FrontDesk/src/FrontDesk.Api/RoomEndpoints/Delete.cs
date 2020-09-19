@@ -35,7 +35,7 @@ namespace FrontDesk.Api.RoomEndpoints
             var toDelete = _mapper.Map<Room>(request);
             await _repository.DeleteAsync<Room, int>(toDelete);
 
-            return response;
+            return Ok(response);
         }
     }
 }

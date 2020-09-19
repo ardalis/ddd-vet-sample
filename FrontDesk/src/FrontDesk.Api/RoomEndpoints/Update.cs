@@ -38,7 +38,7 @@ namespace FrontDesk.Api.RoomEndpoints
             var dto = _mapper.Map<RoomDto>(toUpdate);
             response.Room = dto;
 
-            return response;
+            return Ok(response);
         }
     }
 }
