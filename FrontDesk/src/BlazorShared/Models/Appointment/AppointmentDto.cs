@@ -27,5 +27,10 @@ namespace BlazorShared.Models.Appointment
         public int AppointmentTypeId { get; set; }
 
         public AppointmentTypeDto AppointmentType { get; set; }
+
+        public AppointmentDto ShallowCopy()
+        {
+            return (AppointmentDto)this.MemberwiseClone();            
+        }
     }
 }

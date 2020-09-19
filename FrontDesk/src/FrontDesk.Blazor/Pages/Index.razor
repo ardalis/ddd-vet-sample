@@ -1,12 +1,13 @@
 ﻿@page "/"
 @inject AppointmentService AppointmentService
+@inject AppointmentTypeService AppointmentTypeService
 @inject RoomService RoomService
 @inject DoctorService DoctorService
 
 <h1>Appointments</h1>
 
-<TelerikScheduler Data="@Appointments" @bind-Date="@StartDate" Height="600px" @bind-View="@CurrView"
-                  OnUpdate="@UpdateAppointment" OnCreate="@AddAppointment" OnDelete="@DeleteAppointment"
+<TelerikScheduler Data="@Appointments" @bind-Date="@StartDate" Height="600px" @bind-View="@CurrView" OnEdit="@EditHandler"
+                  OnUpdate="@UpdateAppointmentAsync" OnCreate="@AddAppointment" OnDelete="@DeleteAppointmentAsync"
                   AllowCreate="true" AllowDelete="true" AllowUpdate="true"
                   IdField="@(nameof(AppointmentDto.AppointmentId))"
                   StartField="@(nameof(AppointmentDto.Start))"
@@ -18,8 +19,7 @@
                   RecurrenceExceptionsField="@(nameof(AppointmentDto.RecurrenceExceptions))"
                   RecurrenceIdField="@(nameof(AppointmentDto.RecurrenceId))">
     <SchedulerResources>
-        <SchedulerResource Field="RoomId" Title="Meeting Room" Data="@Rooms" />
-        <SchedulerResource Field="DoctorId" Title="Doctor Name" Data="@Doctors" />
+        <SchedulerResource TextField="Name" ValueField="AppointmentTypeId" Field="AppointmentTypeId" Title="Appointment Type" Data="@AppointmentTypes" />
     </SchedulerResources>
     <SchedulerViews>
         <SchedulerDayView StartTime="@DayStart" EndTime="@DayEnd" WorkDayStart="@WorkDayStart" WorkDayEnd="@WorkDayEnd" />
@@ -29,29 +29,75 @@
     </SchedulerViews>
 </TelerikScheduler>
 
+<TelerikWindow Modal="true" Size="WindowSize.Medium" Visible="@CustomEditFormShown">
+    <WindowTitle>Appointment Data</WindowTitle>
+    <WindowActions>
+        <WindowAction Name="Close" OnClick="@CancelEditing" />
+    </WindowActions>
+    <WindowContent>
+        @* This component is in the Pages folder *@
+        <AppointmentEditor Appointment="@CurrentAppointment" OnAppointmentChanged="@RefreshDataAsync" />
+    </WindowContent>
+</TelerikWindow>
+
 @code {
     List<AppointmentDto> Appointments = new List<AppointmentDto>();
-    List<RoomDto> Rooms = new List<RoomDto>();
-    List<DoctorDto> Doctors = new List<DoctorDto>();
+    List<AppointmentTypeDto> AppointmentTypes = new List<AppointmentTypeDto>();
     public DateTime StartDate { get; set; } = new DateTime(2014, 6, 9, 7, 0, 0);
     public SchedulerView CurrView { get; set; } = SchedulerView.Week;
 
-    //the time portions are important
     public DateTime DayStart { get; set; } = new DateTime(2014, 6, 9, 7, 0, 0);
     public DateTime DayEnd { get; set; } = new DateTime(2014, 6, 9, 18, 00, 0);
     public DateTime WorkDayStart { get; set; } = new DateTime(2000, 1, 1, 7, 0, 0);
     public DateTime WorkDayEnd { get; set; } = new DateTime(2000, 1, 1, 18, 0, 0);
 
+    private bool CustomEditFormShown { get; set; }
+    AppointmentDto CurrentAppointment { get; set; } // we will put here a copy of the appointment for editing
+
+    private async Task CancelEditing()
+    {
+        await RefreshDataAsync();
+    }
+
+    private async Task RefreshDataAsync()
+    {
+        //an event callback needs to be raised in this component context to re-render the contents and to hide the dialog
+        CustomEditFormShown = false;
+        CurrentAppointment = null;
+        //we also use it to fetch the fresh data from the service - in a real case other updates may have occurred
+        //which is why I chose to use a separate event and not two-way binding. It is also used for refreshing on Cancel
+        Appointments = await AppointmentService.ListAsync();
+    }
+
+    private void EditHandler(SchedulerEditEventArgs args)
+    {
+        args.IsCancelled = true;//prevent built-in edit form from showing up
+        AppointmentDto item = args.Item as AppointmentDto;
+        CustomEditFormShown = true;
+        if (!args.IsNew) // an edit operation, otherwise - an insert operation
+        {
+            //copying is implemented in the appointment model and it is needed because
+            //this is a reference to the data collection so modifying it directly
+            //will immediately modify the data and no cancelling will be possible
+            CurrentAppointment = item.ShallowCopy();
+        }
+        else
+        {
+            CurrentAppointment = new AppointmentDto() { Start = args.Start, End = args.End, IsAllDay = args.IsAllDay };
+        }
+    }
+
     protected override async Task OnInitializedAsync()
     {
         Appointments = await AppointmentService.ListAsync();
-        Rooms = await RoomService.ListAsync();
-        Doctors = await DoctorService.ListAsync();
+        AppointmentTypes = await AppointmentTypeService.ListAsync();
     }
 
-    void UpdateAppointment(SchedulerUpdateEventArgs args)
+    private async Task UpdateAppointmentAsync(SchedulerUpdateEventArgs args)
     {
         AppointmentDto item = (AppointmentDto)args.Item;
+        await AppointmentService.EditAsync(item);
+
         var matchingItem = Appointments.FirstOrDefault(a => a.AppointmentId == item.AppointmentId);
         if (matchingItem != null)
         {
@@ -65,15 +111,17 @@
         }
     }
 
-    void AddAppointment(SchedulerCreateEventArgs args)
+    private async Task AddAppointment(SchedulerCreateEventArgs args)
     {
-        AppointmentDto item = args.Item as AppointmentDto;
-        Appointments.Add(item);
+        CreateAppointmentRequest item = args.Item as CreateAppointmentRequest;
+        await AppointmentService.CreateAsync(item);
+        Appointments.Add(args.Item as AppointmentDto);
     }
 
-    void DeleteAppointment(SchedulerDeleteEventArgs args)
+    private async Task DeleteAppointmentAsync(SchedulerDeleteEventArgs args)
     {
         AppointmentDto item = (AppointmentDto)args.Item;
+        await AppointmentService.DeleteAsync(item.AppointmentId);
         Appointments.Remove(item);
     }
 }

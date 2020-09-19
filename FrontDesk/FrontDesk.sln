@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "tests\UnitTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests", "tests\IntegrationTests\IntegrationTests.csproj", "{F1D5CB5A-22F9-44FB-9966-77DB8840930A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontDesk.Blazor", "src\FrontDesk.Blazor\FrontDesk.Blazor.csproj", "{6493BCA7-4491-481D-90B8-17065E17DC91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FrontDesk.Blazor", "src\FrontDesk.Blazor\FrontDesk.Blazor.csproj", "{6493BCA7-4491-481D-90B8-17065E17DC91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

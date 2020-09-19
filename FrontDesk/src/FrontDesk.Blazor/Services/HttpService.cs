@@ -30,7 +30,7 @@ namespace FrontDesk.Blazor.Services
             return await FromHttpResponseMessageAsync<T>(result);
         }
 
-        public async Task<T> HttpDeleteAsync<T>(string uri, int id)
+        public async Task<T> HttpDeleteAsync<T>(string uri, object id)
             where T : class
         {
             var result = await _httpClient.DeleteAsync($"{_apiUrl}{uri}/{id}");

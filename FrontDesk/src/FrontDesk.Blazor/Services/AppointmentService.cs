@@ -17,7 +17,7 @@ namespace FrontDesk.Blazor.Services
             _logger = logger;
         }
 
-        public async Task<AppointmentDto> CreateAsync(AppointmentDto appointment)
+        public async Task<AppointmentDto> CreateAsync(CreateAppointmentRequest appointment)
         {
             return (await _httpService.HttpPostAsync<CreateAppointmentResponse>("appointments", appointment)).Appointment;
         }
@@ -27,12 +27,12 @@ namespace FrontDesk.Blazor.Services
             return (await _httpService.HttpPutAsync<UpdateAppointmentResponse>("appointments", appointment)).Appointment;
         }
 
-        public async Task<string> DeleteAsync(int appointmentId)
+        public async Task<string> DeleteAsync(Guid appointmentId)
         {
             return (await _httpService.HttpDeleteAsync<DeleteAppointmentResponse>("appointments", appointmentId)).Status;
         }
 
-        public async Task<AppointmentDto> GetByIdAsync(int appointmentId)
+        public async Task<AppointmentDto> GetByIdAsync(Guid appointmentId)
         {
             return (await _httpService.HttpGetAsync<GetByIdAppointmentResponse>($"appointments/{appointmentId}")).Appointment;
         }
