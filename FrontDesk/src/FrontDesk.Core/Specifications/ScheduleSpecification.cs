@@ -5,13 +5,17 @@ using System.Linq;
 
 namespace FrontDesk.Core.Specifications
 {
-    public class ScheduleForDateSpecification : Specification<Schedule>
+    public class ScheduleForDateAndClinicSpecification : Specification<Schedule>
     {
-        public ScheduleForDateSpecification(int clinicId, DateTime date)
+        public ScheduleForDateAndClinicSpecification(int clinicId, DateTime date)
         {
             Query
-                .Include(nameof(Appointment))
-                .Where(schedule => schedule.ClinicId == clinicId && schedule.Appointments.Any(appointment => appointment.TimeRange.Start == date));
+                .Include(nameof(Schedule.Appointments))
+                .Where(schedule =>
+                    schedule.ClinicId == clinicId &&
+                    schedule.Appointments != null &&
+                    schedule.Appointments.Any(appointment => ((DateTime?)appointment.TimeRange.Start).Value.Date == ((DateTime?)date).Value.Date));
+                        
         }
     }
 }

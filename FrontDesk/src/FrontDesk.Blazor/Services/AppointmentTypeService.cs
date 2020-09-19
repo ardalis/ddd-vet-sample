@@ -16,18 +16,18 @@ namespace FrontDesk.Blazor.Services
             _logger = logger;
         }  
 
-        public async Task<List<AppointmentTypeDto>> ListPaged(int pageSize)
+        public async Task<List<AppointmentTypeDto>> ListPagedAsync(int pageSize)
         {
             _logger.LogInformation("Fetching appointment types from API.");
 
-            return (await _httpService.HttpGet<ListAppointmentTypeResponse>($"appointment-types")).AppointmentTypes;
+            return (await _httpService.HttpGetAsync<ListAppointmentTypeResponse>($"appointment-types")).AppointmentTypes;
         }
 
-        public async Task<List<AppointmentTypeDto>> List()
+        public async Task<List<AppointmentTypeDto>> ListAsync()
         {
             _logger.LogInformation("Fetching appointment types from API.");
 
-            return (await _httpService.HttpGet<ListAppointmentTypeResponse>($"appointment-types")).AppointmentTypes;
+            return (await _httpService.HttpGetAsync<ListAppointmentTypeResponse>($"appointment-types")).AppointmentTypes;
         }
     }
 }

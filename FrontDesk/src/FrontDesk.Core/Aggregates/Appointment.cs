@@ -17,7 +17,6 @@ namespace FrontDesk.Core.Aggregates
         public int? DoctorId { get; private set; }
         public int AppointmentTypeId { get; private set; }
 
-        [NotMapped]
         public DateTimeRange TimeRange { get; private set; }
 
         public string Title { get; private set; }
@@ -26,7 +25,9 @@ namespace FrontDesk.Core.Aggregates
         public DateTime? DateTimeConfirmed { get; set; }
 
         // not persisted
+        [NotMapped]
         public TrackingState State { get; set; }
+        [NotMapped]
         public bool IsPotentiallyConflicting { get; set; }
         #endregion
 
@@ -105,6 +106,6 @@ namespace FrontDesk.Core.Aggregates
             appointment.DoctorId = doctorId ?? 1;
             appointment.Title = title;
             return appointment;
-        }
+        }        
     }
 }

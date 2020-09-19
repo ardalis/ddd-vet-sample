@@ -16,38 +16,38 @@ namespace FrontDesk.Blazor.Services
             _logger = logger;
         }
 
-        public async Task<ClientDto> Create(ClientDto client)
+        public async Task<ClientDto> CreateAsync(ClientDto client)
         {
-            return (await _httpService.HttpPost<CreateClientResponse>("clients", client)).Client;
+            return (await _httpService.HttpPostAsync<CreateClientResponse>("clients", client)).Client;
         }
 
-        public async Task<ClientDto> Edit(ClientDto client)
+        public async Task<ClientDto> EditAsync(ClientDto client)
         {
-            return (await _httpService.HttpPut<UpdateClientResponse>("clients", client)).Client;
+            return (await _httpService.HttpPutAsync<UpdateClientResponse>("clients", client)).Client;
         }
 
-        public async Task<string> Delete(int clientId)
+        public async Task<string> DeleteAsync(int clientId)
         {
-            return (await _httpService.HttpDelete<DeleteClientResponse>("clients", clientId)).Status;
+            return (await _httpService.HttpDeleteAsync<DeleteClientResponse>("clients", clientId)).Status;
         }
 
-        public async Task<ClientDto> GetById(int clientId)
+        public async Task<ClientDto> GetByIdAsync(int clientId)
         {
-            return (await _httpService.HttpGet<GetByIdClientResponse>($"clients/{clientId}")).Client;
+            return (await _httpService.HttpGetAsync<GetByIdClientResponse>($"clients/{clientId}")).Client;
         }
 
-        public async Task<List<ClientDto>> ListPaged(int pageSize)
+        public async Task<List<ClientDto>> ListPagedAsync(int pageSize)
         {
             _logger.LogInformation("Fetching clients from API.");
 
-            return (await _httpService.HttpGet<ListClientResponse>($"clients")).Clients;
+            return (await _httpService.HttpGetAsync<ListClientResponse>($"clients")).Clients;
         }
 
-        public async Task<List<ClientDto>> List()
+        public async Task<List<ClientDto>> ListAsync()
         {
             _logger.LogInformation("Fetching clients from API.");
 
-            return (await _httpService.HttpGet<ListClientResponse>($"clients")).Clients;
+            return (await _httpService.HttpGetAsync<ListClientResponse>($"clients")).Clients;
         }
     }
 }

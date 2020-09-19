@@ -16,38 +16,38 @@ namespace FrontDesk.Blazor.Services
             _logger = logger;
         }
 
-        public async Task<DoctorDto> Create(DoctorDto doctor)
+        public async Task<DoctorDto> CreateAsync(DoctorDto doctor)
         {
-            return (await _httpService.HttpPost<CreateDoctorResponse>("doctors", doctor)).Doctor;
+            return (await _httpService.HttpPostAsync<CreateDoctorResponse>("doctors", doctor)).Doctor;
         }
 
-        public async Task<DoctorDto> Edit(DoctorDto doctor)
+        public async Task<DoctorDto> EditAsync(DoctorDto doctor)
         {
-            return (await _httpService.HttpPut<UpdateDoctorResponse>("doctors", doctor)).Doctor;
+            return (await _httpService.HttpPutAsync<UpdateDoctorResponse>("doctors", doctor)).Doctor;
         }
 
-        public async Task<string> Delete(int doctorId)
+        public async Task<string> DeleteAsync(int doctorId)
         {
-            return (await _httpService.HttpDelete<DeleteDoctorResponse>("doctors", doctorId)).Status;
+            return (await _httpService.HttpDeleteAsync<DeleteDoctorResponse>("doctors", doctorId)).Status;
         }
 
-        public async Task<DoctorDto> GetById(int doctorId)
+        public async Task<DoctorDto> GetByIdAsync(int doctorId)
         {
-            return (await _httpService.HttpGet<GetByIdDoctorResponse>($"doctors/{doctorId}")).Doctor;
+            return (await _httpService.HttpGetAsync<GetByIdDoctorResponse>($"doctors/{doctorId}")).Doctor;
         }
 
-        public async Task<List<DoctorDto>> ListPaged(int pageSize)
+        public async Task<List<DoctorDto>> ListPagedAsync(int pageSize)
         {
             _logger.LogInformation("Fetching doctors from API.");
 
-            return (await _httpService.HttpGet<ListDoctorResponse>($"doctors")).Doctors;
+            return (await _httpService.HttpGetAsync<ListDoctorResponse>($"doctors")).Doctors;
         }
 
-        public async Task<List<DoctorDto>> List()
+        public async Task<List<DoctorDto>> ListAsync()
         {
             _logger.LogInformation("Fetching doctors from API.");
 
-            return (await _httpService.HttpGet<ListDoctorResponse>($"doctors")).Doctors;
+            return (await _httpService.HttpGetAsync<ListDoctorResponse>($"doctors")).Doctors;
         }
     }
 }

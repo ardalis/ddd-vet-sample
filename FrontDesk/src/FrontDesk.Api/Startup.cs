@@ -1,6 +1,7 @@
 using AutoMapper;
 using BlazorShared;
 using FrontDesk.Core.Constants;
+using FrontDesk.Core.Interfaces;
 using FrontDesk.Infrastructure.Data;
 using FrontDesk.SharedKernel.Interfaces;
 using MediatR;
@@ -110,6 +111,9 @@ namespace FrontDesk.Api
 
             services.AddControllers();
             services.AddMediatR(typeof(Startup).Assembly);
+
+            // Wire up application settings
+            services.AddSingleton(typeof(IApplicationSettings), typeof(OfficeSettings));
 
             services.AddAutoMapper(typeof(Startup).Assembly);
             services.AddSwaggerGen(c =>

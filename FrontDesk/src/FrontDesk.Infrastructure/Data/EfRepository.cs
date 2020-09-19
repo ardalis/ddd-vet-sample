@@ -1,10 +1,8 @@
 ﻿using Ardalis.Specification;
 using Ardalis.Specification.EntityFrameworkCore;
-using FrontDesk.Core.Aggregates;
 using FrontDesk.SharedKernel;
 using FrontDesk.SharedKernel.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -59,6 +57,12 @@ namespace FrontDesk.Infrastructure.Data
         {
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<int> CountAsync<T, TId>(ISpecification<T> spec) where T : BaseEntity<TId>, IAggregateRoot
+        {
+            var specificationResult = ApplySpecification<T, TId>(spec);
+            return await specificationResult.CountAsync();
         }
 
         private IQueryable<T> ApplySpecification<T, TId>(ISpecification<T> spec) where T : BaseEntity<TId>

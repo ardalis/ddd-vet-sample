@@ -1,7 +1,79 @@
 ﻿@page "/"
+@inject AppointmentService AppointmentService
+@inject RoomService RoomService
+@inject DoctorService DoctorService
 
-<h1>Hello, world!</h1>
+<h1>Appointments</h1>
 
-Welcome to your new app.
+<TelerikScheduler Data="@Appointments" @bind-Date="@StartDate" Height="600px" @bind-View="@CurrView"
+                  OnUpdate="@UpdateAppointment" OnCreate="@AddAppointment" OnDelete="@DeleteAppointment"
+                  AllowCreate="true" AllowDelete="true" AllowUpdate="true"
+                  IdField="@(nameof(AppointmentDto.AppointmentId))"
+                  StartField="@(nameof(AppointmentDto.Start))"
+                  EndField="@(nameof(AppointmentDto.End))"
+                  TitleField="@(nameof(AppointmentDto.Title))"
+                  DescriptionField="@(nameof(AppointmentDto.Description))"
+                  IsAllDayField="@(nameof(AppointmentDto.IsAllDay))"
+                  RecurrenceRuleField="@(nameof(AppointmentDto.RecurrenceRule))"
+                  RecurrenceExceptionsField="@(nameof(AppointmentDto.RecurrenceExceptions))"
+                  RecurrenceIdField="@(nameof(AppointmentDto.RecurrenceId))">
+    <SchedulerResources>
+        <SchedulerResource Field="RoomId" Title="Meeting Room" Data="@Rooms" />
+        <SchedulerResource Field="DoctorId" Title="Doctor Name" Data="@Doctors" />
+    </SchedulerResources>
+    <SchedulerViews>
+        <SchedulerDayView StartTime="@DayStart" EndTime="@DayEnd" WorkDayStart="@WorkDayStart" WorkDayEnd="@WorkDayEnd" />
+        <SchedulerWeekView StartTime="@DayStart" EndTime="@DayEnd" WorkDayStart="@WorkDayStart" WorkDayEnd="@WorkDayEnd" />
+        <SchedulerMultiDayView StartTime="@DayStart" EndTime="@DayEnd" WorkDayStart="@WorkDayStart" WorkDayEnd="@WorkDayEnd" NumberOfDays="10" />
+        <SchedulerMonthView></SchedulerMonthView>
+    </SchedulerViews>
+</TelerikScheduler>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code {
+    List<AppointmentDto> Appointments = new List<AppointmentDto>();
+    List<RoomDto> Rooms = new List<RoomDto>();
+    List<DoctorDto> Doctors = new List<DoctorDto>();
+    public DateTime StartDate { get; set; } = new DateTime(2014, 6, 9, 7, 0, 0);
+    public SchedulerView CurrView { get; set; } = SchedulerView.Week;
+
+    //the time portions are important
+    public DateTime DayStart { get; set; } = new DateTime(2014, 6, 9, 7, 0, 0);
+    public DateTime DayEnd { get; set; } = new DateTime(2014, 6, 9, 18, 00, 0);
+    public DateTime WorkDayStart { get; set; } = new DateTime(2000, 1, 1, 7, 0, 0);
+    public DateTime WorkDayEnd { get; set; } = new DateTime(2000, 1, 1, 18, 0, 0);
+
+    protected override async Task OnInitializedAsync()
+    {
+        Appointments = await AppointmentService.ListAsync();
+        Rooms = await RoomService.ListAsync();
+        Doctors = await DoctorService.ListAsync();
+    }
+
+    void UpdateAppointment(SchedulerUpdateEventArgs args)
+    {
+        AppointmentDto item = (AppointmentDto)args.Item;
+        var matchingItem = Appointments.FirstOrDefault(a => a.AppointmentId == item.AppointmentId);
+        if (matchingItem != null)
+        {
+            matchingItem.Title = item.Title;
+            matchingItem.Description = item.Description;
+            matchingItem.Start = item.Start;
+            matchingItem.End = item.End;
+            matchingItem.IsAllDay = item.IsAllDay;
+            matchingItem.RecurrenceExceptions = item.RecurrenceExceptions;
+            matchingItem.RecurrenceRule = item.RecurrenceRule;
+        }
+    }
+
+    void AddAppointment(SchedulerCreateEventArgs args)
+    {
+        AppointmentDto item = args.Item as AppointmentDto;
+        Appointments.Add(item);
+    }
+
+    void DeleteAppointment(SchedulerDeleteEventArgs args)
+    {
+        AppointmentDto item = (AppointmentDto)args.Item;
+        Appointments.Remove(item);
+    }
+}

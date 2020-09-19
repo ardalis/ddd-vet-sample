@@ -16,38 +16,38 @@ namespace FrontDesk.Blazor.Services
             _logger = logger;
         }
 
-        public async Task<RoomDto> Create(RoomDto room)
+        public async Task<RoomDto> CreateAsync(RoomDto room)
         {
-            return (await _httpService.HttpPost<CreateRoomResponse>("rooms", room)).Room;
+            return (await _httpService.HttpPostAsync<CreateRoomResponse>("rooms", room)).Room;
         }
 
-        public async Task<RoomDto> Edit(RoomDto room)
+        public async Task<RoomDto> EditAsync(RoomDto room)
         {
-            return (await _httpService.HttpPut<UpdateRoomResponse>("rooms", room)).Room;
+            return (await _httpService.HttpPutAsync<UpdateRoomResponse>("rooms", room)).Room;
         }
 
-        public async Task<string> Delete(int roomId)
+        public async Task<string> DeleteAsync(int roomId)
         {
-            return (await _httpService.HttpDelete<DeleteRoomResponse>("rooms", roomId)).Status;
+            return (await _httpService.HttpDeleteAsync<DeleteRoomResponse>("rooms", roomId)).Status;
         }
 
-        public async Task<RoomDto> GetById(int roomId)
+        public async Task<RoomDto> GetByIdAsync(int roomId)
         {
-            return (await _httpService.HttpGet<GetByIdRoomResponse>($"rooms/{roomId}")).Room;
+            return (await _httpService.HttpGetAsync<GetByIdRoomResponse>($"rooms/{roomId}")).Room;
         }
 
-        public async Task<List<RoomDto>> ListPaged(int pageSize)
+        public async Task<List<RoomDto>> ListPagedAsync(int pageSize)
         {
             _logger.LogInformation("Fetching rooms from API.");
 
-            return (await _httpService.HttpGet<ListRoomResponse>($"rooms")).Rooms;
+            return (await _httpService.HttpGetAsync<ListRoomResponse>($"rooms")).Rooms;
         }
 
-        public async Task<List<RoomDto>> List()
+        public async Task<List<RoomDto>> ListAsync()
         {
             _logger.LogInformation("Fetching rooms from API.");
 
-            return (await _httpService.HttpGet<ListRoomResponse>($"rooms")).Rooms;
+            return (await _httpService.HttpGetAsync<ListRoomResponse>($"rooms")).Rooms;
         }
     }
 }

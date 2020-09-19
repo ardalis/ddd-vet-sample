@@ -68,6 +68,11 @@ namespace FrontDesk.Infrastructure.Data
             modelBuilder.Entity<Appointment>(x =>
             {
                 x.ToTable("Appointments").HasKey(k => k.Id);
+                x.OwnsOne(p => p.TimeRange, p =>
+                {
+                    p.Property(pp => pp.Start).HasColumnName("TimeRange_Start");
+                    p.Property(pp => pp.End).HasColumnName("TimeRange_End");
+                });
             });
 
             base.OnModelCreating(modelBuilder);

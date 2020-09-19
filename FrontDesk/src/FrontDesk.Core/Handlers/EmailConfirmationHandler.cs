@@ -20,13 +20,13 @@ namespace FrontDesk.Core.Services
 
         public EmailConfirmationHandler(IRepository scheduleRepository, IApplicationSettings settings)
         {
-            this._scheduleRepository = scheduleRepository;
-            this._settings = settings;
+            _scheduleRepository = scheduleRepository;
+            _settings = settings;
         }
 
         public async Task Handle(AppointmentConfirmedEvent appointmentConfirmedEvent, CancellationToken cancellationToken)
         {
-            var scheduleSpec = new ScheduleForDateSpecification(_settings.ClinicId, _settings.TestDate);
+            var scheduleSpec = new ScheduleForDateAndClinicSpecification(_settings.ClinicId, _settings.TestDate);
             // Note: In this demo this only works for appointments scheduled on TestDate
             var schedule = (await _scheduleRepository.ListAsync<Schedule, Guid>(scheduleSpec)).FirstOrDefault();
             Guard.Against.Null(schedule, nameof(Schedule));
