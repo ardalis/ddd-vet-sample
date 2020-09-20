@@ -2,7 +2,7 @@
 {
     public class UpdatePatientRequest : BaseRequest
     {
-        public int Id { get; set; }
+        public int PatientId { get; set; }
         public string Name { get; set; }
     }
 }

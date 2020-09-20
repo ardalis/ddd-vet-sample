@@ -116,11 +116,20 @@ else
     {
         if (ToSave.RoomId == 0)
         {
-            await RoomService.CreateAsync(ToSave);
+            var toCreate = new CreateRoomRequest()
+            {
+                Name = ToSave.Name,
+            };
+            await RoomService.CreateAsync(toCreate);
         }
         else
         {
-            await RoomService.EditAsync(ToSave);
+            var toUpdate = new UpdateRoomRequest()
+            {
+                RoomId = ToSave.RoomId,
+                Name = ToSave.Name,
+            };
+            await RoomService.EditAsync(toUpdate);
         }
 
         CancelClick();

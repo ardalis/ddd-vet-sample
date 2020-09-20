@@ -116,11 +116,20 @@ else
     {
         if (ToSave.DoctorId == 0)
         {
-            await DoctorService.CreateAsync(ToSave);
+            var toCreate = new CreateDoctorRequest()
+            {
+                Name = ToSave.Name,
+            };
+            await DoctorService.CreateAsync(toCreate);
         }
         else
         {
-            await DoctorService.EditAsync(ToSave);
+            var toUpdate = new UpdateDoctorRequest()
+            {
+                DoctorId = ToSave.DoctorId,
+                Name = ToSave.Name,
+            };
+            await DoctorService.EditAsync(toUpdate);
         }
 
         CancelClick();

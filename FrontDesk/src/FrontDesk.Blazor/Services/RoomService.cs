@@ -16,12 +16,12 @@ namespace FrontDesk.Blazor.Services
             _logger = logger;
         }
 
-        public async Task<RoomDto> CreateAsync(RoomDto room)
+        public async Task<RoomDto> CreateAsync(CreateRoomRequest room)
         {
             return (await _httpService.HttpPostAsync<CreateRoomResponse>("rooms", room)).Room;
         }
 
-        public async Task<RoomDto> EditAsync(RoomDto room)
+        public async Task<RoomDto> EditAsync(UpdateRoomRequest room)
         {
             return (await _httpService.HttpPutAsync<UpdateRoomResponse>("rooms", room)).Room;
         }

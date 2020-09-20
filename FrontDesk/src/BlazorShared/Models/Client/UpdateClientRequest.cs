@@ -4,7 +4,7 @@ namespace BlazorShared.Models.Client
 {
     public class UpdateClientRequest : BaseRequest
     {
-        public int Id { get; set; }
+        public int ClientId { get; set; }
         public string FullName { get; set; }
         public string EmailAddress { get; set; }
         public string Salutation { get; set; }

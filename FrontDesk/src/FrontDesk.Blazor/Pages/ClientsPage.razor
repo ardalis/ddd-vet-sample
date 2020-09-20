@@ -149,11 +149,29 @@ else
     {
         if (ToSave.ClientId == 0)
         {
-            await ClientService.CreateAsync(ToSave);
+            var toCreate = new CreateClientRequest()
+            {
+                FullName = ToSave.FullName,
+                EmailAddress = ToSave.EmailAddress,
+                Salutation = ToSave.Salutation,
+                PreferredDoctorId = ToSave.PreferredDoctorId,
+                PreferredName = ToSave.PreferredName,
+            };
+            await ClientService.CreateAsync(toCreate);
         }
         else
         {
-            await ClientService.EditAsync(ToSave);
+            var toUpdate = new UpdateClientRequest()
+            {
+                ClientId = ToSave.ClientId,
+                FullName = ToSave.FullName,
+                EmailAddress = ToSave.EmailAddress,
+                Salutation = ToSave.Salutation,
+                PreferredDoctorId = ToSave.PreferredDoctorId,
+                PreferredName = ToSave.PreferredName,
+            };
+
+            await ClientService.EditAsync(toUpdate);
         }
 
         CancelClick();
