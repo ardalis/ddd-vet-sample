@@ -9,24 +9,24 @@ using System.Threading.Tasks;
 
 namespace FrontDesk.Api.FileEndpoints
 {
-    public class Read : BaseAsyncEndpoint<FileItem, FileItem>
+    public class Read : BaseAsyncEndpoint<string, FileItem>
     {
         public Read()
         {
         }
 
-        [HttpGet("api/files")]
+        [HttpGet("api/files/{fileName}")]
         [SwaggerOperation(
             Summary = "Reads a file",
             Description = "Reads a file",
             OperationId = "files.read",
             Tags = new[] { "FileEndpoints" })
         ]
-        public override async Task<ActionResult<FileItem>> HandleAsync(FileItem request, CancellationToken cancellationToken)
+        public override async Task<ActionResult<FileItem>> HandleAsync([FromRoute]string fileName, CancellationToken cancellationToken)
         {
-            if (request == null || string.IsNullOrEmpty(request.FileName)) return BadRequest();            
+            if (string.IsNullOrEmpty(fileName)) return BadRequest();            
 
-            var fullPath = Path.Combine(Directory.GetCurrentDirectory(), @"images/Patients", request.FileName);
+            var fullPath = Path.Combine(Directory.GetCurrentDirectory(), @"images/Patients", fileName);
             if (!System.IO.File.Exists(fullPath))
             {
                 return NotFound();
@@ -39,7 +39,7 @@ namespace FrontDesk.Api.FileEndpoints
             var respons = new FileItem()
             {
                 DataBase64 = fileDataBase64,
-                FileName = request.FileName
+                FileName = fileName
             };
 
             return Ok(respons);
