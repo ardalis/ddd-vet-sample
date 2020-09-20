@@ -62,23 +62,5 @@ namespace FrontDesk.Api.AppointmentEndpoints
 
             return Ok(response);
         }
-
-        private async Task<AppointmentTypeDto> CreateAppointmentTypeAsync(int appointmentTypeId)
-        {
-            var appointmentType = (await _repository.ListAsync<AppointmentType, int>())?.Where(at => at.Id == appointmentTypeId)?.FirstOrDefault();
-            if(appointmentType == null)
-            {
-                return null;
-            }
-            return _mapper.Map<AppointmentTypeDto>(appointmentType);
-        }
-
-        private async Task<string> GetPatientName(int patientId)
-        {
-            var patient = (await _repository.ListAsync<Patient, int>())?.Where(at => at.Id == patientId)?.FirstOrDefault();
-            if (patient == null) return "None";
-
-            return patient.Name;
-        }
     }
 }
