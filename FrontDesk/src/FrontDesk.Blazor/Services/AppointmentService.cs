@@ -22,7 +22,7 @@ namespace FrontDesk.Blazor.Services
             return (await _httpService.HttpPostAsync<CreateAppointmentResponse>("appointments", appointment)).Appointment;
         }
 
-        public async Task<AppointmentDto> EditAsync(AppointmentDto appointment)
+        public async Task<AppointmentDto> EditAsync(UpdateAppointmentRequest appointment)
         {
             return (await _httpService.HttpPutAsync<UpdateAppointmentResponse>("appointments", appointment)).Appointment;
         }

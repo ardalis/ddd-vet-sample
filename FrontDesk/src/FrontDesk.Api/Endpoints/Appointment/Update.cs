@@ -32,8 +32,10 @@ namespace FrontDesk.Api.AppointmentEndpoints
         public override async Task<ActionResult<UpdateAppointmentResponse>> HandleAsync(UpdateAppointmentRequest request, CancellationToken cancellationToken)
         {
             var response = new UpdateAppointmentResponse(request.CorrelationId());
-
-            var toUpdate = _mapper.Map<Appointment>(request);
+            var id = request.Id;
+            
+            var toUpdate = await _repository.GetByIdAsync<Appointment, Guid>(id);
+            toUpdate.Confirm(DateTime.Now);
             await _repository.UpdateAsync<Appointment, Guid>(toUpdate);
 
             var dto = _mapper.Map<AppointmentDto>(toUpdate);

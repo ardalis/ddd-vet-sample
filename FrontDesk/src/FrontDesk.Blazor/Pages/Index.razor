@@ -6,8 +6,8 @@
 
 <h1>Appointments</h1>
 
-<TelerikScheduler Data="@Appointments" @bind-Date="@StartDate" Height="600px" @bind-View="@CurrView" OnEdit="@EditHandler"
-                  OnUpdate="@UpdateAppointmentAsync" OnCreate="@AddAppointment" OnDelete="@DeleteAppointmentAsync"
+<TelerikScheduler Data="@Appointments" @bind-Date="@StartDate" Height="600px" @bind-View="@CurrView"
+                  OnEdit="@EditHandler" OnDelete="@DeleteAppointmentAsync"
                   AllowCreate="true" AllowDelete="true" AllowUpdate="true"
                   IdField="@(nameof(AppointmentDto.AppointmentId))"
                   StartField="@(nameof(AppointmentDto.Start))"
@@ -36,9 +36,10 @@
     </WindowActions>
     <WindowContent>
         @* This component is in the Pages folder *@
-        <AppointmentEditor Appointment="@CurrentAppointment" OnAppointmentChanged="@RefreshDataAsync" />
+        <AppointmentEditor Patient="Patient" DoctorId="DoctorId" ScheduleId="ScheduleId" RoomId="RoomId" Appointment="@CurrentAppointment" OnAppointmentChanged="@RefreshDataAsync" />
     </WindowContent>
 </TelerikWindow>
+
 
 @code {
     List<AppointmentDto> Appointments = new List<AppointmentDto>();
@@ -53,6 +54,11 @@
 
     private bool CustomEditFormShown { get; set; }
     AppointmentDto CurrentAppointment { get; set; } // we will put here a copy of the appointment for editing
+
+    private int RoomId { get; set; } = 1;
+    private PatientDto Patient { get; set; } = new PatientDto();
+    private int DoctorId { get; set; } = 1;
+    private Guid ScheduleId { get; set; } = Guid.NewGuid();
 
     private async Task CancelEditing()
     {
@@ -91,31 +97,6 @@
     {
         Appointments = await AppointmentService.ListAsync();
         AppointmentTypes = await AppointmentTypeService.ListAsync();
-    }
-
-    private async Task UpdateAppointmentAsync(SchedulerUpdateEventArgs args)
-    {
-        AppointmentDto item = (AppointmentDto)args.Item;
-        await AppointmentService.EditAsync(item);
-
-        var matchingItem = Appointments.FirstOrDefault(a => a.AppointmentId == item.AppointmentId);
-        if (matchingItem != null)
-        {
-            matchingItem.Title = item.Title;
-            matchingItem.Description = item.Description;
-            matchingItem.Start = item.Start;
-            matchingItem.End = item.End;
-            matchingItem.IsAllDay = item.IsAllDay;
-            matchingItem.RecurrenceExceptions = item.RecurrenceExceptions;
-            matchingItem.RecurrenceRule = item.RecurrenceRule;
-        }
-    }
-
-    private async Task AddAppointment(SchedulerCreateEventArgs args)
-    {
-        CreateAppointmentRequest item = args.Item as CreateAppointmentRequest;
-        await AppointmentService.CreateAsync(item);
-        Appointments.Add(args.Item as AppointmentDto);
     }
 
     private async Task DeleteAppointmentAsync(SchedulerDeleteEventArgs args)

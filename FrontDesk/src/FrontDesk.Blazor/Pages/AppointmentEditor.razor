@@ -9,6 +9,11 @@
 
     .image {
         max-width:300px;
+        max-height:300px;
+    }
+
+    .confirm-button {
+        cursor: default !important;
     }
 
     form label.width100 {
@@ -20,7 +25,7 @@
     <DataAnnotationsValidator />
     <label class="width100">
         Title:<br />
-        <TelerikTextBox @bind-Value="@Appointment.Title" Width="100%" />
+        <TelerikTextBox @bind-Value="Title" Width="100%" Enabled="false" />
     </label>
     <br />
 
@@ -29,7 +34,7 @@
         <TelerikComboBox Data="@AppointmentTypes" Placeholder="Appointment Type" ClearButton="false"
                          TextField="@nameof(AppointmentTypeDto.Name)" ValueField="@nameof(AppointmentTypeDto.AppointmentTypeId)" Filterable="true"
                          Id="@nameof(AppointmentTypeDto.AppointmentTypeId)"
-                         @bind-Value="@Appointment.AppointmentTypeId">
+                         @bind-Value="@Appointment.AppointmentTypeId" Enabled="IsAdd">
         </TelerikComboBox>
     </label>
     <br />
@@ -46,13 +51,13 @@
             Start:<br />
             <TelerikDatePicker Value="@Appointment.Start" ValueChanged="@( (DateTime d) => StartChanged(d) )"
                                ValueExpression="@( () => Appointment.Start )"
-                               Max="@GetHigherDate()" Width="100%" />
+                               Max="@GetHigherDate()" Width="100%" Enabled="IsAdd" />
         </label>
         <label class="width100">
             End:<br />
             <TelerikDatePicker Value="@Appointment.End" ValueChanged="@( (DateTime d) => EndChanged(d) )"
                                ValueExpression="@( () => Appointment.End)"
-                               Min="@GetLowerDate()" Width="100%" />
+                               Min="@GetLowerDate()" Width="100%" Enabled="IsAdd" />
         </label>
     }
     else
@@ -61,25 +66,34 @@
             Start:<br />
             <TelerikDateTimePicker Value="@Appointment.Start" ValueChanged="@( (DateTime d) => StartChanged(d) )"
                                    ValueExpression="@( () => Appointment.Start)"
-                                   Max="@GetHigherDate()" Width="100%" />
+                                   Max="@GetHigherDate()" Width="100%" Enabled="IsAdd" />
         </label>
         <label class="width100">
             End:<br />
             <TelerikDateTimePicker Value="@Appointment.End" ValueChanged="@( (DateTime d) => EndChanged(d) )"
                                    ValueExpression="@( () => Appointment.End )"
-                                   Min="@GetLowerDate()" Width="100%" />
+                                   Min="@GetLowerDate()" Width="100%" Enabled="IsAdd" />
         </label>
     }
     <br />
 
     <label class="width100">
         Patient: @Appointment.PatientName<br />
-        <img class="image" src="@Picture" />
+        @if (!string.IsNullOrEmpty(Picture))
+        {
+            <img class="image" src="@Picture" />
+        }
     </label>
     <br />
 
-    <input type="checkbox" id="isConfirmed" class="k-checkbox" @bind="@Appointment.IsConfirmed">
-    <label class="k-checkbox-label" for="isConfirmed">Confirmed?</label>
+    @if (@Appointment.IsConfirmed)
+    {
+        <button type="button" class="btn btn-success confirm-button">Confirmed</button>
+    }
+    else
+    {
+        <button type="button" class="btn btn-danger confirm-button">Not Confirmed</button>
+    }
     <br />
     <br />
 
@@ -89,7 +103,9 @@
         <span class="msg">@WrongRangeMessage</span>
     }
 
-    <TelerikButton Enabled="@IsValid()" Primary="true">Save</TelerikButton>
+    <TelerikButton Enabled="@IsValid()" Primary="true">
+        @SaveButtonName
+    </TelerikButton>
     <TelerikButton OnClick="@CancelEditing" ButtonType="ButtonType.Button">Cancel</TelerikButton>
     <TelerikButton OnClick="@DeleteAppointment" ButtonType="ButtonType.Button">Delete</TelerikButton>
 
@@ -97,7 +113,11 @@
 
 @code{
     //communcation with the parent component where the scheduler is
-    [Parameter] public AppointmentDto Appointment { get; set; }
+    [Parameter] public AppointmentDto Appointment { get; set; } = new AppointmentDto();
+    [Parameter] public PatientDto Patient { get; set; } = new PatientDto();
+    [Parameter] public int DoctorId { get; set; } = 0;
+    [Parameter] public Guid ScheduleId { get; set; } = Guid.Empty;
+    [Parameter] public int RoomId { get; set; } = 0;
     [Parameter] public EventCallback<string> OnAppointmentChanged { get; set; }
 
     List<AppointmentTypeDto> AppointmentTypes = new List<AppointmentTypeDto>();
@@ -107,16 +127,25 @@
     bool ShowErrorMessage { get; set; }
     string GetDuration => AppointmentTypes.FirstOrDefault(x => x.AppointmentTypeId == Appointment.AppointmentTypeId)?.Duration.ToString();
     private string Picture { get; set; }
+    private string SaveButtonName => Appointment.AppointmentId == Guid.Empty ? "Save" : "Confirm";
+    private bool IsAdd => Appointment.AppointmentId == Guid.Empty;
+    private string Title { get; set; } = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
         AppointmentTypes = await AppointmentTypeService.ListAsync();
         Appointment.AppointmentTypeId = AppointmentTypes[0].AppointmentTypeId;
+        Title = $"({AppointmentTypes[0].Code}) {Patient?.Name} - {Patient?.ClientName}";
         await LoadPicture();
     }
 
     private async Task LoadPicture()
     {
+        if(string.IsNullOrEmpty(Appointment.PatientName))
+        {
+            return;
+        }
+
         var imgeData = await FileService.ReadPicture($"{Appointment.PatientName}.jpg");
         Picture = string.IsNullOrEmpty(imgeData) ? string.Empty : $"data:image/png;base64, {imgeData}";
     }
@@ -141,7 +170,32 @@
     {
         if (IsValid())
         {
-            await AppointmentService.EditAsync(Appointment);
+            if (Appointment.AppointmentId == Guid.Empty)
+            {
+                CreateAppointmentRequest toCreate = new CreateAppointmentRequest()
+                {
+                    Details = Title,
+                    SelectedDoctor = DoctorId,
+                    PatientId = Patient.PatientId,
+                    ScheduleId = ScheduleId,
+                    RoomId = RoomId,
+                    AppointmentTypeId = Appointment.AppointmentTypeId,
+                    DateOfAppointment = Appointment.Start,
+                    Duration = TimeSpan.FromMinutes(Appointment.AppointmentType.Duration),
+                    IsConfirmed = Appointment.IsConfirmed,
+                };
+
+                await AppointmentService.CreateAsync(toCreate);
+            }
+            else
+            {
+                UpdateAppointmentRequest toUpdate = new UpdateAppointmentRequest()
+                {
+                    Id = Appointment.AppointmentId
+                };
+                await AppointmentService.EditAsync(toUpdate);
+            }
+
             await OnAppointmentChanged.InvokeAsync(Appointment.Title);
         }
     }

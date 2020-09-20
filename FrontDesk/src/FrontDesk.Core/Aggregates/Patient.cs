@@ -13,6 +13,20 @@ namespace FrontDesk.Core.Aggregates
         public virtual AnimalType AnimalType { get; private set; }
         public int? PreferredDoctorId { get; private set; }
 
+        private Client _client;
+        public Client Client
+        {
+            get
+            {
+                return _client;
+            }
+            private set
+            {
+                _client = value;
+            }
+        }
+
+
         public Patient(int clientId, string name, Gender gender, AnimalType animalType, int? preferredDoctorId=null)
         {
             ClientId = clientId;
