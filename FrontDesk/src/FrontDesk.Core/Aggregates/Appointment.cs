@@ -21,6 +21,32 @@ namespace FrontDesk.Core.Aggregates
 
         public string Title { get; private set; }
 
+        private Patient _patient;
+        public Patient Patient
+        {
+            get
+            {
+                return _patient;
+            }
+            private set
+            {
+                _patient = value;
+            }
+        }
+
+        private AppointmentType _appointmentType;
+        public AppointmentType AppointmentType
+        {
+            get
+            {
+                return _appointmentType;
+            }
+            private set
+            {
+                _appointmentType = value;
+            }
+        }
+
         #region More Properties
         public DateTime? DateTimeConfirmed { get; set; }
 

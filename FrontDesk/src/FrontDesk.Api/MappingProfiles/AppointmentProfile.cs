@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BlazorShared.Models.Appointment;
 using FrontDesk.Core.Aggregates;
+using System.Runtime.InteropServices;
 
 namespace FrontDesk.Api.MappingProfiles
 {
@@ -14,6 +15,7 @@ namespace FrontDesk.Api.MappingProfiles
                 .ForMember(dto => dto.End, options => options.MapFrom(src => src.TimeRange.End))
                 .ForMember(dto => dto.IsAllDay, options => options.MapFrom(src => false))
                 .ForMember(dto => dto.Description, options => options.MapFrom(src => "No Description"))
+                .ForMember(dto => dto.PatientName, options => options.MapFrom(src => src.Patient.Name))
                 .ForMember(dto => dto.IsConfirmed, options => options.MapFrom(src => src.DateTimeConfirmed.HasValue));
             CreateMap<AppointmentDto, Appointment>();
             CreateMap<CreateAppointmentRequest, Appointment>();

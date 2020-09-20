@@ -50,14 +50,12 @@ namespace FrontDesk.Api.AppointmentEndpoints
                 return Ok(response);
             }
 
-            var schedule = (await _repository.ListAsync<Schedule, Guid>(scheduleSpec)).First();     
-            
-            var myAppointments = _mapper.Map<List<AppointmentDto>>(schedule.Appointments);
-            foreach(var appointment in myAppointments)
-            {
-                appointment.PatientName = await GetPatientName(appointment.PatientId);
-                appointment.AppointmentType = await CreateAppointmentTypeAsync(appointment.AppointmentTypeId);
-            }
+            var schedule = (await _repository.ListAsync<Schedule, Guid>(scheduleSpec)).First();
+
+            var appoinmentSpec = new AppointmentByScheduleIdSpecification(schedule.Id);
+            var appointments = (await _repository.ListAsync<Appointment, Guid>(appoinmentSpec)).ToList();
+
+            var myAppointments = _mapper.Map<List<AppointmentDto>>(appointments);
 
             response.Appointments = myAppointments.OrderBy(a => a.Start).ToList();
             response.Count = response.Appointments.Count();
