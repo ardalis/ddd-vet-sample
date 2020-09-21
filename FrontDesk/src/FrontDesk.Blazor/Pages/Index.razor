@@ -48,6 +48,7 @@
     Patient:<br />
     <TelerikComboBox Filterable="true"
                      ClearButton="false"
+                     Value="@PatientId"
                      ValueChanged="@( (int v) => PatientChanged(v) )"
                      Data="@ClientPatients"
                      ValueField="@nameof(PatientDto.PatientId)"
@@ -63,7 +64,7 @@
     </TelerikComboBox>
 </label>
 
-<TelerikScheduler Data="@Appointments" @bind-Date="@StartDate" Height="600px" @bind-View="@CurrView"
+<TelerikScheduler Data="@Appointments" @bind-Date="@StartDate" Height="600px" @bind-View="@CurrView" 
                   OnEdit="@EditHandler" OnDelete="@DeleteAppointmentAsync"
                   AllowCreate="true" AllowDelete="true" AllowUpdate="true"
                   IdField="@(nameof(AppointmentDto.AppointmentId))"
@@ -149,9 +150,16 @@
         Appointments = await AppointmentService.ListAsync();
     }
 
+    private bool CanMakeAppointment => RoomId > 0 && ClientId > 0 && PatientId > 0;
+
     private void EditHandler(SchedulerEditEventArgs args)
     {
         args.IsCancelled = true;//prevent built-in edit form from showing up
+        if (!CanMakeAppointment)
+        {
+            return;
+        }
+
         AppointmentDto item = args.Item as AppointmentDto;
         CustomEditFormShown = true;
         if (!args.IsNew) // an edit operation, otherwise - an insert operation
@@ -195,6 +203,7 @@
 
     private void PatientChanged(int id)
     {
-        Patient = Patients.FirstOrDefault(p => p.PatientId == id);
+        PatientId = id;
+        Patient = Patients.FirstOrDefault(p => p.PatientId == PatientId);
     }
 }
