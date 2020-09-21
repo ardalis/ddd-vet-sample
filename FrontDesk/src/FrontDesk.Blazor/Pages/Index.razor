@@ -1,0 +1,223 @@
+﻿@page "/"
+@inject AppointmentService AppointmentService
+@inject AppointmentTypeService AppointmentTypeService
+@inject RoomService RoomService
+@inject PatientService PatientService
+@inject DoctorService DoctorService
+@inject ClientService ClientService
+@inject FileService FileService
+
+<style>
+    .holder {
+        margin: 0 auto;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .image {
+        max-width: 100px;
+        max-height: 100px;
+    }
+
+    .error {
+        border: 2px solid red;
+    }
+    .inline {
+        display: inline-block;
+    }
+</style>
+
+<h1>Appointments</h1>
+<div class="inline @((IsRoomSelected? "" : "error"))">
+    <label class="width100">
+        Room:<br />
+        <TelerikComboBox Filterable="true"
+                         ClearButton="false"
+                         @bind-Value=@RoomId
+                         Data="@Rooms"
+                         ValueField="@nameof(RoomDto.RoomId)"
+                         TextField="@nameof(RoomDto.Name)">
+        </TelerikComboBox>
+    </label>
+</div>
+<div class="inline @((IsClientSelected? "" : "error"))">
+    <label class="width100">
+        Client:<br />
+        <TelerikComboBox Filterable="true"
+                         ClearButton="false"
+                         @bind-Value=@ClientId
+                         Data="@Clients"
+                         ValueField="@nameof(ClientDto.ClientId)"
+                         TextField="@nameof(ClientDto.FullName)">
+        </TelerikComboBox>
+    </label>
+</div>
+<div class="inline @((IsPatientSelected? "" : "error"))">
+    <label class="width100">
+        Patient:<br />
+        <TelerikComboBox Filterable="true"
+                         ClearButton="false"
+                         Value="@PatientId"
+                         ValueChanged="@( (int v) => PatientChanged(v) )"
+                         Data="@ClientPatients"
+                         ValueField="@nameof(PatientDto.PatientId)"
+                         TextField="@nameof(PatientDto.Name)">
+            <ItemTemplate>
+                <div class="holder">
+                    <span>@((context as PatientDto).Name)</span>
+                    <div style="text-align: right;">
+                        <img class="image" src="@((context as PatientDto).ImageData)" />
+                    </div>
+                </div>
+            </ItemTemplate>
+        </TelerikComboBox>
+    </label>
+</div>
+
+<TelerikScheduler Data="@Appointments" @bind-Date="@StartDate" Height="600px" @bind-View="@CurrView" 
+                  OnEdit="@EditHandler" OnDelete="@DeleteAppointmentAsync"
+                  AllowCreate="true" AllowDelete="true" AllowUpdate="true"
+                  IdField="@(nameof(AppointmentDto.AppointmentId))"
+                  StartField="@(nameof(AppointmentDto.Start))"
+                  EndField="@(nameof(AppointmentDto.End))"
+                  TitleField="@(nameof(AppointmentDto.Title))"
+                  DescriptionField="@(nameof(AppointmentDto.Description))"
+                  IsAllDayField="@(nameof(AppointmentDto.IsAllDay))"
+                  RecurrenceRuleField="@(nameof(AppointmentDto.RecurrenceRule))"
+                  RecurrenceExceptionsField="@(nameof(AppointmentDto.RecurrenceExceptions))"
+                  RecurrenceIdField="@(nameof(AppointmentDto.RecurrenceId))">
+    <SchedulerResources>
+        <SchedulerResource TextField="Name" ValueField="AppointmentTypeId" Field="AppointmentTypeId" Title="Appointment Type" Data="@AppointmentTypes" />
+    </SchedulerResources>
+    <SchedulerViews>
+        <SchedulerDayView StartTime="@DayStart" EndTime="@DayEnd" WorkDayStart="@WorkDayStart" WorkDayEnd="@WorkDayEnd" />
+        <SchedulerWeekView StartTime="@DayStart" EndTime="@DayEnd" WorkDayStart="@WorkDayStart" WorkDayEnd="@WorkDayEnd" />
+        <SchedulerMultiDayView StartTime="@DayStart" EndTime="@DayEnd" WorkDayStart="@WorkDayStart" WorkDayEnd="@WorkDayEnd" NumberOfDays="10" />
+        <SchedulerMonthView></SchedulerMonthView>
+    </SchedulerViews>
+</TelerikScheduler>
+
+<TelerikWindow Modal="true" Size="WindowSize.Medium" Visible="@CustomEditFormShown">
+    <WindowTitle>Appointment Data</WindowTitle>
+    <WindowActions>
+        <WindowAction Name="Close" OnClick="@CancelEditing" />
+    </WindowActions>
+    <WindowContent>
+        @* This component is in the Pages folder *@
+        <AppointmentEditor Patient="Patient" ScheduleId="ScheduleId" RoomId="RoomId" Appointment="@CurrentAppointment" OnAppointmentChanged="@RefreshDataAsync" />
+    </WindowContent>
+</TelerikWindow>
+
+
+@code {
+    private List<AppointmentDto> Appointments = new List<AppointmentDto>();
+    private List<AppointmentTypeDto> AppointmentTypes = new List<AppointmentTypeDto>();
+    private List<ClientDto> Clients = new List<ClientDto>();
+    private List<RoomDto> Rooms = new List<RoomDto>();
+    private List<PatientDto> Patients = new List<PatientDto>();
+    private List<PatientDto> ClientPatients => Patients.Where(p => p.ClientId == ClientId).ToList();
+
+    private DateTime StartDate { get; set; } = new DateTime(2014, 6, 9, 7, 0, 0);
+    private SchedulerView CurrView { get; set; } = SchedulerView.Week;
+
+    private DateTime DayStart { get; set; } = new DateTime(2014, 6, 9, 7, 0, 0);
+    private DateTime DayEnd { get; set; } = new DateTime(2014, 6, 9, 18, 00, 0);
+    private DateTime WorkDayStart { get; set; } = new DateTime(2000, 1, 1, 7, 0, 0);
+    private DateTime WorkDayEnd { get; set; } = new DateTime(2000, 1, 1, 18, 0, 0);
+
+    private bool CustomEditFormShown { get; set; }
+    AppointmentDto CurrentAppointment { get; set; } // we will put here a copy of the appointment for editing
+
+    private int PatientId { get; set; } = 1;
+    private int ClientId { get; set; } = 1;
+    private int RoomId { get; set; } = 1;
+    private PatientDto Patient { get; set; } = new PatientDto();
+    private Guid ScheduleId { get; set; } = Guid.NewGuid();
+    private bool CanMakeAppointment => IsRoomSelected && IsClientSelected && IsPatientSelected;
+    private bool IsRoomSelected => RoomId > 0;
+    private bool IsClientSelected => ClientId > 0;
+    private bool IsPatientSelected => RoomId > 0 && ClientId > 0 && PatientId > 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Appointments = await AppointmentService.ListAsync();
+        AppointmentTypes = await AppointmentTypeService.ListAsync();
+        Clients = await ClientService.ListAsync();
+        Rooms = await RoomService.ListAsync();
+
+        Patients = await PatientService.ListAsync();
+        Patient = Patients.FirstOrDefault(p => p.PatientId == PatientId);
+
+        await AddPatientImages();
+    }
+
+    private async Task CancelEditing()
+    {
+        await RefreshDataAsync();
+    }
+
+    private async Task RefreshDataAsync()
+    {
+        //an event callback needs to be raised in this component context to re-render the contents and to hide the dialog
+        CustomEditFormShown = false;
+        CurrentAppointment = null;
+        //we also use it to fetch the fresh data from the service - in a real case other updates may have occurred
+        //which is why I chose to use a separate event and not two-way binding. It is also used for refreshing on Cancel
+        Appointments = await AppointmentService.ListAsync();
+    }
+
+    private void EditHandler(SchedulerEditEventArgs args)
+    {
+        args.IsCancelled = true;//prevent built-in edit form from showing up
+        if (!CanMakeAppointment)
+        {
+            return;
+        }
+
+        AppointmentDto item = args.Item as AppointmentDto;
+        CustomEditFormShown = true;
+        if (!args.IsNew) // an edit operation, otherwise - an insert operation
+        {
+            //copying is implemented in the appointment model and it is needed because
+            //this is a reference to the data collection so modifying it directly
+            //will immediately modify the data and no cancelling will be possible
+            CurrentAppointment = item.ShallowCopy();
+        }
+        else
+        {
+            CurrentAppointment = new AppointmentDto() { Start = args.Start, End = args.End, IsAllDay = args.IsAllDay };
+        }
+    }
+
+    private async Task DeleteAppointmentAsync(SchedulerDeleteEventArgs args)
+    {
+        AppointmentDto item = (AppointmentDto)args.Item;
+        await AppointmentService.DeleteAsync(item.AppointmentId);
+        Appointments.Remove(item);
+    }
+
+    private async Task AddPatientImages()
+    {
+        foreach (var patient in Patients)
+        {
+            if (string.IsNullOrEmpty(patient.Name))
+            {
+                continue;
+            }
+
+            var imgeData = await FileService.ReadPicture($"{patient.Name}.jpg");
+            if (string.IsNullOrEmpty(imgeData))
+            {
+                continue;
+            }
+
+            patient.ImageData = $"data:image/png;base64, {imgeData}";
+        }
+    }
+
+    private void PatientChanged(int id)
+    {
+        PatientId = id;
+        Patient = Patients.FirstOrDefault(p => p.PatientId == PatientId);
+    }
+}
