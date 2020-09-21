@@ -21,7 +21,7 @@ namespace FrontDesk.Api
                 try
                 {
                     var catalogContext = services.GetRequiredService<AppDbContext>();
-                    await AppDbContextSeed.SeedAsync(catalogContext, loggerFactory);
+                    await AppDbContextSeed.SeedAsync(catalogContext, loggerFactory, new OfficeSettings().TestDate);
                 }
                 catch (Exception ex)
                 {

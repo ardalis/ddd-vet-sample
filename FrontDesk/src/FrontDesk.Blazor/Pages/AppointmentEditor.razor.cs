@@ -70,7 +70,6 @@ namespace FrontDesk.Blazor.Pages
             }
         }
 
-
         protected override async Task OnInitializedAsync()
         {
             Doctors = await DoctorService.ListAsync();
@@ -130,8 +129,6 @@ namespace FrontDesk.Blazor.Pages
                         RoomId = RoomId,
                         AppointmentTypeId = Appointment.AppointmentTypeId,
                         DateOfAppointment = Appointment.Start,
-                        Duration = TimeSpan.FromMinutes(Appointment.AppointmentType.Duration),
-                        IsConfirmed = Appointment.IsConfirmed,
                     };
 
                     await AppointmentService.CreateAsync(toCreate);
@@ -208,6 +205,6 @@ namespace FrontDesk.Blazor.Pages
         private void AppointmentTypeSelected(int? id)
         {
             Appointment.AppointmentTypeId = id ?? 0;
-        }
+        }        
     }
 }

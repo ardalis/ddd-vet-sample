@@ -54,7 +54,7 @@ namespace FrontDesk.Api
                 var scopedServices = scope.ServiceProvider;
                 var db = scopedServices.GetRequiredService<AppDbContext>();
                 var loggerFactory = scopedServices.GetRequiredService<ILoggerFactory>();
-                AppDbContextSeed.SeedAsync(db, loggerFactory).Wait();
+                AppDbContextSeed.SeedAsync(db, loggerFactory, new OfficeSettings().TestDate).Wait();
             }
         }
 
@@ -74,7 +74,7 @@ namespace FrontDesk.Api
                 var scopedServices = scope.ServiceProvider;
                 var db = scopedServices.GetRequiredService<AppDbContext>();
                 var loggerFactory = scopedServices.GetRequiredService<ILoggerFactory>();
-                AppDbContextSeed.SeedAsync(db, loggerFactory).Wait();
+                AppDbContextSeed.SeedAsync(db, loggerFactory, new OfficeSettings().TestDate).Wait();
             }
         }
 

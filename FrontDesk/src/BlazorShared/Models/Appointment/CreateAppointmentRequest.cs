@@ -10,9 +10,7 @@ namespace BlazorShared.Models.Appointment
         public int ClientId { get; set; }
         public int RoomId { get; set; }
         public DateTime DateOfAppointment { get; set; }
-        public TimeSpan Duration { get; set; }
         public int SelectedDoctor { get; set; }
         public string Details { get; set; }
-        public bool IsConfirmed { get; set; }
     }
 }

@@ -16,10 +16,11 @@ namespace FrontDesk.Infrastructure.Data
         private static Doctor DrWho => new Doctor("Dr. Who");
         private static Doctor DrMcDreamy => new Doctor("Dr. McDreamy");
         private static Guid ScheduleId;
+        private static DateTime TestDate;
 
-        public static async Task SeedAsync(AppDbContext context, ILoggerFactory loggerFactory, int? retry = 0)
+        public static async Task SeedAsync(AppDbContext context, ILoggerFactory loggerFactory, DateTime TestDate, int? retry = 0)
         {
-
+            AppDbContextSeed.TestDate = TestDate;
             int retryForAvailability = retry.Value;
             try
             {
@@ -81,7 +82,7 @@ namespace FrontDesk.Infrastructure.Data
                     retryForAvailability++;
                     var log = loggerFactory.CreateLogger<AppDbContextSeed>();
                     log.LogError(ex.Message);
-                    await SeedAsync(context, loggerFactory, retryForAvailability);
+                    await SeedAsync(context, loggerFactory, TestDate, retryForAvailability);
                 }
                 throw;
             }
@@ -219,8 +220,8 @@ namespace FrontDesk.Infrastructure.Data
                     1, 
                     1, 
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 10, 0, 0),
-                        new DateTime(2014, 6, 9, 11, 0, 0)), 
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 10, 0, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 11, 0, 0)), 
                     "(WE) Darwin - Steve Smith"),
                 new Appointment(
                     2,
@@ -230,8 +231,8 @@ namespace FrontDesk.Infrastructure.Data
                     3,
                     2,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 11, 0, 0),
-                        new DateTime(2014, 6, 9, 11, 30, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 11, 0, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 11, 30, 0)),
                     "(DE) Sampson - Julie Lerman"),
                 new Appointment(
                     2,
@@ -241,8 +242,8 @@ namespace FrontDesk.Infrastructure.Data
                     4,
                     2,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 12, 0, 0),
-                        new DateTime(2014, 6, 9, 12, 30, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 12, 0, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 12, 30, 0)),
                     "(DE) Pax - Wes McClure"),
                 new Appointment(
                     2,
@@ -252,8 +253,8 @@ namespace FrontDesk.Infrastructure.Data
                     23,
                     3,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 9, 0, 0),
-                        new DateTime(2014, 6, 9, 9, 30, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 0, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 30, 0)),
                     "(DE) Charlie - Jesse Liberty"),
                 new Appointment(
                     2,
@@ -263,8 +264,8 @@ namespace FrontDesk.Infrastructure.Data
                     24,
                     3,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 9, 30, 0),
-                        new DateTime(2014, 6, 9, 10, 30, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 30, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 10, 30, 0)),
                     "(DE) Allegra - Jesse Liberty"),
                 new Appointment(
                     2,
@@ -274,8 +275,8 @@ namespace FrontDesk.Infrastructure.Data
                     25,
                     3,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 10, 30, 0),
-                        new DateTime(2014, 6, 9, 11, 00, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 10, 30, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 11, 00, 0)),
                     "(DE) Misty - Jesse Liberty"),
                 new Appointment(
                     2,
@@ -285,8 +286,8 @@ namespace FrontDesk.Infrastructure.Data
                     5,
                     4,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 8, 0, 0),
-                        new DateTime(2014, 6, 9, 8, 30, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 8, 0, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 8, 30, 0)),
                     "(DE) Barney - Andrew Mallett"),
                 new Appointment(
                     2,
@@ -296,8 +297,8 @@ namespace FrontDesk.Infrastructure.Data
                     6,
                     3,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 8, 0, 0),
-                        new DateTime(2014, 6, 9, 9, 0, 0)),                    
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 8, 0, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 0, 0)),                    
                     "(DE) Rocky - Brian Lagunas",
                     new DateTime(2014,6,8,8,0,0)),
                 new Appointment(
@@ -308,8 +309,8 @@ namespace FrontDesk.Infrastructure.Data
                     26,
                     2,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 9, 0, 0),
-                        new DateTime(2014, 6, 9, 9, 30, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 0, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 30, 0)),
                     "(DE) Willie - Tyler Young"),
                 new Appointment(
                     2,
@@ -319,8 +320,8 @@ namespace FrontDesk.Infrastructure.Data
                     27,
                     2,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 9, 30, 0),
-                        new DateTime(2014, 6, 9, 10, 00, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 30, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 10, 00, 0)),
                     "(DE) JoeFish - Tyler Young"),
                 new Appointment(
                     2,
@@ -330,8 +331,8 @@ namespace FrontDesk.Infrastructure.Data
                     27,
                     2,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 9, 30, 0),
-                        new DateTime(2014, 6, 9, 10, 00, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 30, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 10, 00, 0)),
                     "(DE) JoeFish - Tyler Young"),
                 new Appointment(
                     2,
@@ -341,8 +342,8 @@ namespace FrontDesk.Infrastructure.Data
                     28,
                     2,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 10, 0, 0),
-                        new DateTime(2014, 6, 9, 10, 30, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 10, 0, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 10, 30, 0)),
                     "(DE) Fabian - Tyler Young"),
                 new Appointment(
                     2,
@@ -352,8 +353,8 @@ namespace FrontDesk.Infrastructure.Data
                     7,
                     4,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 11, 0, 0),
-                        new DateTime(2014, 6, 9, 11, 30, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 11, 0, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 11, 30, 0)),
                     "(DE) Zak - Corey Haines"),
                 new Appointment(
                     2,
@@ -363,8 +364,8 @@ namespace FrontDesk.Infrastructure.Data
                     8,
                     4,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 9, 0, 0),
-                        new DateTime(2014, 6, 9, 9, 30, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 0, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 30, 0)),
                     "(DE) Tinkelbel - Reindert Ekkert"),
                 new Appointment(
                     2,
@@ -374,8 +375,8 @@ namespace FrontDesk.Infrastructure.Data
                     20,
                     4,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 9, 0, 0),
-                        new DateTime(2014, 6, 9, 9, 30, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 0, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 30, 0)),
                     "(DE) Ruske - Julie Yack"),
                 new Appointment(
                     2,
@@ -385,8 +386,8 @@ namespace FrontDesk.Infrastructure.Data
                     22,
                     4,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 9, 30, 0),
-                        new DateTime(2014, 6, 9, 10, 00, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 30, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 10, 00, 0)),
                     "(DE) Lizzie - Julie Yack"),
                 new Appointment(
                     2,
@@ -396,8 +397,8 @@ namespace FrontDesk.Infrastructure.Data
                     21,
                     4,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 10, 0, 0),
-                        new DateTime(2014, 6, 9, 10, 30, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 10, 0, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 10, 30, 0)),
                     "(DE) Ginger - Julie Yack"),
                 new Appointment(
                     2,
@@ -407,8 +408,8 @@ namespace FrontDesk.Infrastructure.Data
                     9,
                     5,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 8, 0, 0),
-                        new DateTime(2014, 6, 9, 9, 00, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 8, 0, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 00, 0)),
                     "(DE) Anubis - Patrick Hynds"),
                 new Appointment(
                     2,
@@ -418,8 +419,8 @@ namespace FrontDesk.Infrastructure.Data
                     30,
                     1,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 9, 0, 0),
-                        new DateTime(2014, 6, 9, 9, 30, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 0, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 30, 0)),
                     "(DE) Radar - Michael Perry"),
                 new Appointment(
                     2,
@@ -429,8 +430,8 @@ namespace FrontDesk.Infrastructure.Data
                     31,
                     1,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 9, 0, 0),
-                        new DateTime(2014, 6, 9, 9, 30, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 0, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 30, 0)),
                     "(DE) Tinkerbell - Michael Perry"),
                 new Appointment(
                     2,
@@ -440,8 +441,8 @@ namespace FrontDesk.Infrastructure.Data
                     11,
                     1,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 8, 0, 0),
-                        new DateTime(2014, 6, 9, 9, 00, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 8, 0, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 00, 0)),
                     "(DE) Corde - Joe Eames"),
                 new Appointment(
                     2,
@@ -451,8 +452,8 @@ namespace FrontDesk.Infrastructure.Data
                     29,
                     5,
                     new DateTimeRange(
-                        new DateTime(2014, 6, 9, 9, 0, 0),
-                        new DateTime(2014, 6, 9, 9, 30, 0)),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 0, 0),
+                        new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 30, 0)),
                     "(DE) Callie - Michael Perry"),
               };
 

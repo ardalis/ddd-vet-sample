@@ -34,6 +34,10 @@ namespace FrontDesk.Api.AppointmentEndpoints
             var response = new CreateAppointmentResponse(request.CorrelationId());
 
             var toAdd = _mapper.Map<Appointment>(request);
+
+            var appointmentType = await _repository.GetByIdAsync<AppointmentType, int>(toAdd.AppointmentTypeId);
+            toAdd.UpdateEndTime(appointmentType);
+
             toAdd = await _repository.AddAsync<Appointment, Guid>(toAdd);
 
             var dto = _mapper.Map<AppointmentDto>(toAdd);
