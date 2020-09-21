@@ -18,51 +18,61 @@
         max-width: 100px;
         max-height: 100px;
     }
+
+    .error {
+        border: 2px solid red;
+    }
+    .inline {
+        display: inline-block;
+    }
 </style>
 
 <h1>Appointments</h1>
-
-<label class="width100">
-    Room:<br />
-    <TelerikComboBox Filterable="true"
-                     ClearButton="false"
-                     @bind-Value=@RoomId
-                     Data="@Rooms"
-                     ValueField="@nameof(RoomDto.RoomId)"
-                     TextField="@nameof(RoomDto.Name)">
-    </TelerikComboBox>
-</label>
-
-<label class="width100">
-    Client:<br />
-    <TelerikComboBox Filterable="true"
-                     ClearButton="false"
-                     @bind-Value=@ClientId
-                     Data="@Clients"
-                     ValueField="@nameof(ClientDto.ClientId)"
-                     TextField="@nameof(ClientDto.FullName)">
-    </TelerikComboBox>
-</label>
-
-<label class="width100">
-    Patient:<br />
-    <TelerikComboBox Filterable="true"
-                     ClearButton="false"
-                     Value="@PatientId"
-                     ValueChanged="@( (int v) => PatientChanged(v) )"
-                     Data="@ClientPatients"
-                     ValueField="@nameof(PatientDto.PatientId)"
-                     TextField="@nameof(PatientDto.Name)">
-        <ItemTemplate>
-            <div class="holder">
-                <span>@((context as PatientDto).Name)</span>
-                <div style="text-align: right;">
-                    <img class="image" src="@((context as PatientDto).ImageData)" />
+<div class="inline @((IsRoomSelected? "" : "error"))">
+    <label class="width100">
+        Room:<br />
+        <TelerikComboBox Filterable="true"
+                         ClearButton="false"
+                         @bind-Value=@RoomId
+                         Data="@Rooms"
+                         ValueField="@nameof(RoomDto.RoomId)"
+                         TextField="@nameof(RoomDto.Name)">
+        </TelerikComboBox>
+    </label>
+</div>
+<div class="inline @((IsClientSelected? "" : "error"))">
+    <label class="width100">
+        Client:<br />
+        <TelerikComboBox Filterable="true"
+                         ClearButton="false"
+                         @bind-Value=@ClientId
+                         Data="@Clients"
+                         ValueField="@nameof(ClientDto.ClientId)"
+                         TextField="@nameof(ClientDto.FullName)">
+        </TelerikComboBox>
+    </label>
+</div>
+<div class="inline @((IsPatientSelected? "" : "error"))">
+    <label class="width100">
+        Patient:<br />
+        <TelerikComboBox Filterable="true"
+                         ClearButton="false"
+                         Value="@PatientId"
+                         ValueChanged="@( (int v) => PatientChanged(v) )"
+                         Data="@ClientPatients"
+                         ValueField="@nameof(PatientDto.PatientId)"
+                         TextField="@nameof(PatientDto.Name)">
+            <ItemTemplate>
+                <div class="holder">
+                    <span>@((context as PatientDto).Name)</span>
+                    <div style="text-align: right;">
+                        <img class="image" src="@((context as PatientDto).ImageData)" />
+                    </div>
                 </div>
-            </div>
-        </ItemTemplate>
-    </TelerikComboBox>
-</label>
+            </ItemTemplate>
+        </TelerikComboBox>
+    </label>
+</div>
 
 <TelerikScheduler Data="@Appointments" @bind-Date="@StartDate" Height="600px" @bind-View="@CurrView" 
                   OnEdit="@EditHandler" OnDelete="@DeleteAppointmentAsync"
@@ -124,6 +134,10 @@
     private PatientDto Patient { get; set; } = new PatientDto();
     private int DoctorId { get; set; } = 1;
     private Guid ScheduleId { get; set; } = Guid.NewGuid();
+    private bool CanMakeAppointment => IsRoomSelected && IsClientSelected && IsPatientSelected;
+    private bool IsRoomSelected => RoomId > 0;
+    private bool IsClientSelected => ClientId > 0;
+    private bool IsPatientSelected => RoomId > 0 && ClientId > 0 && PatientId > 0;
 
     protected override async Task OnInitializedAsync()
     {
@@ -149,8 +163,6 @@
         //which is why I chose to use a separate event and not two-way binding. It is also used for refreshing on Cancel
         Appointments = await AppointmentService.ListAsync();
     }
-
-    private bool CanMakeAppointment => RoomId > 0 && ClientId > 0 && PatientId > 0;
 
     private void EditHandler(SchedulerEditEventArgs args)
     {
