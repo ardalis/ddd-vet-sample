@@ -7,9 +7,9 @@ namespace FrontDesk.Blazor.Services
     public class ConfigurationService
     {
         private readonly HttpService _httpService;
-        private readonly ILogger<ClientService> _logger;
+        private readonly ILogger<ConfigurationService> _logger;
 
-        public ConfigurationService(HttpService httpService, ILogger<ClientService> logger)
+        public ConfigurationService(HttpService httpService, ILogger<ConfigurationService> logger)
         {
             _httpService = httpService;
             _logger = logger;
