@@ -17,8 +17,6 @@ build/
 
 # Visual Studio 2015 cache/options directory
 .vs/
-.vs/*
-.vs
 
 
 # Enable "build/" folder in the NuGet Packages folder since NuGet packages use it for MSBuild targets
