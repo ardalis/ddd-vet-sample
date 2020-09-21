@@ -129,7 +129,20 @@
     private int ClientId { get; set; } = 1;
     private int RoomId { get; set; } = 1;
     private PatientDto Patient { get; set; } = new PatientDto();
-    private Guid ScheduleId { get; set; } = Guid.NewGuid();
+    private Guid ScheduleId
+    {
+        get
+        {
+            if (Appointments.Count > 0)
+            {
+                return Appointments[0].ScheduleId;
+            }
+
+            return Guid.Empty;
+        }
+    }
+
+
     private bool CanMakeAppointment => IsRoomSelected && IsClientSelected && IsPatientSelected;
     private bool IsRoomSelected => RoomId > 0;
     private bool IsClientSelected => ClientId > 0;
@@ -138,7 +151,6 @@
     protected override async Task OnInitializedAsync()
     {
         Appointments = await AppointmentService.ListAsync();
-        ScheduleId = Appointments[0].ScheduleId;
         AppointmentTypes = await AppointmentTypeService.ListAsync();
         Clients = await ClientService.ListAsync();
         Rooms = await RoomService.ListAsync();
