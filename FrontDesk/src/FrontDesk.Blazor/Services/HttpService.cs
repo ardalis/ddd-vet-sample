@@ -27,7 +27,18 @@ namespace FrontDesk.Blazor.Services
                 return null;
             }
 
-            return await FromHttpResponseMessageAsync<T>(result);
+             return await FromHttpResponseMessageAsync<T>(result);            
+        }
+
+        public async Task<string> HttpGetAsync(string uri)
+        {
+            var result = await _httpClient.GetAsync($"{_apiUrl}{uri}");
+            if (!result.IsSuccessStatusCode)
+            {
+                return null;
+            }
+
+            return await result.Content.ReadAsStringAsync();            
         }
 
         public async Task<T> HttpDeleteAsync<T>(string uri, object id)
