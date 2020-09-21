@@ -27,9 +27,9 @@ namespace FrontDesk.Blazor.Services
             return (await _httpService.HttpPutAsync<UpdateAppointmentResponse>("appointments", appointment)).Appointment;
         }
 
-        public async Task<string> DeleteAsync(Guid appointmentId)
+        public async Task DeleteAsync(Guid appointmentId)
         {
-            return (await _httpService.HttpDeleteAsync<DeleteAppointmentResponse>("appointments", appointmentId)).Status;
+            await _httpService.HttpDeleteAsync<DeleteAppointmentResponse>("appointments", appointmentId);
         }
 
         public async Task<AppointmentDto> GetByIdAsync(Guid appointmentId)
