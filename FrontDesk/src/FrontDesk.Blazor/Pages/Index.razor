@@ -2,9 +2,66 @@
 @inject AppointmentService AppointmentService
 @inject AppointmentTypeService AppointmentTypeService
 @inject RoomService RoomService
+@inject PatientService PatientService
 @inject DoctorService DoctorService
+@inject ClientService ClientService
+@inject FileService FileService
+
+<style>
+    .holder {
+        margin: 0 auto;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .image {
+        max-width: 100px;
+        max-height: 100px;
+    }
+</style>
 
 <h1>Appointments</h1>
+
+<label class="width100">
+    Room:<br />
+    <TelerikComboBox Filterable="true"
+                     ClearButton="false"
+                     @bind-Value=@RoomId
+                     Data="@Rooms"
+                     ValueField="@nameof(RoomDto.RoomId)"
+                     TextField="@nameof(RoomDto.Name)">
+    </TelerikComboBox>
+</label>
+
+<label class="width100">
+    Client:<br />
+    <TelerikComboBox Filterable="true"
+                     ClearButton="false"
+                     @bind-Value=@ClientId
+                     Data="@Clients"
+                     ValueField="@nameof(ClientDto.ClientId)"
+                     TextField="@nameof(ClientDto.FullName)">
+    </TelerikComboBox>
+</label>
+
+<label class="width100">
+    Patient:<br />
+    <TelerikComboBox Filterable="true"
+                     ClearButton="false"
+                     ValueChanged="@( (int v) => PatientChanged(v) )"
+                     Data="@ClientPatients"
+                     ValueField="@nameof(PatientDto.PatientId)"
+                     TextField="@nameof(PatientDto.Name)">
+        <ItemTemplate>
+            <div class="holder">
+                <span>@((context as PatientDto).Name)</span>
+                <div style="text-align: right;">
+                    <img class="image" src="@((context as PatientDto).ImageData)" />
+                </div>
+            </div>
+        </ItemTemplate>
+    </TelerikComboBox>
+</label>
 
 <TelerikScheduler Data="@Appointments" @bind-Date="@StartDate" Height="600px" @bind-View="@CurrView"
                   OnEdit="@EditHandler" OnDelete="@DeleteAppointmentAsync"
@@ -42,23 +99,40 @@
 
 
 @code {
-    List<AppointmentDto> Appointments = new List<AppointmentDto>();
-    List<AppointmentTypeDto> AppointmentTypes = new List<AppointmentTypeDto>();
-    public DateTime StartDate { get; set; } = new DateTime(2014, 6, 9, 7, 0, 0);
-    public SchedulerView CurrView { get; set; } = SchedulerView.Week;
+    private List<AppointmentDto> Appointments = new List<AppointmentDto>();
+    private List<AppointmentTypeDto> AppointmentTypes = new List<AppointmentTypeDto>();
+    private List<ClientDto> Clients = new List<ClientDto>();
+    private List<RoomDto> Rooms = new List<RoomDto>();
+    private List<PatientDto> Patients = new List<PatientDto>();
+    private List<PatientDto> ClientPatients => Patients.Where(p => p.ClientId == ClientId).ToList();
 
-    public DateTime DayStart { get; set; } = new DateTime(2014, 6, 9, 7, 0, 0);
-    public DateTime DayEnd { get; set; } = new DateTime(2014, 6, 9, 18, 00, 0);
-    public DateTime WorkDayStart { get; set; } = new DateTime(2000, 1, 1, 7, 0, 0);
-    public DateTime WorkDayEnd { get; set; } = new DateTime(2000, 1, 1, 18, 0, 0);
+    private DateTime StartDate { get; set; } = new DateTime(2014, 6, 9, 7, 0, 0);
+    private SchedulerView CurrView { get; set; } = SchedulerView.Week;
+
+    private DateTime DayStart { get; set; } = new DateTime(2014, 6, 9, 7, 0, 0);
+    private DateTime DayEnd { get; set; } = new DateTime(2014, 6, 9, 18, 00, 0);
+    private DateTime WorkDayStart { get; set; } = new DateTime(2000, 1, 1, 7, 0, 0);
+    private DateTime WorkDayEnd { get; set; } = new DateTime(2000, 1, 1, 18, 0, 0);
 
     private bool CustomEditFormShown { get; set; }
     AppointmentDto CurrentAppointment { get; set; } // we will put here a copy of the appointment for editing
 
+    private int PatientId { get; set; } = 1;
+    private int ClientId { get; set; } = 1;
     private int RoomId { get; set; } = 1;
     private PatientDto Patient { get; set; } = new PatientDto();
     private int DoctorId { get; set; } = 1;
     private Guid ScheduleId { get; set; } = Guid.NewGuid();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Appointments = await AppointmentService.ListAsync();
+        AppointmentTypes = await AppointmentTypeService.ListAsync();
+        Clients = await ClientService.ListAsync();
+        Rooms = await RoomService.ListAsync();
+        Patients = await PatientService.ListAsync();
+        await AddPatientImages();
+    }
 
     private async Task CancelEditing()
     {
@@ -93,16 +167,34 @@
         }
     }
 
-    protected override async Task OnInitializedAsync()
-    {
-        Appointments = await AppointmentService.ListAsync();
-        AppointmentTypes = await AppointmentTypeService.ListAsync();
-    }
-
     private async Task DeleteAppointmentAsync(SchedulerDeleteEventArgs args)
     {
         AppointmentDto item = (AppointmentDto)args.Item;
         await AppointmentService.DeleteAsync(item.AppointmentId);
         Appointments.Remove(item);
+    }
+
+    private async Task AddPatientImages()
+    {
+        foreach (var patient in Patients)
+        {
+            if (string.IsNullOrEmpty(patient.Name))
+            {
+                continue;
+            }
+
+            var imgeData = await FileService.ReadPicture($"{patient.Name}.jpg");
+            if (string.IsNullOrEmpty(imgeData))
+            {
+                continue;
+            }
+
+            patient.ImageData = $"data:image/png;base64, {imgeData}";
+        }
+    }
+
+    private void PatientChanged(int id)
+    {
+        Patient = Patients.FirstOrDefault(p => p.PatientId == id);
     }
 }

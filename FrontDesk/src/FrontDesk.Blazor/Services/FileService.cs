@@ -18,8 +18,9 @@ namespace FrontDesk.Blazor.Services
             {
                 return null;
             }
+            var fileItem = await _httpService.HttpGetAsync<FileItem>($"files/{pictureName}");
 
-            return (await _httpService.HttpGetAsync<FileItem>($"files/{pictureName}")).DataBase64;
+            return fileItem == null? null: fileItem.DataBase64;
         }        
     }
 }

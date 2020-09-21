@@ -2,6 +2,7 @@
 using AutoMapper;
 using BlazorShared.Models.Patient;
 using FrontDesk.Core.Aggregates;
+using FrontDesk.Core.Specifications;
 using FrontDesk.SharedKernel.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -34,7 +35,8 @@ namespace FrontDesk.Api.PatientEndpoints
         {
             var response = new ListPatientResponse(request.CorrelationId());
 
-            var patients = await _repository.ListAsync<Patient, int>();
+            var patientSpec = new PatientIncludeClientSpecification();
+            var patients = await _repository.ListAsync<Patient, int>(patientSpec);
             if (patients is null) return NotFound();
 
             response.Patients = _mapper.Map<List<PatientDto>>(patients);

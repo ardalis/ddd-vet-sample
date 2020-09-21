@@ -61,3 +61,7 @@ a, .btn-link {
     text-align: right;
 }
 
+form label.width100 {
+    width: 100%;
+}
+

@@ -8,24 +8,21 @@
     }
 
     .image {
-        max-width:300px;
-        max-height:300px;
+        max-width: 300px;
+        max-height: 300px;
     }
 
     .confirm-button {
         cursor: default !important;
     }
-
-    form label.width100 {
-        width: 100%;
-    }
 </style>
 
 <EditForm Model="@Appointment" OnValidSubmit="@SaveAppointment">
     <DataAnnotationsValidator />
+
     <label class="width100">
         Title:<br />
-        <TelerikTextBox @bind-Value="Title" Width="100%" Enabled="false" />
+        <TelerikTextBox Value="@Title" ValueExpression="@( () => Title )" Width="100%" Enabled="false"></TelerikTextBox>
     </label>
     <br />
 
@@ -114,7 +111,7 @@
 @code{
     //communcation with the parent component where the scheduler is
     [Parameter] public AppointmentDto Appointment { get; set; } = new AppointmentDto();
-    [Parameter] public PatientDto Patient { get; set; } = new PatientDto();
+    [Parameter] public PatientDto Patient { get; set; }
     [Parameter] public int DoctorId { get; set; } = 0;
     [Parameter] public Guid ScheduleId { get; set; } = Guid.Empty;
     [Parameter] public int RoomId { get; set; } = 0;
@@ -129,19 +126,30 @@
     private string Picture { get; set; }
     private string SaveButtonName => Appointment.AppointmentId == Guid.Empty ? "Save" : "Confirm";
     private bool IsAdd => Appointment.AppointmentId == Guid.Empty;
-    private string Title { get; set; } = string.Empty;
+    private string Title
+    {
+        get
+        {
+            var appointmentType = AppointmentTypes.FirstOrDefault(a => a.AppointmentTypeId == Appointment.AppointmentTypeId);
+            if (appointmentType == null)
+            {
+                return $"{Patient?.Name} - {Patient?.ClientName}";
+            }
+            return $"({appointmentType.Code}) {Patient?.Name} - {Patient?.ClientName}";
+        }
+    }
+
 
     protected override async Task OnInitializedAsync()
     {
         AppointmentTypes = await AppointmentTypeService.ListAsync();
         Appointment.AppointmentTypeId = AppointmentTypes[0].AppointmentTypeId;
-        Title = $"({AppointmentTypes[0].Code}) {Patient?.Name} - {Patient?.ClientName}";
         await LoadPicture();
     }
 
     private async Task LoadPicture()
     {
-        if(string.IsNullOrEmpty(Appointment.PatientName))
+        if (string.IsNullOrEmpty(Appointment.PatientName))
         {
             return;
         }
@@ -158,8 +166,7 @@
         //this is why range validation is also implemented with code here, not as validation attributes
         if (Appointment.Start != null &&
             Appointment.End != null &&
-            Appointment.Start <= Appointment.End &&
-            !string.IsNullOrWhiteSpace(Appointment.Title))
+            Appointment.Start <= Appointment.End)
         {
             return true;
         }
@@ -249,7 +256,7 @@
 
     private void AppointmentTypeSelected(int? id)
     {
-        Appointment.AppointmentTypeId = id??0;
+        Appointment.AppointmentTypeId = id ?? 0;
     }
 
 }
