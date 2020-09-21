@@ -38,7 +38,7 @@ namespace FrontDesk.Api.DoctorEndpoints
             if (doctors is null) return NotFound();
 
             response.Doctors = _mapper.Map<List<DoctorDto>>(doctors);
-            response.Count = response.Doctors.Count();
+            response.Count = response.Doctors.Count;
 
             return Ok(response);
         }

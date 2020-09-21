@@ -58,7 +58,7 @@ namespace FrontDesk.Api.AppointmentEndpoints
             var myAppointments = _mapper.Map<List<AppointmentDto>>(appointments);
 
             response.Appointments = myAppointments.OrderBy(a => a.Start).ToList();
-            response.Count = response.Appointments.Count();
+            response.Count = response.Appointments.Count;
 
             return Ok(response);
         }

@@ -38,7 +38,7 @@ namespace FrontDesk.Api.ClientEndpoints
             if (clients is null) return NotFound();
 
             response.Clients = _mapper.Map<List<ClientDto>>(clients);
-            response.Count = response.Clients.Count();
+            response.Count = response.Clients.Count;
 
             return Ok(response);
         }

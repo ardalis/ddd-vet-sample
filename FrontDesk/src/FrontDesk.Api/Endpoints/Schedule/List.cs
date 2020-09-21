@@ -39,7 +39,7 @@ namespace FrontDesk.Api.ScheduleEndpoints
             if (schedules is null) return NotFound();
 
             response.Schedules = _mapper.Map<List<ScheduleDto>>(schedules);
-            response.Count = response.Schedules.Count();
+            response.Count = response.Schedules.Count;
 
             return Ok(response);
         }

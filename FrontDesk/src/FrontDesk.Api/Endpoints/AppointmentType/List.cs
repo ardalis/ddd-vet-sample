@@ -36,7 +36,7 @@ namespace FrontDesk.Api.AppointmentTypeEndpoints
 
             var appointmentTypes = await _repository.ListAsync<AppointmentType, int>();
             response.AppointmentTypes = _mapper.Map<List<AppointmentTypeDto>>(appointmentTypes);
-            response.Count = response.AppointmentTypes.Count();
+            response.Count = response.AppointmentTypes.Count;
 
             return Ok(response);
         }

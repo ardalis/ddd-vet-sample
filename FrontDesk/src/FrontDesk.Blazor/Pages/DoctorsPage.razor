@@ -90,7 +90,7 @@ else
 
     private void CreateClick()
     {
-        if (Doctors.Count() == 0 || Doctors[Doctors.Count - 1].DoctorId != 0)
+        if (Doctors.Count == 0 || Doctors[Doctors.Count - 1].DoctorId != 0)
         {
             ToSave = new DoctorDto();
             Doctors.Add(ToSave);

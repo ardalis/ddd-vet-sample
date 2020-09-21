@@ -38,7 +38,7 @@ namespace FrontDesk.Api.RoomEndpoints
             if (rooms is null) return NotFound();
 
             response.Rooms = _mapper.Map<List<RoomDto>>(rooms);
-            response.Count = response.Rooms.Count();
+            response.Count = response.Rooms.Count;
 
             return Ok(response);
         }

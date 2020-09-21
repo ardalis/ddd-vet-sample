@@ -90,7 +90,7 @@ else
 
     private void CreateClick()
     {
-        if (Rooms.Count() == 0 || Rooms[Rooms.Count-1].RoomId != 0)
+        if (Rooms.Count == 0 || Rooms[Rooms.Count-1].RoomId != 0)
         {
             ToSave = new RoomDto();
             Rooms.Add(ToSave);

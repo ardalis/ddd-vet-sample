@@ -40,7 +40,7 @@ namespace FrontDesk.Api.PatientEndpoints
             if (patients is null) return NotFound();
 
             response.Patients = _mapper.Map<List<PatientDto>>(patients);
-            response.Count = response.Patients.Count();
+            response.Count = response.Patients.Count;
 
             return Ok(response);
         }
