@@ -130,12 +130,19 @@
     {
         get
         {
-            var appointmentType = AppointmentTypes.FirstOrDefault(a => a.AppointmentTypeId == Appointment.AppointmentTypeId);
-            if (appointmentType == null)
+            if(IsAdd)
             {
-                return $"{Patient?.Name} - {Patient?.ClientName}";
+                var appointmentType = AppointmentTypes.FirstOrDefault(a => a.AppointmentTypeId == Appointment.AppointmentTypeId);
+                if (appointmentType == null)
+                {
+                    return $"{Patient?.Name} - {Patient?.ClientName}";
+                }
+                return $"({appointmentType.Code}) {Patient?.Name} - {Patient?.ClientName}";
             }
-            return $"({appointmentType.Code}) {Patient?.Name} - {Patient?.ClientName}";
+            else
+            {
+                return Appointment.Title;
+            }
         }
     }
 
