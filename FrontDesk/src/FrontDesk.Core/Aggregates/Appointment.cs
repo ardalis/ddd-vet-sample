@@ -114,6 +114,14 @@ namespace FrontDesk.Core.Aggregates
             BaseDomainEvent.Raise(appointmentUpdatedEvent);
         }
 
+        public void UpdateEndTime(AppointmentType appointmentType)
+        {
+            TimeRange = TimeRange.NewEnd(TimeRange.Start.AddMinutes(appointmentType.Duration));
+
+            var appointmentUpdatedEvent = new AppointmentUpdatedEvent(this);
+            BaseDomainEvent.Raise(appointmentUpdatedEvent);
+        }
+
         public void Confirm(DateTime dateConfirmed)
         {
             if (DateTimeConfirmed.HasValue) return; // no need to reconfirm
