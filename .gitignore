@@ -17,9 +17,9 @@ build/
 
 # Visual Studio 2015 cache/options directory
 .vs/
-FrontDesk/.vs/
+.vs/*
+.vs
 
-slnx.sqlite
 
 # Enable "build/" folder in the NuGet Packages folder since NuGet packages use it for MSBuild targets
 !packages/*/build/
