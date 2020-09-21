@@ -56,7 +56,7 @@ namespace FrontDesk.Blazor.Pages
         private bool CustomEditFormShown { get; set; }
         AppointmentDto CurrentAppointment { get; set; } // we will put here a copy of the appointment for editing
 
-        private DateTime Today { get; set; } = new DateTime(2014, 6, 9, 7, 0, 0);
+        private DateTime Today { get; set; } = new DateTime();
         private int PatientId { get; set; } = 1;
         private int ClientId { get; set; } = 1;
         private int RoomId { get; set; } = 1;
