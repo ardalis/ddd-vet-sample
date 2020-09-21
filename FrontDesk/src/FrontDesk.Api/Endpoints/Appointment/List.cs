@@ -52,8 +52,8 @@ namespace FrontDesk.Api.AppointmentEndpoints
 
             var schedule = (await _repository.ListAsync<Schedule, Guid>(scheduleSpec)).First();
 
-            var appoinmentSpec = new AppointmentByScheduleIdSpecification(schedule.Id);
-            var appointments = (await _repository.ListAsync<Appointment, Guid>(appoinmentSpec)).ToList();
+            var appointmentSpec = new AppointmentByScheduleIdSpecification(schedule.Id);
+            var appointments = (await _repository.ListAsync<Appointment, Guid>(appointmentSpec)).ToList();
 
             var myAppointments = _mapper.Map<List<AppointmentDto>>(appointments);
 
