@@ -1,6 +1,6 @@
 # DDD Fundamentals Sample App
 
-A sample meant to demonstrate domain driven design using a veterinary hospital management system. This sample is used in the [Domain-Driven Design Fundamentals course on Pluralsight](https://app.pluralsight.com/library/courses/domain-driven-design-fundamentals).
+A sample meant to demonstrate domain driven design using a veterinary hospital management system. This sample is used in the [Domain-Driven Design Fundamentals course on Pluralsight](https://app.pluralsight.com/library/courses/domain-driven-design-fundamentals) .NET 5 update.
 
 ## Give a Star! :star:
 If you like or are using this project to learn, please give it a star. Thanks!
@@ -28,4 +28,8 @@ To create the application/domain database you should run the unit test in Shared
 
 The message queue database is created by the SetupSQLServiceBroker script above, and is called `ServiceBrokerTest`. 
 
+## Community Contributors
 
+Thanks for our community contributors:
+
+* [ShadyNagy](https://github.com/ShadyNagy)
