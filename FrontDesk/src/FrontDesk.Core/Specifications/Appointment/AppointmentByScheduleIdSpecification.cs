@@ -10,6 +10,7 @@ namespace FrontDesk.Core.Specifications
         {
             Query.Include(nameof(Appointment.AppointmentType));
             Query.Include(nameof(Appointment.Patient));
+            Query.Include(nameof(Appointment.Client));
 
             Query
                 .Where(appointment => appointment.ScheduleId == scheduleId)

@@ -141,6 +141,7 @@
     protected override async Task OnInitializedAsync()
     {
         Appointments = await AppointmentService.ListAsync();
+        ScheduleId = Appointments[0].ScheduleId;
         AppointmentTypes = await AppointmentTypeService.ListAsync();
         Clients = await ClientService.ListAsync();
         Rooms = await RoomService.ListAsync();

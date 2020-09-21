@@ -6,6 +6,7 @@ namespace BlazorShared.Models.Appointment
     {
         public Guid Id { get; set; }
         public Guid ScheduleId { get; set; }
+        public string Title { get; set; }
         public int ClientId { get; set; }
         public int PatientId { get; set; }
         public int RoomId { get; set; }

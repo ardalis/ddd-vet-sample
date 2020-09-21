@@ -112,7 +112,7 @@
     }
 
     <TelerikButton Enabled="@IsValid()" Primary="true">
-        @SaveButtonName
+        Save
     </TelerikButton>
     <TelerikButton OnClick="@CancelEditing" ButtonType="ButtonType.Button">Cancel</TelerikButton>
     <TelerikButton OnClick="@DeleteAppointment" ButtonType="ButtonType.Button">Delete</TelerikButton>
@@ -120,22 +120,21 @@
 </EditForm>
 
 @code{
-    //communcation with the parent component where the scheduler is
-    [Parameter] public AppointmentDto Appointment { get; set; } = new AppointmentDto();
-    [Parameter] public PatientDto Patient { get; set; }
-    [Parameter] public Guid ScheduleId { get; set; } = Guid.Empty;
-    [Parameter] public int RoomId { get; set; } = 0;
-    [Parameter] public EventCallback<string> OnAppointmentChanged { get; set; }
+        //communcation with the parent component where the scheduler is
+        [Parameter] public AppointmentDto Appointment { get; set; } = new AppointmentDto();
+        [Parameter] public PatientDto Patient { get; set; }
+        [Parameter] public Guid ScheduleId { get; set; } = Guid.Empty;
+        [Parameter] public int RoomId { get; set; } = 0;
+        [Parameter] public EventCallback<string> OnAppointmentChanged { get; set; }
 
-    List<DoctorDto> Doctors = new List<DoctorDto>();
-    List<AppointmentTypeDto> AppointmentTypes = new List<AppointmentTypeDto>();
+        List<DoctorDto> Doctors = new List<DoctorDto>();
+        List<AppointmentTypeDto> AppointmentTypes = new List<AppointmentTypeDto>();
 
-    //UI related
-    string WrongRangeMessage = "Start date must be before end date. We reset the selection, try again.";
-    bool ShowErrorMessage { get; set; }
-    string GetDuration => AppointmentTypes.FirstOrDefault(x => x.AppointmentTypeId == Appointment.AppointmentTypeId)?.Duration.ToString();
+        //UI related
+        string WrongRangeMessage = "Start date must be before end date. We reset the selection, try again.";
+        bool ShowErrorMessage { get; set; }
+        string GetDuration => AppointmentTypes.FirstOrDefault(x => x.AppointmentTypeId == Appointment.AppointmentTypeId)?.Duration.ToString();
     private string Picture { get; set; }
-    private string SaveButtonName => Appointment.AppointmentId == Guid.Empty ? "Save" : "Confirm";
     private bool IsAdd => Appointment.AppointmentId == Guid.Empty;
     private string Title
     {
@@ -170,10 +169,16 @@
     protected override async Task OnInitializedAsync()
     {
         Doctors = await DoctorService.ListAsync();
-        Appointment.DoctorId = Doctors[0].DoctorId;
+        if (IsAdd)
+        {
+            Appointment.DoctorId = Doctors[0].DoctorId;
+        }
 
         AppointmentTypes = await AppointmentTypeService.ListAsync();
-        Appointment.AppointmentTypeId = AppointmentTypes[0].AppointmentTypeId;
+        if (IsAdd)
+        {
+            Appointment.AppointmentTypeId = AppointmentTypes[0].AppointmentTypeId;
+        }
 
         await LoadPicture();
     }
@@ -215,6 +220,7 @@
                     Details = Title,
                     SelectedDoctor = (int)Appointment.DoctorId,
                     PatientId = Patient.PatientId,
+                    ClientId = Patient.ClientId,
                     ScheduleId = ScheduleId,
                     RoomId = RoomId,
                     AppointmentTypeId = Appointment.AppointmentTypeId,
@@ -232,6 +238,8 @@
                     Id = Appointment.AppointmentId,
                     DoctorId = (int)Appointment.DoctorId,
                     PatientId = Patient.PatientId,
+                    Title = Appointment.Title,
+                    ClientId = Patient.ClientId,
                     ScheduleId = ScheduleId,
                     RoomId = RoomId,
                     AppointmentTypeId = Appointment.AppointmentTypeId,

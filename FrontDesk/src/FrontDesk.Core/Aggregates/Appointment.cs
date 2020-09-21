@@ -47,6 +47,19 @@ namespace FrontDesk.Core.Aggregates
             }
         }
 
+        private Client _client;
+        public Client Client
+        {
+            get
+            {
+                return _client;
+            }
+            private set
+            {
+                _client = value;
+            }
+        }
+
         #region More Properties
         public DateTime? DateTimeConfirmed { get; set; }
 

@@ -8,11 +8,13 @@ namespace BlazorShared.Models.Appointment
     public class AppointmentDto
     {
         public Guid AppointmentId { get; set; }
+        public Guid ScheduleId { get; set; }
         public int RoomId { get; set; }
         public int? DoctorId { get; set; }
         public int ClientId { get; set; }
         public int PatientId { get; set; }
         public string PatientName { get; set; }
+        public string ClientName { get; set; }
 
         [Required(ErrorMessage = "The Start field is required")]
         public DateTime Start { get; set; }
