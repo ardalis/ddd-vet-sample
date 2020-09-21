@@ -30,9 +30,6 @@ namespace FrontDesk.Blazor.Pages
         PatientService PatientService { get; set; }
 
         [Inject]
-        DoctorService DoctorService { get; set; }
-
-        [Inject]
         ClientService ClientService { get; set; }
 
         [Inject]
