@@ -82,10 +82,7 @@
                   EndField="@(nameof(AppointmentDto.End))"
                   TitleField="@(nameof(AppointmentDto.Title))"
                   DescriptionField="@(nameof(AppointmentDto.Description))"
-                  IsAllDayField="@(nameof(AppointmentDto.IsAllDay))"
-                  RecurrenceRuleField="@(nameof(AppointmentDto.RecurrenceRule))"
-                  RecurrenceExceptionsField="@(nameof(AppointmentDto.RecurrenceExceptions))"
-                  RecurrenceIdField="@(nameof(AppointmentDto.RecurrenceId))">
+                  IsAllDayField="@(nameof(AppointmentDto.IsAllDay))">
     <SchedulerResources>
         <SchedulerResource TextField="Name" ValueField="AppointmentTypeId" Field="AppointmentTypeId" Title="Appointment Type" Data="@AppointmentTypes" />
     </SchedulerResources>

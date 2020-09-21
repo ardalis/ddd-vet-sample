@@ -21,11 +21,6 @@ namespace BlazorShared.Models.Appointment
 
         [Required(ErrorMessage = "The End field is required")]
         public DateTime End { get; set; }
-        public object StartTimezone { get; set; }
-        public object EndTimezone { get; set; }
-        public string RecurrenceRule { get; set; }
-        public List<DateTime> RecurrenceExceptions { get; set; }
-        public Guid? RecurrenceId { get; set; }
 
         [Required(ErrorMessage = "The Title is required")]
         public string Title { get; set; }
