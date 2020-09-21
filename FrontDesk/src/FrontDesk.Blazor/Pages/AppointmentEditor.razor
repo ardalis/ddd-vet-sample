@@ -1,4 +1,5 @@
 ﻿@inject AppointmentTypeService AppointmentTypeService
+@inject DoctorService DoctorService
 @inject AppointmentService AppointmentService
 @inject FileService FileService
 
@@ -23,6 +24,16 @@
     <label class="width100">
         Title:<br />
         <TelerikTextBox Value="@Title" ValueExpression="@( () => Title )" Width="100%" Enabled="false"></TelerikTextBox>
+    </label>
+    <br />
+
+    <label class="width100">
+        Doctor:<br />
+        <TelerikComboBox Data="@Doctors" Placeholder="Doctor" ClearButton="false"
+                         TextField="@nameof(DoctorDto.Name)" ValueField="@nameof(DoctorDto.DoctorId)" Filterable="true"
+                         Id="@nameof(DoctorDto.DoctorId)"
+                         @bind-Value="@Appointment.DoctorId" Enabled="IsAdd">
+        </TelerikComboBox>
     </label>
     <br />
 
@@ -112,11 +123,11 @@
     //communcation with the parent component where the scheduler is
     [Parameter] public AppointmentDto Appointment { get; set; } = new AppointmentDto();
     [Parameter] public PatientDto Patient { get; set; }
-    [Parameter] public int DoctorId { get; set; } = 0;
     [Parameter] public Guid ScheduleId { get; set; } = Guid.Empty;
     [Parameter] public int RoomId { get; set; } = 0;
     [Parameter] public EventCallback<string> OnAppointmentChanged { get; set; }
 
+    List<DoctorDto> Doctors = new List<DoctorDto>();
     List<AppointmentTypeDto> AppointmentTypes = new List<AppointmentTypeDto>();
 
     //UI related
@@ -137,7 +148,9 @@
                 {
                     return $"{Patient?.Name} - {Patient?.ClientName}";
                 }
-                return $"({appointmentType.Code}) {Patient?.Name} - {Patient?.ClientName}";
+                Appointment.Title = $"({appointmentType.Code}) {Patient?.Name} - {Patient?.ClientName}";
+
+                return Appointment.Title;
             }
             else
             {
@@ -149,8 +162,12 @@
 
     protected override async Task OnInitializedAsync()
     {
+        Doctors = await DoctorService.ListAsync();
+        Appointment.DoctorId = Doctors[0].DoctorId;
+
         AppointmentTypes = await AppointmentTypeService.ListAsync();
         Appointment.AppointmentTypeId = AppointmentTypes[0].AppointmentTypeId;
+
         await LoadPicture();
     }
 
@@ -189,7 +206,7 @@
                 CreateAppointmentRequest toCreate = new CreateAppointmentRequest()
                 {
                     Details = Title,
-                    SelectedDoctor = DoctorId,
+                    SelectedDoctor = (int)Appointment.DoctorId,
                     PatientId = Patient.PatientId,
                     ScheduleId = ScheduleId,
                     RoomId = RoomId,
