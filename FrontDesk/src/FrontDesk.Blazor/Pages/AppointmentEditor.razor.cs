@@ -40,7 +40,7 @@ namespace FrontDesk.Blazor.Pages
         bool ShowErrorMessage { get; set; }
         string GetDuration => AppointmentTypes.FirstOrDefault(x => x.AppointmentTypeId == Appointment.AppointmentTypeId)?.Duration.ToString();
         private string Picture { get; set; }
-        private bool IsAdd => Appointment.AppointmentId == Guid.Empty;
+        private bool IsAdd => Appointment == null || Appointment.AppointmentId == Guid.Empty;
         private string Title
         {
             get
@@ -126,7 +126,7 @@ namespace FrontDesk.Blazor.Pages
                         PatientId = Patient.PatientId,
                         ClientId = Patient.ClientId,
                         ScheduleId = ScheduleId,
-                        RoomId = RoomId,
+                        RoomId = Appointment.RoomId,
                         AppointmentTypeId = Appointment.AppointmentTypeId,
                         DateOfAppointment = Appointment.Start,
                     };
@@ -143,7 +143,7 @@ namespace FrontDesk.Blazor.Pages
                         Title = Appointment.Title,
                         ClientId = Patient.ClientId,
                         ScheduleId = ScheduleId,
-                        RoomId = RoomId,
+                        RoomId = Appointment.RoomId,
                         AppointmentTypeId = Appointment.AppointmentTypeId,
                         Start = Appointment.Start,
                         End = Appointment.End,

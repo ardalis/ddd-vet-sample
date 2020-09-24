@@ -15,8 +15,7 @@ using Telerik.Blazor.Components;
 namespace FrontDesk.Blazor.Pages
 {
     public partial class Index
-    {
-
+    {        
         [Inject]
         AppointmentService AppointmentService { get; set; }
 
@@ -35,6 +34,12 @@ namespace FrontDesk.Blazor.Pages
         [Inject]
         FileService FileService { get; set; }
 
+        [Inject]
+        ConfigurationService ConfigurationService { get; set; }
+
+        private bool IsShowEdit = false;
+        private bool IsLoaded = false;
+        private List<string> Groups = new List<string>();
         private List<AppointmentDto> Appointments = new List<AppointmentDto>();
         private List<AppointmentTypeDto> AppointmentTypes = new List<AppointmentTypeDto>();
         private List<ClientDto> Clients = new List<ClientDto>();
@@ -53,6 +58,7 @@ namespace FrontDesk.Blazor.Pages
         private bool CustomEditFormShown { get; set; }
         AppointmentDto CurrentAppointment { get; set; } // we will put here a copy of the appointment for editing
 
+        private DateTime Today { get; set; } = new DateTime();
         private int PatientId { get; set; } = 1;
         private int ClientId { get; set; } = 1;
         private int RoomId { get; set; } = 1;
@@ -86,8 +92,17 @@ namespace FrontDesk.Blazor.Pages
             Patients = await PatientService.ListAsync();
             Patient = Patients.FirstOrDefault(p => p.PatientId == PatientId);
 
+            Today = await ConfigurationService.ReadAsync("TestDate");
+            StartDate = UpdateDateToToday(StartDate);
+            DayStart = UpdateDateToToday(DayStart);
+            DayEnd = UpdateDateToToday(DayEnd);
+
+            Groups.Add("Rooms");
+
+            IsLoaded = true;
+
             await AddPatientImages();
-        }
+        }        
 
         private async Task CancelEditing()
         {
@@ -157,6 +172,17 @@ namespace FrontDesk.Blazor.Pages
         {
             PatientId = id;
             Patient = Patients.FirstOrDefault(p => p.PatientId == PatientId);
-        }    
+        }
+
+        private DateTime UpdateDateToToday(DateTime date)
+        {
+            return new DateTime(Today.Year, Today.Month, Today.Day, date.Hour, date.Minute, date.Second);
+        }
+        
+        private void OpenEdit(AppointmentDto appointment)
+        {
+            CurrentAppointment = appointment;
+            CustomEditFormShown = true;
+        }
     }
 }

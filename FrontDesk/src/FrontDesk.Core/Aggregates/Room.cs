@@ -22,9 +22,10 @@ namespace FrontDesk.Core.Aggregates
             return Name.ToString();
         }
 
-        public void UpdateName(string name)
+        public Room UpdateName(string name)
         {
             Name = name;
+            return this;
         }
 
         private Room() // required for EF

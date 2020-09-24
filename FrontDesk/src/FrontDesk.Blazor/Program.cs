@@ -32,6 +32,7 @@ namespace FrontDesk.Blazor
             builder.Services.AddScoped<AppointmentService>();
             builder.Services.AddScoped<AppointmentTypeService>();
             builder.Services.AddScoped<FileService>();
+            builder.Services.AddScoped<ConfigurationService>();
 
             // register the Telerik services
             builder.Services.AddTelerikBlazor();

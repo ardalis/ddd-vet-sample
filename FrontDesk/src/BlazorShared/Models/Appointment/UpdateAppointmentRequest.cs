@@ -14,5 +14,23 @@ namespace BlazorShared.Models.Appointment
         public int AppointmentTypeId { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
+
+        public static UpdateAppointmentRequest FromDto(AppointmentDto appointmentDto)
+        {
+            return new UpdateAppointmentRequest()
+            {
+                Id = appointmentDto.AppointmentId,
+                DoctorId = (int)appointmentDto.DoctorId,
+                PatientId = appointmentDto.PatientId,
+                Title = appointmentDto.Title,
+                ClientId = appointmentDto.ClientId,
+                ScheduleId = appointmentDto.ScheduleId,
+                RoomId = appointmentDto.RoomId,
+                AppointmentTypeId = appointmentDto.AppointmentTypeId,
+                Start = appointmentDto.Start,
+                End = appointmentDto.End,
+            };
+        }
+        
     }
 }

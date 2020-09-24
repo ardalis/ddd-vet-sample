@@ -65,3 +65,6 @@ form label.width100 {
     width: 100%;
 }
 
+.k-window-content, .k-prompt-container {
+    overflow: hidden !important;
+}

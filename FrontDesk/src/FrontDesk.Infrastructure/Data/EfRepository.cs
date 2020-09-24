@@ -49,7 +49,7 @@ namespace FrontDesk.Infrastructure.Data
 
         public async Task UpdateAsync<T, TId>(T entity) where T : BaseEntity<TId>, IAggregateRoot
         {
-            _dbContext.Entry(entity).State = EntityState.Modified;
+            _dbContext.Set<T>().Update(entity);
             await _dbContext.SaveChangesAsync();
         }
 
