@@ -110,11 +110,5 @@ namespace FrontDesk.Infrastructure.Data
         {
             return SaveChangesAsync().GetAwaiter().GetResult();
         }
-
-        private Type GetPrimaryKeyType<TTModel>() where TTModel : class
-        {
-            return Model.FindEntityType(typeof(TTModel)).FindPrimaryKey().Properties
-                .Select(x => x.ClrType).Single();
-        }
     }
 }

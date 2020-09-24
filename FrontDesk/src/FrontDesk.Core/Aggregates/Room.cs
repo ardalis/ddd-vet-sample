@@ -6,10 +6,12 @@ namespace FrontDesk.Core.Aggregates
     public class Room : BaseEntity<int>, IAggregateRoot
     {
         public virtual string Name { get; private set; }
+        public string Color { get; private set; }
 
-        public Room(string name)
+        public Room(string name, string color)
         {
             Name = name;
+            Color = color;
         }
 
         public Room(int id)
@@ -22,9 +24,16 @@ namespace FrontDesk.Core.Aggregates
             return Name.ToString();
         }
 
-        public void UpdateName(string name)
+        public Room UpdateName(string name)
         {
             Name = name;
+            return this;
+        }
+
+        public Room UpdateColor(string color)
+        {
+            Color = color;
+            return this;
         }
 
         private Room() // required for EF

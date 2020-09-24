@@ -94,11 +94,12 @@ namespace FrontDesk.Infrastructure.Data
         {
             var result = new List<Room>();
 
-            for (int i = 0; i < 5; i++)
-            {
-                var room = new Room(string.Format("Exam Room {0}", i + 1));
-                result.Add(room);
-            }
+            result.Add(new Room(string.Format("Exam Room {0}", 1), "#97C741"));
+            result.Add(new Room(string.Format("Exam Room {0}", 2), "#63AEB8"));
+            result.Add(new Room(string.Format("Exam Room {0}", 3), "#C163A2"));
+            result.Add(new Room(string.Format("Exam Room {0}", 4), "#ED652E"));
+            result.Add(new Room(string.Format("Exam Room {0}", 5), "#6380BA"));
+
 
             return result;
         }

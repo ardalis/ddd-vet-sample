@@ -15,8 +15,7 @@ using Telerik.Blazor.Components;
 namespace FrontDesk.Blazor.Pages
 {
     public partial class Index
-    {
-
+    {        
         [Inject]
         AppointmentService AppointmentService { get; set; }
 
@@ -38,6 +37,9 @@ namespace FrontDesk.Blazor.Pages
         [Inject]
         ConfigurationService ConfigurationService { get; set; }
 
+        private bool IsShowEdit = false;
+        private bool IsLoaded = false;
+        private List<string> Groups = new List<string>();
         private List<AppointmentDto> Appointments = new List<AppointmentDto>();
         private List<AppointmentTypeDto> AppointmentTypes = new List<AppointmentTypeDto>();
         private List<ClientDto> Clients = new List<ClientDto>();
@@ -94,6 +96,10 @@ namespace FrontDesk.Blazor.Pages
             StartDate = UpdateDateToToday(StartDate);
             DayStart = UpdateDateToToday(DayStart);
             DayEnd = UpdateDateToToday(DayEnd);
+
+            Groups.Add("Rooms");
+
+            IsLoaded = true;
 
             await AddPatientImages();
         }        
@@ -171,6 +177,12 @@ namespace FrontDesk.Blazor.Pages
         private DateTime UpdateDateToToday(DateTime date)
         {
             return new DateTime(Today.Year, Today.Month, Today.Day, date.Hour, date.Minute, date.Second);
+        }
+        
+        private void OpenEdit(AppointmentDto appointment)
+        {
+            CurrentAppointment = appointment;
+            CustomEditFormShown = true;
         }
     }
 }
