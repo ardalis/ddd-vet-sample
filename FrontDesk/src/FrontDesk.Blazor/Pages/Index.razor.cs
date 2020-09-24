@@ -76,7 +76,6 @@ namespace FrontDesk.Blazor.Pages
             }
         }
 
-
         private bool CanMakeAppointment => IsRoomSelected && IsClientSelected && IsPatientSelected;
         private bool IsRoomSelected => RoomId > 0;
         private bool IsClientSelected => ClientId > 0;
@@ -92,7 +91,7 @@ namespace FrontDesk.Blazor.Pages
             Patients = await PatientService.ListAsync();
             Patient = Patients.FirstOrDefault(p => p.PatientId == PatientId);
 
-            Today = await ConfigurationService.ReadAsync("TestDate");
+            Today = await ConfigurationService.ReadAsync();
             StartDate = UpdateDateToToday(StartDate);
             DayStart = UpdateDateToToday(DayStart);
             DayEnd = UpdateDateToToday(DayEnd);
