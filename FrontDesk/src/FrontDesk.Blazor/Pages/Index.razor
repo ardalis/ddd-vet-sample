@@ -39,7 +39,7 @@
 {
     <Scheduler Height="750" Appointments="@Appointments" Rooms="@Rooms" AppointmentTypes="@AppointmentTypes" StartDate="@StartDate" StartTime="@DayStart" EndTime="@DayEnd" Groups="Groups" OnEditCallback="@((e) => OpenEdit(e))">
         <Resource Name="AppointmentTypes" TextField="Name" ValueField="AppointmentTypeId" Field="AppointmentTypeId" Title="Appointment Type" Data="@AppointmentTypes" />
-        <Resource Name="Rooms" TextField="Name" ValueField="RoomId" ColorField="Color" Field="RoomId" Title="Room" Data="@Rooms" />
+        <Resource Name="Rooms" TextField="Name" ValueField="RoomId" Field="RoomId" Title="Room" Data="@Rooms" />
     </Scheduler>
 }
 

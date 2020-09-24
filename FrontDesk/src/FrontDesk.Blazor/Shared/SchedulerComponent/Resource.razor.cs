@@ -7,7 +7,6 @@ namespace FrontDesk.Blazor.Shared.SchedulerComponent
         [Parameter] public string Name { get; set; } = string.Empty;
         [Parameter] public string TextField { get; set; } = string.Empty;
         [Parameter] public string ValueField { get; set; } = string.Empty;
-        [Parameter] public string ColorField { get; set; } = string.Empty;
         [Parameter] public string Field { get; set; } = string.Empty;
         [Parameter] public string Title { get; set; } = string.Empty;
         [Parameter] public object Data { get; set; } = new object();
@@ -18,7 +17,7 @@ namespace FrontDesk.Blazor.Shared.SchedulerComponent
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
-        public SchedulerResourceModel SchedulerResource => new SchedulerResourceModel(Name, TextField, ValueField, ColorField, Field, Title, Data);
+        public SchedulerResourceModel SchedulerResource => new SchedulerResourceModel(Name, TextField, ValueField, Field, Title, Data);
 
         protected override void OnInitialized()
         {

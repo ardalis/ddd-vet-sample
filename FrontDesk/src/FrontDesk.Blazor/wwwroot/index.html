@@ -51,7 +51,7 @@
             return string.charAt(0).toLowerCase() + string.slice(1);
         }
 
-        function createDataSourceResource(data, valueField, textField, colorField) {
+        function createDataSourceResource(name, data, valueField, textField) {
             var result = {};            
 
             if (data[lowerCasefirst(valueField)]) {
@@ -62,12 +62,29 @@
                 result['text'] = data[lowerCasefirst(textField)];
             }
 
-            if (data[lowerCasefirst(colorField)]) {
-                result[lowerCasefirst(colorField)] = data[lowerCasefirst(colorField)];
+            if (name.toLowerCase() == 'rooms') {
+                result['color'] = createColor(data, valueField);
             }
 
 
             return result;
+        }
+
+        function createColor(data, valueField) {
+
+            if (data[lowerCasefirst(valueField)] == 1) {
+                return "#97C741";
+            } else if (data[lowerCasefirst(valueField)] == 2) {
+                return "#63AEB8";
+            } else if (data[lowerCasefirst(valueField)] == 3) {
+                return "#C163A2";
+            } else if (data[lowerCasefirst(valueField)] == 4) {
+                return "#ED652E";
+            } else if (data[lowerCasefirst(valueField)] == 5) {
+                return "#6380BA";
+            }
+
+            return '';
         }
 
         function createResource(schedulerResource) {
@@ -75,17 +92,13 @@
             var dataSource = [];
 
             for (var i = 0; i < schedulerResource['data'].length; i++) {
-                dataSource.push(createDataSourceResource(schedulerResource['data'][i], schedulerResource['valueField'], schedulerResource['textField'], schedulerResource['colorField']));
+                dataSource.push(createDataSourceResource(schedulerResource['name'], schedulerResource['data'][i], schedulerResource['valueField'], schedulerResource['textField']));
             }
 
             result['dataSource'] = dataSource;
             result['name'] = schedulerResource['name'].toLowerCase();
             result['field'] = lowerCasefirst(schedulerResource['field']);
-            result['title'] = schedulerResource['title'];
-
-            if (lowerCasefirst(schedulerResource['colorField'])) {
-                result['dataColorField'] = lowerCasefirst(schedulerResource['colorField']);
-            }            
+            result['title'] = schedulerResource['title'];        
 
             return result;
         }
@@ -120,7 +133,9 @@
 
         function scheduler(startDate, startTime, endDate, appointments, schedulerResources, schedulerGroups, height) {
             var resources = createResources(schedulerResources)
-            var groups = createGroups(schedulerGroups);                        
+            var groups = createGroups(schedulerGroups);      
+
+            console.log('resources', resources);
 
             hardRefresh();
 
