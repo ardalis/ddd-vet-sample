@@ -168,7 +168,6 @@
                     e.preventDefault();
                 },
                 moveEnd: function (e) {
-                    console.log(e);
                     if (!checkAvailability(e.start, e.end, e.event, e.resources)) {
                         e.preventDefault();
                     } else {                      
@@ -247,7 +246,6 @@
         function onMoveEnd(e) {
             createAppointment(e.event);
             currentAppointment['roomId'] = e.resources['roomId'];
-            console.log('currentAppointment', currentAppointment);
             instanceKendoCall.invokeMethodAsync('KendoCall', 'move', JSON.stringify(currentAppointment));
         }
 
