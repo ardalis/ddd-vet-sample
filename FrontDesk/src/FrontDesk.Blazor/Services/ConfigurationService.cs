@@ -15,11 +15,11 @@ namespace FrontDesk.Blazor.Services
             _logger = logger;
         }
 
-        public async Task<DateTime> ReadAsync(string configurationName)
+        public async Task<DateTime> ReadAsync()
         {
             _logger.LogInformation("Read today date/time from configuration.");
 
-            return Convert.ToDateTime(await _httpService.HttpGetAsync($"configurations/{configurationName}"));
+            return Convert.ToDateTime(await _httpService.HttpGetAsync($"configurations"));
         }
     }
 }

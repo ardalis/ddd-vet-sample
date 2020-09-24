@@ -6,29 +6,22 @@ using System.Threading.Tasks;
 
 namespace FrontDesk.Api.ConfigurationEndpoints
 {
-    public class Read : BaseAsyncEndpoint<string, string>
+    public class Read : BaseAsyncEndpoint<string>
     {
         public Read()
         {
         }
 
-        [HttpGet("api/configurations/{configurationName}")]
+        [HttpGet("api/configurations")]
         [SwaggerOperation(
-            Summary = "Reads a configuration",
-            Description = "Reads a configuration",
+            Summary = "Read configurations",
+            Description = "Read configurations",
             OperationId = "configurations.read",
             Tags = new[] { "configurationEndpoints" })
         ]
-        public override async Task<ActionResult<string>> HandleAsync([FromRoute]string configurationName, CancellationToken cancellationToken)
+        public override async Task<ActionResult<string>> HandleAsync(CancellationToken cancellationToken)
         {
-            if (string.IsNullOrEmpty(configurationName)) return BadRequest();
-
-            if(configurationName == nameof(OfficeSettings.TestDate))
-            {
-                return Ok(new OfficeSettings().TestDate.ToString());
-            }
-
-            return NotFound();
+           return Ok(new OfficeSettings().TestDate.ToString());
         }
     }
 }
