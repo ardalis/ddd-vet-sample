@@ -214,7 +214,7 @@ namespace FrontDesk.Infrastructure.Data
             var appointmentList = new List<Appointment>
               {
                 new Appointment(
-                    1, 
+                    2, 
                     scheduleId, 
                     1, 
                     1, 
@@ -225,7 +225,7 @@ namespace FrontDesk.Infrastructure.Data
                         new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 11, 0, 0)), 
                     "(WE) Darwin - Steve Smith"),
                 new Appointment(
-                    2,
+                    1,
                     scheduleId,
                     2,
                     2,
@@ -236,7 +236,7 @@ namespace FrontDesk.Infrastructure.Data
                         new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 11, 30, 0)),
                     "(DE) Sampson - Julie Lerman"),
                 new Appointment(
-                    2,
+                    1,
                     scheduleId,
                     3,
                     2,
@@ -247,7 +247,7 @@ namespace FrontDesk.Infrastructure.Data
                         new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 12, 30, 0)),
                     "(DE) Pax - Wes McClure"),
                 new Appointment(
-                    2,
+                    1,
                     scheduleId,
                     19,
                     2,
@@ -269,7 +269,7 @@ namespace FrontDesk.Infrastructure.Data
                         new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 10, 30, 0)),
                     "(DE) Allegra - Jesse Liberty"),
                 new Appointment(
-                    2,
+                    1,
                     scheduleId,
                     19,
                     2,
@@ -280,7 +280,7 @@ namespace FrontDesk.Infrastructure.Data
                         new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 11, 00, 0)),
                     "(DE) Misty - Jesse Liberty"),
                 new Appointment(
-                    2,
+                    3,
                     scheduleId,
                     4,
                     2,
@@ -303,7 +303,7 @@ namespace FrontDesk.Infrastructure.Data
                     "(DE) Rocky - Brian Lagunas",
                     new DateTime(2014,6,8,8,0,0)),
                 new Appointment(
-                    2,
+                    3,
                     scheduleId,
                     20,
                     2,
@@ -314,7 +314,7 @@ namespace FrontDesk.Infrastructure.Data
                         new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 30, 0)),
                     "(DE) Willie - Tyler Young"),
                 new Appointment(
-                    2,
+                    3,
                     scheduleId,
                     20,
                     2,
@@ -325,7 +325,7 @@ namespace FrontDesk.Infrastructure.Data
                         new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 10, 00, 0)),
                     "(DE) JoeFish - Tyler Young"),
                 new Appointment(
-                    2,
+                    1,
                     scheduleId,
                     20,
                     2,
@@ -336,7 +336,7 @@ namespace FrontDesk.Infrastructure.Data
                         new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 10, 00, 0)),
                     "(DE) JoeFish - Tyler Young"),
                 new Appointment(
-                    2,
+                    1,
                     scheduleId,
                     20,
                     2,
@@ -347,7 +347,7 @@ namespace FrontDesk.Infrastructure.Data
                         new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 10, 30, 0)),
                     "(DE) Fabian - Tyler Young"),
                 new Appointment(
-                    2,
+                    1,
                     scheduleId,
                     6,
                     2,
@@ -358,7 +358,7 @@ namespace FrontDesk.Infrastructure.Data
                         new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 11, 30, 0)),
                     "(DE) Zak - Corey Haines"),
                 new Appointment(
-                    2,
+                    3,
                     scheduleId,
                     7,
                     2,
@@ -369,7 +369,7 @@ namespace FrontDesk.Infrastructure.Data
                         new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 30, 0)),
                     "(DE) Tinkelbel - Reindert Ekkert"),
                 new Appointment(
-                    2,
+                    1,
                     scheduleId,
                     18,
                     2,
@@ -380,7 +380,7 @@ namespace FrontDesk.Infrastructure.Data
                         new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 30, 0)),
                     "(DE) Ruske - Julie Yack"),
                 new Appointment(
-                    2,
+                    3,
                     scheduleId,
                     18,
                     2,
@@ -391,7 +391,7 @@ namespace FrontDesk.Infrastructure.Data
                         new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 10, 00, 0)),
                     "(DE) Lizzie - Julie Yack"),
                 new Appointment(
-                    2,
+                    3,
                     scheduleId,
                     18,
                     2,
@@ -413,7 +413,7 @@ namespace FrontDesk.Infrastructure.Data
                         new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 00, 0)),
                     "(DE) Anubis - Patrick Hynds"),
                 new Appointment(
-                    2,
+                    1,
                     scheduleId,
                     21,
                     2,
@@ -424,7 +424,7 @@ namespace FrontDesk.Infrastructure.Data
                         new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 30, 0)),
                     "(DE) Radar - Michael Perry"),
                 new Appointment(
-                    2,
+                    1,
                     scheduleId,
                     21,
                     2,
@@ -446,7 +446,7 @@ namespace FrontDesk.Infrastructure.Data
                         new DateTime(TestDate.Year, TestDate.Month, TestDate.Day, 9, 00, 0)),
                     "(DE) Corde - Joe Eames"),
                 new Appointment(
-                    2,
+                    3,
                     scheduleId,
                     21,
                     2,
