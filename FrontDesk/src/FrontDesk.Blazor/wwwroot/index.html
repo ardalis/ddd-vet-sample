@@ -40,9 +40,10 @@
 
     </script>
 
-    <script>        
+    <script>
         var currentAppointment = {};
         var instanceKendoCall = {};
+        const colorFieldName = 'key';
 
         function lowerCasefirst(string) {
             if (!string || string.length <= 0) {
@@ -52,7 +53,7 @@
         }
 
         function createDataSourceResource(name, data, valueField, textField) {
-            var result = {};            
+            var result = {};
 
             if (data[lowerCasefirst(valueField)]) {
                 result['value'] = data[lowerCasefirst(valueField)];
@@ -63,25 +64,39 @@
             }
 
             if (name.toLowerCase() == 'rooms') {
-                result['color'] = createColor(data, valueField);
+                result[colorFieldName] = createColor(data, valueField);
             }
 
 
             return result;
         }
 
+        function createColorForAppointment(data) {
+            if (data['roomId'] == 1) {
+                return "#97c741";
+            } else if (data['roomId'] == 2) {
+                return "#63aeb8";
+            } else if (data['roomId'] == 3) {
+                return "#c163a2";
+            } else if (data['roomId'] == 4) {
+                return "#ed652e";
+            } else if (data['roomId'] == 5) {
+                return "#6380ba";
+            }
+        }
+
         function createColor(data, valueField) {
 
             if (data[lowerCasefirst(valueField)] == 1) {
-                return "#97C741";
+                return "#97c741";
             } else if (data[lowerCasefirst(valueField)] == 2) {
-                return "#63AEB8";
+                return "#63aeb8";
             } else if (data[lowerCasefirst(valueField)] == 3) {
-                return "#C163A2";
+                return "#c163a2";
             } else if (data[lowerCasefirst(valueField)] == 4) {
-                return "#ED652E";
+                return "#ed652e";
             } else if (data[lowerCasefirst(valueField)] == 5) {
-                return "#6380BA";
+                return "#6380ba";
             }
 
             return '';
@@ -91,6 +106,10 @@
             var result = {};
             var dataSource = [];
 
+            if (schedulerResource['name'].toLowerCase() == 'rooms') {
+                result['dataColorField'] = colorFieldName;
+            }
+
             for (var i = 0; i < schedulerResource['data'].length; i++) {
                 dataSource.push(createDataSourceResource(schedulerResource['name'], schedulerResource['data'][i], schedulerResource['valueField'], schedulerResource['textField']));
             }
@@ -98,7 +117,7 @@
             result['dataSource'] = dataSource;
             result['name'] = schedulerResource['name'].toLowerCase();
             result['field'] = lowerCasefirst(schedulerResource['field']);
-            result['title'] = schedulerResource['title'];        
+            result['title'] = schedulerResource['title'];
 
             return result;
         }
@@ -133,7 +152,7 @@
 
         function scheduler(startDate, startTime, endDate, appointments, schedulerResources, schedulerGroups, height) {
             var resources = createResources(schedulerResources)
-            var groups = createGroups(schedulerGroups);      
+            var groups = createGroups(schedulerGroups);
 
             console.log('resources', resources);
 
@@ -185,8 +204,8 @@
                 moveEnd: function (e) {
                     if (!checkAvailability(e.start, e.end, e.event, e.resources)) {
                         e.preventDefault();
-                    } else {                      
-                        onMoveEnd(e);                       
+                    } else {
+                        onMoveEnd(e);
                     }
                 },
                 views: [
@@ -195,7 +214,7 @@
                     "agenda"
                 ],
                 workWeekEnd: 6,
-                timezone: "America/Detroit",  
+                timezone: "America/Detroit",
                 dataSource: viewModel.schedulerData,
                 dataBound: onDataBound,
                 eventTemplate: kendo.template($("#event-template").html()),
@@ -323,7 +342,7 @@
     </script>
 
     <script id="event-template" type="text/x-kendo-template">
-        <div data-is-conflicted="#: isConflict #" data-is-confirmed="#: isConfirmed #">#: title #</div>
+        <div data-is-conflicted="#: isConflict #" data-is-confirmed="#: isConfirmed #" class="appointment-template" style="height: 100%; width: 110%; background-color: #:createColorForAppointment(data)#">#: title #</div>
     </script>
 
 </body>
