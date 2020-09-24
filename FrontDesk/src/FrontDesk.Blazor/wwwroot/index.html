@@ -246,6 +246,8 @@
         function onMoveEnd(e) {
             createAppointment(e.event);
             currentAppointment['roomId'] = e.resources['roomId'];
+            currentAppointment['start'] = e['start'];
+            currentAppointment['end'] = e['end'];
             instanceKendoCall.invokeMethodAsync('KendoCall', 'move', JSON.stringify(currentAppointment));
         }
 
