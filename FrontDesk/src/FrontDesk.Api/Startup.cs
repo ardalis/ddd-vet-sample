@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using System;
 using System.Collections.Generic;
 
 namespace FrontDesk.Api
@@ -100,6 +101,7 @@ namespace FrontDesk.Api
                                   builder =>
                                   {                                      
                                       builder.WithOrigins(baseUrlConfig.WebBase.Replace("host.docker.internal", "localhost").TrimEnd('/'));
+                                      builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost");
                                       builder.AllowAnyMethod();
                                       builder.AllowAnyHeader();
                                   });
