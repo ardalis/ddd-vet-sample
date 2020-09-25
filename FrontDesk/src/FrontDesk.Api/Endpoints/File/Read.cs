@@ -26,9 +26,11 @@ namespace FrontDesk.Api.FileEndpoints
         {
             if (string.IsNullOrEmpty(fileName)) return BadRequest();            
 
-            var fullPath = Path.Combine(Directory.GetCurrentDirectory(), @"images/Patients", fileName);
+            var fullPath = Path.Combine(Directory.GetCurrentDirectory(), "images", "Patients", fileName);
             if (!System.IO.File.Exists(fullPath))
             {
+                // TODO: Add logger
+                System.Console.WriteLine($"File not found: {fullPath}");
                 return NotFound();
             }
 
