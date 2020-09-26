@@ -1,7 +1,7 @@
 ﻿@page "/"
 
 <h1>Appointments</h1>
-<div class="inline @((IsClientSelected? "" : "error"))">
+<div class="appointment-inline @((IsClientSelected? "" : "appointment-error"))">
     <label class="width100">
         Client:<br />
         <TelerikComboBox Filterable="true"
@@ -13,7 +13,7 @@
         </TelerikComboBox>
     </label>
 </div>
-<div class="inline @((IsPatientSelected? "" : "error"))">
+<div class="appointment-inline @((IsPatientSelected? "" : "appointment-error"))">
     <label class="width100">
         Patient:<br />
         <TelerikComboBox Filterable="true"
@@ -24,10 +24,10 @@
                          ValueField="@nameof(PatientDto.PatientId)"
                          TextField="@nameof(PatientDto.Name)">
             <ItemTemplate>
-                <div class="holder">
+                <div class="appointment-holder">
                     <span>@((context as PatientDto).Name)</span>
                     <div style="text-align: right;">
-                        <img class="image" src="@((context as PatientDto).ImageData)" />
+                        <img class="appointment-image" src="@((context as PatientDto).ImageData)" />
                     </div>
                 </div>
             </ItemTemplate>
