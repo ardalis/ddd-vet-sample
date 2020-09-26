@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  frontdesk:
+    image: ${DOCKER_REGISTRY-}frontdesk
+    build:
+      context: .
+      dockerfile: FrontDesk/src/FrontDesk.Blazor/Dockerfile
+
+  frontdeskapi:
+    image: ${DOCKER_REGISTRY-}frontdeskapi
+    build:
+      context: .
+      dockerfile: FrontDesk/src/FrontDesk.Api/Dockerfile

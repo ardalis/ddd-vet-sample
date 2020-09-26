@@ -1,9 +1,11 @@
 using BlazorShared;
 using FrontDesk.Blazor.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.IO.Compression;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -15,6 +17,11 @@ namespace FrontDesk.Blazor
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
+
+            builder.Services.Configure<BrotliCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.NoCompression;
+            });
 
             var baseUrlConfig = new BaseUrlConfiguration();
             builder.Configuration.Bind(BaseUrlConfiguration.CONFIG_NAME, baseUrlConfig);

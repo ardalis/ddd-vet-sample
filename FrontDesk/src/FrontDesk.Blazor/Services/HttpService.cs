@@ -14,7 +14,7 @@ namespace FrontDesk.Blazor.Services
 
         public HttpService(HttpClient httpClient, BaseUrlConfiguration baseUrlConfiguration)
         {
-            _httpClient = httpClient;
+            _httpClient = httpClient;           
             _apiUrl = baseUrlConfiguration.ApiBase;
         }
 

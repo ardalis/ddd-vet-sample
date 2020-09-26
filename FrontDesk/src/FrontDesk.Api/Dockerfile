@@ -6,11 +6,12 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
-WORKDIR /src
-COPY ["src/FrontDesk.Api/FrontDesk.Api.csproj", "src/FrontDesk.Api/"]
-RUN dotnet restore "src/FrontDesk.Api/FrontDesk.Api.csproj"
+WORKDIR /app
 COPY . .
-WORKDIR "/src/src/FrontDesk.Api"
+
+WORKDIR /app/FrontDesk/src/FrontDesk.Api
+RUN dotnet restore
+
 RUN dotnet build "FrontDesk.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish

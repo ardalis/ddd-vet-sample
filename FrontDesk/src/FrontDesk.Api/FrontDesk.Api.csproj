@@ -8,6 +8,136 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Clients\Steve_Smith.jpg" />
+    <None Remove="Images\Doctors\Dr_McDreamy.jpg" />
+    <None Remove="Images\Doctors\Dr_Smith.jpg" />
+    <None Remove="Images\Doctors\Dr_Who.jpg" />
+    <None Remove="Images\Doctors\No_Doctor_Selected.jpg" />
+    <None Remove="Images\Patients\Allegra.jpg" />
+    <None Remove="Images\Patients\Anubis.jpg" />
+    <None Remove="Images\Patients\Bella.jpg" />
+    <None Remove="Images\Patients\Boots.jpg" />
+    <None Remove="Images\Patients\Butterfinger.jpg" />
+    <None Remove="Images\Patients\Callie.jpg" />
+    <None Remove="Images\Patients\charlie.jpg" />
+    <None Remove="Images\Patients\Corde.jpg" />
+    <None Remove="Images\Patients\darwin.jpg" />
+    <None Remove="Images\Patients\Finley.jpg" />
+    <None Remove="Images\Patients\Ginger.jpg" />
+    <None Remove="Images\Patients\Indiana Jones.jpg" />
+    <None Remove="Images\Patients\Lizzie.jpg" />
+    <None Remove="Images\Patients\Luabelle.jpg" />
+    <None Remove="Images\Patients\Lulu.jpg" />
+    <None Remove="Images\Patients\Pax.jpg" />
+    <None Remove="Images\Patients\Piper.jpg" />
+    <None Remove="Images\Patients\radar.jpg" />
+    <None Remove="Images\Patients\Rocky.jpg" />
+    <None Remove="Images\Patients\Rufus.JPG" />
+    <None Remove="Images\Patients\rumor.jpg" />
+    <None Remove="Images\Patients\Ruske.jpg" />
+    <None Remove="Images\Patients\sampson.jpg" />
+    <None Remove="Images\Patients\Tinkerbell.jpg" />
+    <None Remove="Images\Patients\Zak.jpg" />
+    <None Remove="Images\Patients\zoe.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\Clients\Steve_Smith.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Doctors\Dr_McDreamy.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Doctors\Dr_Smith.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Doctors\Dr_Who.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Doctors\No_Doctor_Selected.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Allegra.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Anubis.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Bella.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Boots.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Butterfinger.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Callie.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\charlie.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Corde.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\darwin.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Finley.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Ginger.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Indiana Jones.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Lizzie.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Luabelle.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Lulu.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Pax.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Piper.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\radar.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Rocky.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Rufus.JPG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\rumor.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Ruske.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\sampson.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Tinkerbell.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\Zak.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Patients\zoe.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
 	<PackageReference Include="Ardalis.ApiEndpoints" Version="2.0.0" />
 	<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
 	<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
@@ -29,10 +159,6 @@
   <ItemGroup>
     <ProjectReference Include="..\BlazorShared\BlazorShared.csproj" />
     <ProjectReference Include="..\FrontDesk.Infrastructure\FrontDesk.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Images\" />
   </ItemGroup>
 
 </Project>
