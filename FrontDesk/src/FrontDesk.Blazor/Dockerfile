@@ -3,9 +3,9 @@
 FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /app
 
-COPY FrontDesk/*.sln .
-COPY . .
-WORKDIR /app/FrontDesk/src/FrontDesk.Blazor
+COPY FrontDesk/src/FrontDesk.Blazor ./FrontDesk.Blazor
+COPY FrontDesk/src/BlazorShared ./BlazorShared
+WORKDIR /app/FrontDesk.Blazor
 RUN dotnet restore
 
 RUN dotnet build "FrontDesk.Blazor.csproj" -c Release -o /build
