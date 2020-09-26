@@ -5,13 +5,19 @@
 	<UserSecretsId>140e9a6d-c3aa-4b72-b2fd-368cfdee40a5</UserSecretsId>
 	<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 	<DockerfileContext>..\..</DockerfileContext>
-	<!--<PublishTrimmed>false</PublishTrimmed>-->
+	  
+	  <!--<PublishTrimmed>false</PublishTrimmed>-->
+	  <!--<PublishTrimmed>false</PublishTrimmed>-->
 	<!--<RestoreSources>$(RestoreSources);lib;https://api.nuget.org/v3/index.json</RestoreSources>-->
 	  
 	<!--<BlazorWebAssemblyEnableLinking>true</BlazorWebAssemblyEnableLinking>
 	<BlazorEnableCompression>false</BlazorEnableCompression>	
+	<BlazorWebAssemblyEnableLinking>true</BlazorWebAssemblyEnableLinking>
+	  <LinkDuringPublish>true</LinkDuringPublish>
+	<DockerDevelopmentMode>Fast</DockerDevelopmentMode>
 	<DisableScopedCssBundling>false</DisableScopedCssBundling>-->
   
+
 </PropertyGroup>
 
   <ItemGroup>
