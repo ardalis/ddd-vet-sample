@@ -2,6 +2,7 @@
 using AutoMapper;
 using BlazorShared.Models.Room;
 using FrontDesk.Core.Aggregates;
+using FrontDesk.Core.Specifications;
 using FrontDesk.SharedKernel.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -34,7 +35,8 @@ namespace FrontDesk.Api.RoomEndpoints
         {
             var response = new ListRoomResponse(request.CorrelationId());
 
-            var rooms = await _repository.ListAsync<Room, int>();
+            var roomSpec = new RoomSpecification();
+            var rooms = await _repository.ListAsync<Room, int>(roomSpec);
             if (rooms is null) return NotFound();
 
             response.Rooms = _mapper.Map<List<RoomDto>>(rooms);
