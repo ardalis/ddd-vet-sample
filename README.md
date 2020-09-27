@@ -7,6 +7,20 @@ If you like or are using this project to learn, please give it a star. Thanks!
 
 ## Getting Started
 
+### Run In Docker
+- Go inside ddd-vet-sample directory.
+- Run these 2 commands
+```powershell
+docker-compose build
+docker-compose up
+```
+
+- http://localhost:5200/ is front desk Api 
+- http://localhost:5106/ is front desk Blazor
+- http://localhost:5210/ is VetClinicPublic 
+- localhost,1433 is MSSQL-2019 with  front desk db schema inside.
+
+
 The main application is in the FrontDeskSolution folder. Open the FrontDesk.sln file for the main sample.
 
 The application relies on the public web site for sending emails and confirming appointments. You must run the public site for this part of the demo to work. Open it from VetClinicPublic.Web folder and the VetClinicPublic.Web.sln solution.
