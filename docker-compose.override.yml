@@ -19,3 +19,22 @@ services:
    volumes:
      - ~/.aspnet/https:/root/.aspnet/https:ro
      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+
+ frontdeskdb:
+   environment:
+      SA_PASSWORD: "Pass@word1"
+      ACCEPT_EULA: "Y"
+   ports:
+     - "1433:1433"
+
+ vetclinicpublic:
+   environment:
+     - ASPNETCORE_ENVIRONMENT=Docker
+     - ASPNETCORE_URLS=http://+:80
+   ports:
+     - "5210:80"
+   volumes:
+     - ~/.aspnet/https:/root/.aspnet/https:ro
+     - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+
+

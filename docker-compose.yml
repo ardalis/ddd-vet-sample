@@ -12,3 +12,18 @@ services:
     build:
       context: .
       dockerfile: FrontDesk/src/FrontDesk.Api/Dockerfile
+
+  frontdeskdb:
+    container_name: frontdeskdb
+    image: shadynagy/front-desk-web-ddd:latest
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "change_this_password"
+      ACCEPT_EULA: "Y"
+
+  vetclinicpublic:
+    image: ${DOCKER_REGISTRY-}vetclinicpublic
+    build:
+      context: .
+      dockerfile: VetClinicPublic/src/VetClinicPublic/Dockerfile
