@@ -11,11 +11,10 @@ namespace FrontDesk.Blazor.Services
         private readonly HttpClient _httpClient;
         private readonly string _apiUrl;
 
-
-        public HttpService(HttpClient httpClient, BaseUrlConfiguration baseUrlConfiguration)
+        public HttpService(HttpClient httpClient)
         {
-            _httpClient = httpClient;
-            _apiUrl = baseUrlConfiguration.ApiBase;
+            _httpClient = httpClient;           
+            _apiUrl = _httpClient.BaseAddress.ToString();
         }
 
         public async Task<T> HttpGetAsync<T>(string uri)

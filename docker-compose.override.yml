@@ -1,0 +1,40 @@
+version: '3.4'
+services:
+ frontdesk:
+   environment:
+     - ASPNETCORE_ENVIRONMENT=Docker
+     - ASPNETCORE_URLS=http://+:80
+   ports:
+     - "5403:80"
+   volumes:
+     - ~/.aspnet/https:/root/.aspnet/https:ro
+     - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+
+ frontdeskapi:
+   environment:
+     - ASPNETCORE_ENVIRONMENT=Docker
+     - ASPNETCORE_URLS=http://+:80
+   ports:
+     - "5103:80"
+   volumes:
+     - ~/.aspnet/https:/root/.aspnet/https:ro
+     - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+
+ frontdeskdb:
+   environment:
+      SA_PASSWORD: "Pass@word1"
+      ACCEPT_EULA: "Y"
+   ports:
+     - "1433:1433"
+
+ vetclinicpublic:
+   environment:
+     - ASPNETCORE_ENVIRONMENT=Docker
+     - ASPNETCORE_URLS=http://+:80
+   ports:
+     - "5503:80"
+   volumes:
+     - ~/.aspnet/https:/root/.aspnet/https:ro
+     - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+
+

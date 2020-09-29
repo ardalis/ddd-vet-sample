@@ -24,9 +24,9 @@ namespace FrontDesk.Api.FileEndpoints
         ]
         public override async Task<ActionResult<FileItem>> HandleAsync([FromRoute]string fileName, CancellationToken cancellationToken)
         {
-            if (string.IsNullOrEmpty(fileName)) return BadRequest();            
+            if (string.IsNullOrEmpty(fileName)) return BadRequest();
 
-            var fullPath = Path.Combine(Directory.GetCurrentDirectory(), "images", "Patients", fileName);
+            var fullPath = Path.Combine(Directory.GetCurrentDirectory(), "images", "patients", fileName.ToLower());
             if (!System.IO.File.Exists(fullPath))
             {
                 // TODO: Add logger

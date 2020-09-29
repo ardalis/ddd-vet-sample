@@ -72,18 +72,18 @@
             Patient: @Appointment.PatientName<br />
             @if (!string.IsNullOrEmpty(Picture))
             {
-                <img class="image" src="@Picture" />
+                <img class="appointment-editor-image" src="@Picture" />
             }
         </label>
         <br />
 
         @if (@Appointment.IsConfirmed)
         {
-            <button type="button" class="btn btn-success confirm-button">Confirmed</button>
+            <button type="button" class="btn btn-success appointment-editor-confirm-button">Confirmed</button>
         }
         else
         {
-            <button type="button" class="btn btn-danger confirm-button">Not Confirmed</button>
+            <button type="button" class="btn btn-danger appointment-editor-confirm-button">Not Confirmed</button>
         }
         <br />
         <br />
@@ -91,7 +91,7 @@
         <ValidationSummary />
         @if (ShowErrorMessage)
         {
-            <span class="msg">@WrongRangeMessage</span>
+            <span class="appointment-editor-msg">@WrongRangeMessage</span>
         }
 
         <TelerikButton Enabled="@IsValid()" Primary="true">
