@@ -29,7 +29,7 @@ namespace FrontDesk.Api.FileEndpoints
             var fileData = Convert.FromBase64String(request.DataBase64);
             if (fileData.Length <= 0) return BadRequest();
 
-            var fullPath = Path.Combine(Directory.GetCurrentDirectory(), @"images/Patients", request.FileName);
+            var fullPath = Path.Combine(Directory.GetCurrentDirectory(), @"images/Patients", request.FileName.ToLower());
             if (System.IO.File.Exists(fullPath))
             {
                 System.IO.File.Delete(fullPath);

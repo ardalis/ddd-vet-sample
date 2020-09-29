@@ -8,131 +8,131 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\Clients\Steve_Smith.jpg" />
-    <None Remove="Images\Doctors\Dr_McDreamy.jpg" />
-    <None Remove="Images\Doctors\Dr_Smith.jpg" />
-    <None Remove="Images\Doctors\Dr_Who.jpg" />
-    <None Remove="Images\Doctors\No_Doctor_Selected.jpg" />
-    <None Remove="Images\Patients\Allegra.jpg" />
-    <None Remove="Images\Patients\Anubis.jpg" />
-    <None Remove="Images\Patients\Bella.jpg" />
-    <None Remove="Images\Patients\Boots.jpg" />
-    <None Remove="Images\Patients\Butterfinger.jpg" />
-    <None Remove="Images\Patients\Callie.jpg" />
-    <None Remove="Images\Patients\charlie.jpg" />
-    <None Remove="Images\Patients\Corde.jpg" />
-    <None Remove="Images\Patients\darwin.jpg" />
-    <None Remove="Images\Patients\Finley.jpg" />
-    <None Remove="Images\Patients\Ginger.jpg" />
-    <None Remove="Images\Patients\Indiana Jones.jpg" />
-    <None Remove="Images\Patients\Lizzie.jpg" />
-    <None Remove="Images\Patients\Luabelle.jpg" />
-    <None Remove="Images\Patients\Lulu.jpg" />
-    <None Remove="Images\Patients\Pax.jpg" />
-    <None Remove="Images\Patients\Piper.jpg" />
-    <None Remove="Images\Patients\radar.jpg" />
-    <None Remove="Images\Patients\Rocky.jpg" />
-    <None Remove="Images\Patients\Rufus.JPG" />
-    <None Remove="Images\Patients\rumor.jpg" />
-    <None Remove="Images\Patients\Ruske.jpg" />
-    <None Remove="Images\Patients\sampson.jpg" />
-    <None Remove="Images\Patients\Tinkerbell.jpg" />
-    <None Remove="Images\Patients\Zak.jpg" />
-    <None Remove="Images\Patients\zoe.jpg" />
+    <None Remove="images\clients\steve_smith.jpg" />
+    <None Remove="images\doctors\dr_mcDreamy.jpg" />
+    <None Remove="images\doctors\dr_smith.jpg" />
+    <None Remove="images\doctors\dr_who.jpg" />
+    <None Remove="images\doctors\no_Doctor_selected.jpg" />
+    <None Remove="images\patients\allegra.jpg" />
+    <None Remove="images\patients\anubis.jpg" />
+    <None Remove="images\patients\bella.jpg" />
+    <None Remove="images\patients\boots.jpg" />
+    <None Remove="images\patients\butterfinger.jpg" />
+    <None Remove="images\patients\callie.jpg" />
+    <None Remove="images\patients\charlie.jpg" />
+    <None Remove="images\patients\corde.jpg" />
+    <None Remove="images\patients\darwin.jpg" />
+    <None Remove="images\patients\Finley.jpg" />
+    <None Remove="images\patients\ginger.jpg" />
+    <None Remove="images\patients\indiana jones.jpg" />
+    <None Remove="images\patients\lizzie.jpg" />
+    <None Remove="images\patients\luabelle.jpg" />
+    <None Remove="images\patients\lulu.jpg" />
+    <None Remove="images\patients\pax.jpg" />
+    <None Remove="images\patients\piper.jpg" />
+    <None Remove="images\patients\radar.jpg" />
+    <None Remove="images\patients\rocky.jpg" />
+    <None Remove="images\patients\rufus.JPG" />
+    <None Remove="images\patients\rumor.jpg" />
+    <None Remove="images\patients\ruske.jpg" />
+    <None Remove="images\patients\sampson.jpg" />
+    <None Remove="images\patients\tinkerbell.jpg" />
+    <None Remove="images\patients\zak.jpg" />
+    <None Remove="images\patients\zoe.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Images\Clients\Steve_Smith.jpg">
+    <Content Include="images\clients\steve_smith.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Doctors\Dr_McDreamy.jpg">
+    <Content Include="images\doctors\dr_mcdreamy.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Doctors\Dr_Smith.jpg">
+    <Content Include="images\doctors\dr_smith.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Doctors\Dr_Who.jpg">
+    <Content Include="images\doctors\dr_who.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Doctors\No_Doctor_Selected.jpg">
+    <Content Include="images\doctors\no_doctor_selected.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Allegra.jpg">
+    <Content Include="images\patients\allegra.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Anubis.jpg">
+    <Content Include="images\patients\anubis.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Bella.jpg">
+    <Content Include="images\patients\bella.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Boots.jpg">
+    <Content Include="images\patients\boots.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Butterfinger.jpg">
+    <Content Include="images\patients\butterfinger.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Callie.jpg">
+    <Content Include="images\patients\callie.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\charlie.jpg">
+    <Content Include="images\patients\charlie.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Corde.jpg">
+    <Content Include="images\patients\corde.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\darwin.jpg">
+    <Content Include="images\patients\darwin.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Finley.jpg">
+    <Content Include="images\patients\finley.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Ginger.jpg">
+    <Content Include="images\patients\ginger.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Indiana Jones.jpg">
+    <Content Include="images\patients\indiana jones.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Lizzie.jpg">
+    <Content Include="images\patients\lizzie.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Luabelle.jpg">
+    <Content Include="images\patients\luabelle.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Lulu.jpg">
+    <Content Include="images\patients\lulu.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Pax.jpg">
+    <Content Include="images\patients\pax.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Piper.jpg">
+    <Content Include="images\patients\piper.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\radar.jpg">
+    <Content Include="images\patients\radar.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Rocky.jpg">
+    <Content Include="images\patients\rocky.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Rufus.JPG">
+    <Content Include="images\patients\rufus.JPG">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\rumor.jpg">
+    <Content Include="images\patients\rumor.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Ruske.jpg">
+    <Content Include="images\patients\ruske.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\sampson.jpg">
+    <Content Include="images\patients\sampson.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Tinkerbell.jpg">
+    <Content Include="images\patients\tinkerbell.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\Zak.jpg">
+    <Content Include="images\patients\zak.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Patients\zoe.jpg">
+    <Content Include="images\patients\zoe.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
