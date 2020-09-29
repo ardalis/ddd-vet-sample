@@ -1,7 +1,9 @@
-﻿using MediatR;
+﻿using FrontDesk.SharedKernel.Interfaces;
+using MediatR;
 using StructureMap;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FrontDesk.SharedKernel
 {    
@@ -33,11 +35,11 @@ namespace FrontDesk.SharedKernel
             actions = null;
         }
 
-        public static void Raise<T>(T args) where T : BaseDomainEvent
+        public static async Task RaiseAsync<T>(T args) where T : BaseDomainEvent
         {
-            foreach (var handler in Container.GetAllInstances<INotificationHandler<T>>())
+            foreach (var handler in Container.GetAllInstances<IHandle<T>>())
             {
-                handler.Handle(args, new System.Threading.CancellationToken());
+                await handler.HandleAsync(args);
             }
 
             if (actions != null)

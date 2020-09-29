@@ -1,5 +1,7 @@
 ﻿@page "/"
 
+<Toast IsShow="@IsShowToast" Message="@ToastMessage"></Toast>
+
 <h1>Appointments</h1>
 <div class="appointment-inline @((IsClientSelected? "" : "appointment-error"))">
     <label class="width100">

@@ -7,6 +7,12 @@ If you like or are using this project to learn, please give it a star. Thanks!
 
 ## Getting Started
 
+- Replace $user and $pass in FrontDesk/src/FrontDesk.Blazor/nuget.config with your Telerik credential.
+```html
+<add key="Username" value="$user" />
+<add key="ClearTextPassword" value="$pass" />
+```
+
 ### Run In Docker
 - Go inside ddd-vet-sample directory.
 - Run these 2 commands

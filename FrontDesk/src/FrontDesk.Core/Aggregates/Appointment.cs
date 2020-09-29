@@ -101,7 +101,7 @@ namespace FrontDesk.Core.Aggregates
             RoomId = newRoomId;
 
             var appointmentUpdatedEvent = new AppointmentUpdatedEvent(this);
-            BaseDomainEvent.Raise(appointmentUpdatedEvent);
+            BaseDomainEvent.RaiseAsync(appointmentUpdatedEvent);
         }
 
         public void UpdateTime(DateTimeRange newStartEnd)
@@ -111,7 +111,7 @@ namespace FrontDesk.Core.Aggregates
             TimeRange = newStartEnd;
 
             var appointmentUpdatedEvent = new AppointmentUpdatedEvent(this);
-            BaseDomainEvent.Raise(appointmentUpdatedEvent);
+            BaseDomainEvent.RaiseAsync(appointmentUpdatedEvent);
         }
 
         public void UpdateEndTime(AppointmentType appointmentType)
@@ -119,7 +119,7 @@ namespace FrontDesk.Core.Aggregates
             TimeRange = TimeRange.NewEnd(TimeRange.Start.AddMinutes(appointmentType.Duration));
 
             var appointmentUpdatedEvent = new AppointmentUpdatedEvent(this);
-            BaseDomainEvent.Raise(appointmentUpdatedEvent);
+            BaseDomainEvent.RaiseAsync(appointmentUpdatedEvent);
         }
 
         public void Confirm(DateTime dateConfirmed)
@@ -129,7 +129,7 @@ namespace FrontDesk.Core.Aggregates
             DateTimeConfirmed = dateConfirmed;
 
             var appointmentConfirmedEvent = new AppointmentConfirmedEvent(this);
-            BaseDomainEvent.Raise(appointmentConfirmedEvent);
+            BaseDomainEvent.RaiseAsync(appointmentConfirmedEvent);
         }
 
         // Factory method for creation

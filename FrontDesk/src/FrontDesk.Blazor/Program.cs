@@ -19,6 +19,7 @@ namespace FrontDesk.Blazor
 
             var baseUrlConfig = new BaseUrlConfiguration();
             builder.Configuration.Bind(BaseUrlConfiguration.CONFIG_NAME, baseUrlConfig);
+            builder.Services.AddScoped(sp => baseUrlConfig);
 
             // register the HttpClient and HttpService
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(baseUrlConfig.ApiBase) });

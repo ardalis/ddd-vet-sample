@@ -1,10 +1,12 @@
-﻿using BlazorShared.Models.Appointment;
+﻿using BlazorShared;
+using BlazorShared.Models.Appointment;
 using BlazorShared.Models.AppointmentType;
 using BlazorShared.Models.Client;
 using BlazorShared.Models.Patient;
 using BlazorShared.Models.Room;
 using FrontDesk.Blazor.Services;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +38,9 @@ namespace FrontDesk.Blazor.Pages
 
         [Inject]
         ConfigurationService ConfigurationService { get; set; }
+
+        [Inject]
+        BaseUrlConfiguration BaseUrlConfiguration { get; set; }
 
         private bool IsShowEdit = false;
         private bool IsLoaded = false;
@@ -78,8 +83,22 @@ namespace FrontDesk.Blazor.Pages
 
         private bool CanMakeAppointment => IsRoomSelected && IsClientSelected && IsPatientSelected;
         private bool IsRoomSelected => RoomId > 0;
-        private bool IsClientSelected => ClientId > 0;
+        private bool IsClientSelected => ClientId > 0;        
         private bool IsPatientSelected => RoomId > 0 && ClientId > 0 && PatientId > 0;
+
+        private bool IsShowToast { get; set; }
+        private string ToastMessage { get; set; }
+
+        private HubConnection hubConnection;
+
+        public bool IsConnected =>
+            hubConnection.State == HubConnectionState.Connected;
+
+        public void Dispose()
+        {
+            _ = hubConnection.DisposeAsync();
+        }
+
 
         protected override async Task OnInitializedAsync()
         {
@@ -99,9 +118,28 @@ namespace FrontDesk.Blazor.Pages
             Groups.Add("Rooms");
 
             IsLoaded = true;
+            IsShowToast = true;
 
             await AddPatientImages();
+
+            await InitSignalR();
         }        
+
+        private async Task InitSignalR()
+        {
+            hubConnection = new HubConnectionBuilder()
+                .WithUrl(new Uri($"{BaseUrlConfiguration.ApiBase.Replace("api/", string.Empty)}chathub"))
+                .Build();
+
+            hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+            {
+                ToastMessage = message;
+                IsShowToast = true;
+                StateHasChanged();
+            });
+
+            await hubConnection.StartAsync();
+        }
 
         private async Task CancelEditing()
         {
