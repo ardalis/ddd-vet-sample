@@ -55,7 +55,7 @@ namespace FrontDesk.Blazor.Shared.SchedulerComponent
             if (firstRender)
             {
                 SchedulerService.RefreshRequested += Refresh;
-                await CallJSMethodAsync();
+                CallJSMethod();
                 var thisReference = DotNetObjectReference.Create(this);
                 await JSRuntime.InvokeVoidAsync("addListenerToFireEdit", thisReference);
             }
@@ -71,11 +71,6 @@ namespace FrontDesk.Blazor.Shared.SchedulerComponent
         public void Refresh()
         {
             CallJSMethod();
-        }
-
-        private async Task CallJSMethodAsync()
-        {
-            await JSRuntime.InvokeVoidAsync("scheduler", StartDate, StartTime, EndTime, SchedulerService.Appointments, Resources, Groups, Height);            
         }
 
         private void CallJSMethod()
@@ -102,7 +97,7 @@ namespace FrontDesk.Blazor.Shared.SchedulerComponent
                 var result = JsonSerializer.Deserialize<AppointmentDto>(jsonData, JsonOptions);
                 await AppointmentService.DeleteAsync(result.AppointmentId);
                 SchedulerService.Appointments.Remove(SchedulerService.Appointments.First(x => x.AppointmentId == result.AppointmentId));
-                await CallJSMethodAsync();
+                CallJSMethod();
             }            
         }
     }

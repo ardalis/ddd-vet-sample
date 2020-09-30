@@ -57,8 +57,6 @@ namespace FrontDesk.Core.Aggregates
             MarkConflictingAppointments();
 
             var appointmentScheduledEvent = new AppointmentScheduledEvent(appointment);
-            //TODO: fix that
-            //DomainEvents.Raise(appointmentScheduledEvent);
 
             return appointment;
         }
