@@ -5,11 +5,14 @@ using BlazorShared.Models.Client;
 using BlazorShared.Models.Patient;
 using BlazorShared.Models.Room;
 using FrontDesk.Blazor.Services;
+using FrontDesk.Blazor.Shared.SchedulerComponent;
+using FrontDesk.Blazor.Shared.ToastComponent;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.SignalR.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Telerik.Blazor;
 using Telerik.Blazor.Components;
@@ -41,11 +44,18 @@ namespace FrontDesk.Blazor.Pages
 
         [Inject]
         BaseUrlConfiguration BaseUrlConfiguration { get; set; }
+        
+        [Inject]
+        ToastService ToastService { get; set; } 
+        
+        [Inject]
+        SchedulerService SchedulerService { get; set; }
+
+            
 
         private bool IsShowEdit = false;
         private bool IsLoaded = false;
         private List<string> Groups = new List<string>();
-        private List<AppointmentDto> Appointments = new List<AppointmentDto>();
         private List<AppointmentTypeDto> AppointmentTypes = new List<AppointmentTypeDto>();
         private List<ClientDto> Clients = new List<ClientDto>();
         private List<RoomDto> Rooms = new List<RoomDto>();
@@ -72,9 +82,9 @@ namespace FrontDesk.Blazor.Pages
         {
             get
             {
-                if (Appointments.Count > 0)
+                if (SchedulerService.Appointments.Count > 0)
                 {
-                    return Appointments[0].ScheduleId;
+                    return SchedulerService.Appointments[0].ScheduleId;
                 }
 
                 return Guid.Empty;
@@ -85,9 +95,6 @@ namespace FrontDesk.Blazor.Pages
         private bool IsRoomSelected => RoomId > 0;
         private bool IsClientSelected => ClientId > 0;        
         private bool IsPatientSelected => RoomId > 0 && ClientId > 0 && PatientId > 0;
-
-        private bool IsShowToast { get; set; } = false;
-        private string ToastMessage { get; set; } = string.Empty;
 
         private HubConnection hubConnection;
         private string SignalRUrl => BaseUrlConfiguration.ApiBase.Replace("api/", string.Empty);
@@ -103,7 +110,7 @@ namespace FrontDesk.Blazor.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            Appointments = await AppointmentService.ListAsync();
+            SchedulerService.Appointments = await AppointmentService.ListAsync();
             AppointmentTypes = await AppointmentTypeService.ListAsync();
             Clients = await ClientService.ListAsync();
             Rooms = await RoomService.ListAsync();
@@ -133,10 +140,8 @@ namespace FrontDesk.Blazor.Pages
 
             hubConnection.On<string>("ReceiveMessage", async (message) =>
             {
-                ToastMessage = message;
-                IsShowToast = true;
-                StateHasChanged();
                 await RefreshDataAsync();
+                ToastService.SendMessage(message);
             });
 
             await hubConnection.StartAsync();
@@ -154,7 +159,9 @@ namespace FrontDesk.Blazor.Pages
             CurrentAppointment = null;
             //we also use it to fetch the fresh data from the service - in a real case other updates may have occurred
             //which is why I chose to use a separate event and not two-way binding. It is also used for refreshing on Cancel
-            Appointments = await AppointmentService.ListAsync();
+            var appointments = await AppointmentService.ListAsync();
+
+            SchedulerService.RefreshAppointments(appointments);
         }
 
         private void EditHandler(SchedulerEditEventArgs args)
@@ -184,7 +191,7 @@ namespace FrontDesk.Blazor.Pages
         {
             AppointmentDto item = (AppointmentDto)args.Item;
             await AppointmentService.DeleteAsync(item.AppointmentId);
-            Appointments.Remove(item);
+            SchedulerService.Appointments.Remove(item);
         }
 
         private async Task AddPatientImages()

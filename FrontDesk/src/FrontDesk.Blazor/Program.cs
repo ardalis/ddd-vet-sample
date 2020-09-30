@@ -1,10 +1,11 @@
 using BlazorShared;
 using FrontDesk.Blazor.Services;
+using FrontDesk.Blazor.Shared.SchedulerComponent;
+using FrontDesk.Blazor.Shared.ToastComponent;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.IO.Compression;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -34,6 +35,8 @@ namespace FrontDesk.Blazor
             builder.Services.AddScoped<AppointmentTypeService>();
             builder.Services.AddScoped<FileService>();
             builder.Services.AddScoped<ConfigurationService>();
+            builder.Services.AddScoped<ToastService>();
+            builder.Services.AddScoped<SchedulerService>();
 
             // register the Telerik services
             builder.Services.AddTelerikBlazor();

@@ -151,8 +151,8 @@ namespace FrontDesk.Core.Aggregates
             appointment.TimeRange = new DateTimeRange(startTime, endTime);
             appointment.AppointmentTypeId = appointmentTypeId;
             appointment.DoctorId = doctorId ?? 1;
-            appointment.Title = title;
-
+            appointment.Title = title;            
+            
             return appointment;
         }        
     }

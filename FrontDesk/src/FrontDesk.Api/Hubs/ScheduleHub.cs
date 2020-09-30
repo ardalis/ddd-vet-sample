@@ -5,9 +5,9 @@ namespace FrontDesk.Api.Hubs
 {
     public class ScheduleHub : Hub
     {
-        public async Task UpdateScheduleAsync(string s)
+        public async Task UpdateScheduleAsync(string message)
         {
-            await Clients.All.SendAsync("ReceiveMessage", s);
+            await Clients.All.SendAsync("ReceiveMessage", message);
         }
     }
 }

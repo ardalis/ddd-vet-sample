@@ -4,32 +4,32 @@ namespace FrontDesk.Blazor.Shared.ToastComponent
 {
     public partial class Toast
     {
-        [Parameter]
-        public bool IsShow { get; set; } = false;
-        [Parameter]
-        public ToastType ToastType { get; set; } = ToastType.Success;
+        [Inject]
+        ToastService ToastService { get; set; }
 
-        [Parameter]
-        public string Message { get; set; } = string.Empty;
-
+        protected override void OnInitialized()
+        {
+            ToastService.RefreshRequested += Refresh;
+            base.OnInitialized();
+        }
         private void Close()
         {
-            IsShow = false;
+            ToastService.IsShow = false;
         }
 
         private string AlertType
         {
             get
             {
-                if (ToastType == ToastType.Error)
+                if (ToastService.ToastType == ToastType.Error)
                 {
                     return "alert-danger";
                 }
-                else if (ToastType == ToastType.Info)
+                else if (ToastService.ToastType == ToastType.Info)
                 {
                     return "alert-info";
                 }
-                else if (ToastType == ToastType.Warning)
+                else if (ToastService.ToastType == ToastType.Warning)
                 {
                     return "alert-warning";
                 }
@@ -37,5 +37,11 @@ namespace FrontDesk.Blazor.Shared.ToastComponent
                 return "alert-success";
             }
         }
+
+        private void Refresh()
+        {
+            StateHasChanged();
+        }
+
     }
 }

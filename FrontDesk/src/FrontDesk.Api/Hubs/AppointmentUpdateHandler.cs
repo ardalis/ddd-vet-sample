@@ -22,12 +22,5 @@ namespace FrontDesk.Api.Hubs
         {
             await _hubContext.Clients.All.SendAsync("ReceiveMessage", notification.AppointmentUpdated.Title + " was updated");
         }
-
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder => {
-                    webBuilder.UseStartup<Startup>();
-                });
-
     }
 }
