@@ -7,7 +7,7 @@ namespace FrontDesk.Api.Hubs
     {
         public async Task UpdateScheduleAsync(string s)
         {
-            await Clients.All.SendAsync(s);
+            await Clients.All.SendAsync("ReceiveMessage", s);
         }
     }
 }

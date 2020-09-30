@@ -191,7 +191,7 @@ namespace FrontDesk.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<ScheduleHub>("/chathub");
+                endpoints.MapHub<ScheduleHub>("/schedulehub");
             });
         }
     }

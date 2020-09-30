@@ -1,11 +1,12 @@
 using FrontDesk.Core.Events;
-using FrontDesk.SharedKernel.Interfaces;
+using MediatR;
 using Microsoft.AspNetCore.SignalR;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FrontDesk.Api.Hubs
 {
-    public class AppointmentConfirmedHandler : IHandle<AppointmentConfirmedEvent>
+    public class AppointmentConfirmedHandler : INotificationHandler<AppointmentConfirmedEvent>
     {
         private readonly IHubContext<ScheduleHub> _hubContext;
 
@@ -14,9 +15,9 @@ namespace FrontDesk.Api.Hubs
             _hubContext = hubContext;
         }
 
-        public async Task HandleAsync(AppointmentConfirmedEvent args)
+        public async Task Handle(AppointmentConfirmedEvent args, CancellationToken cancellationToken)
         {
-            await _hubContext.Clients.All.SendAsync(args.AppointmentUpdated.Title + " was confirmed");
+            await _hubContext.Clients.All.SendAsync("SendMessage", args.AppointmentUpdated.Title + " was confirmed");
         }
     }
 }

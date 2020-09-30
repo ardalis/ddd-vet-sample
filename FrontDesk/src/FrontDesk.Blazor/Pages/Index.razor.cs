@@ -90,6 +90,7 @@ namespace FrontDesk.Blazor.Pages
         private string ToastMessage { get; set; }
 
         private HubConnection hubConnection;
+        private string SignalRUrl => BaseUrlConfiguration.ApiBase.Replace("api/", string.Empty);
 
         public bool IsConnected =>
             hubConnection.State == HubConnectionState.Connected;
@@ -128,13 +129,14 @@ namespace FrontDesk.Blazor.Pages
         private async Task InitSignalR()
         {
             hubConnection = new HubConnectionBuilder()
-                .WithUrl(new Uri($"{BaseUrlConfiguration.ApiBase.Replace("api/", string.Empty)}chathub"))
+                .WithUrl(new Uri($"{SignalRUrl}schedulehub"))
                 .Build();
 
-            hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+            hubConnection.On<string>("ReceiveMessage", (message) =>
             {
                 ToastMessage = message;
                 IsShowToast = true;
+                Console.WriteLine(message);
                 StateHasChanged();
             });
 

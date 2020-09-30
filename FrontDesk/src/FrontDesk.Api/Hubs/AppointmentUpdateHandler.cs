@@ -1,20 +1,26 @@
 using FrontDesk.Core.Events;
 using FrontDesk.SharedKernel.Interfaces;
+using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Hosting;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FrontDesk.Api.Hubs
 {
-    public class AppointmentUpdateHandler : IHandle<AppointmentUpdatedEvent>
+    public class AppointmentUpdateHandler : INotificationHandler<AppointmentUpdatedEvent>
     {
-        public async Task HandleAsync(AppointmentUpdatedEvent args)
-        {
-            var host = CreateHostBuilder(null).Build();
-            var hubContext = (IHubContext<ScheduleHub>)host.Services.GetService(typeof(IHubContext<ScheduleHub>));
+        private readonly IHubContext<ScheduleHub> _hubContext;
 
-            await hubContext.Clients.All.SendAsync(args.AppointmentUpdated.Title + " was updated");
+        public AppointmentUpdateHandler(IHubContext<ScheduleHub> hubContext)
+        {
+            _hubContext = hubContext;
+        }
+
+        public async Task Handle(AppointmentUpdatedEvent notification, CancellationToken cancellationToken)
+        {
+            await _hubContext.Clients.All.SendAsync("SendMessage", notification.AppointmentUpdated.Title + " was updated");
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -22,5 +28,6 @@ namespace FrontDesk.Api.Hubs
                 .ConfigureWebHostDefaults(webBuilder => {
                     webBuilder.UseStartup<Startup>();
                 });
+
     }
 }
