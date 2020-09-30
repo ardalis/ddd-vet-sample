@@ -86,8 +86,8 @@ namespace FrontDesk.Blazor.Pages
         private bool IsClientSelected => ClientId > 0;        
         private bool IsPatientSelected => RoomId > 0 && ClientId > 0 && PatientId > 0;
 
-        private bool IsShowToast { get; set; }
-        private string ToastMessage { get; set; }
+        private bool IsShowToast { get; set; } = false;
+        private string ToastMessage { get; set; } = string.Empty;
 
         private HubConnection hubConnection;
         private string SignalRUrl => BaseUrlConfiguration.ApiBase.Replace("api/", string.Empty);
@@ -119,7 +119,6 @@ namespace FrontDesk.Blazor.Pages
             Groups.Add("Rooms");
 
             IsLoaded = true;
-            IsShowToast = true;
 
             await AddPatientImages();
 
