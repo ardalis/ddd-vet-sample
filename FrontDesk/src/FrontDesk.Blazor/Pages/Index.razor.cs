@@ -131,12 +131,12 @@ namespace FrontDesk.Blazor.Pages
                 .WithUrl(new Uri($"{SignalRUrl}schedulehub"))
                 .Build();
 
-            hubConnection.On<string>("ReceiveMessage", (message) =>
+            hubConnection.On<string>("ReceiveMessage", async (message) =>
             {
                 ToastMessage = message;
                 IsShowToast = true;
-                Console.WriteLine(message);
                 StateHasChanged();
+                await RefreshDataAsync();
             });
 
             await hubConnection.StartAsync();
