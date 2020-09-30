@@ -17,7 +17,7 @@ namespace FrontDesk.Api.Hubs
 
         public async Task Handle(AppointmentConfirmedEvent args, CancellationToken cancellationToken)
         {
-            await _hubContext.Clients.All.SendAsync("SendMessage", args.AppointmentUpdated.Title + " was confirmed");
+            await _hubContext.Clients.All.SendAsync("ReceiveMessage", args.AppointmentUpdated.Title + " was confirmed");
         }
     }
 }

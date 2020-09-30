@@ -20,7 +20,7 @@ namespace FrontDesk.Api.Hubs
 
         public async Task Handle(AppointmentUpdatedEvent notification, CancellationToken cancellationToken)
         {
-            await _hubContext.Clients.All.SendAsync("SendMessage", notification.AppointmentUpdated.Title + " was updated");
+            await _hubContext.Clients.All.SendAsync("ReceiveMessage", notification.AppointmentUpdated.Title + " was updated");
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
