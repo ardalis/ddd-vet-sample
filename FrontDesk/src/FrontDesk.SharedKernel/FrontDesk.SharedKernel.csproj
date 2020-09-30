@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -7,7 +7,9 @@
   <ItemGroup>
     <PackageReference Include="Ardalis.Specification" Version="4.1.0" />
     <PackageReference Include="MediatR" Version="8.1.0" />
-    <PackageReference Include="structuremap" Version="4.7.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0-rc.1.20451.14" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0-rc.1.20451.14" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0-rc.1.20451.14" />
   </ItemGroup>
 
 </Project>

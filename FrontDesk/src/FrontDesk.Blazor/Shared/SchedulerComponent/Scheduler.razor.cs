@@ -19,7 +19,10 @@ namespace FrontDesk.Blazor.Shared.SchedulerComponent
         IJSRuntime JSRuntime { get; set; }
 
         [Inject]
-        AppointmentService AppointmentService { get; set; }        
+        AppointmentService AppointmentService { get; set; }     
+        
+        [Inject]
+        SchedulerService SchedulerService { get; set; }        
 
         [Parameter]
         public int Height { get; set; } = 750;
@@ -33,18 +36,6 @@ namespace FrontDesk.Blazor.Shared.SchedulerComponent
         [Parameter] public DateTime StartTime { get; set; } = new DateTime();
         [Parameter] public DateTime EndTime { get; set; } = new DateTime();
         [Parameter] public List<RoomDto> Rooms { get; set; } = new List<RoomDto>();
-
-        List<AppointmentDto> _appointments;
-        [Parameter]
-        public List<AppointmentDto> Appointments
-        {
-            get { return _appointments; }
-            set
-            {
-                _appointments = value;
-                CallJSMethod();
-            }
-        }
 
         [Parameter] public List<AppointmentTypeDto> AppointmentTypes { get; set; } = new List<AppointmentTypeDto>();
         [Parameter] public List<SchedulerResourceModel> SchedulerResources { get; set; } = new List<SchedulerResourceModel>();
@@ -63,7 +54,8 @@ namespace FrontDesk.Blazor.Shared.SchedulerComponent
         {
             if (firstRender)
             {
-                await CallJSMethod();
+                SchedulerService.RefreshRequested += Refresh;
+                CallJSMethod();
                 var thisReference = DotNetObjectReference.Create(this);
                 await JSRuntime.InvokeVoidAsync("addListenerToFireEdit", thisReference);
             }
@@ -73,12 +65,18 @@ namespace FrontDesk.Blazor.Shared.SchedulerComponent
         public void AddResource(Resource resourceComponent)
         {
             Resources.Add(resourceComponent.SchedulerResource);
-            StateHasChanged();
+            Refresh();
         }
 
-        private async Task CallJSMethod()
+        public void Refresh()
         {
-            await JSRuntime.InvokeVoidAsync("scheduler", StartDate, StartTime, EndTime, Appointments, Resources, Groups, Height);            
+            CallJSMethod();
+        }
+
+        private void CallJSMethod()
+        {
+            var processRuntime = JSRuntime as IJSInProcessRuntime;
+            processRuntime.InvokeVoid("scheduler", StartDate, StartTime, EndTime, SchedulerService.Appointments, Resources, Groups, Height);
         }
 
         [JSInvokable]
@@ -98,12 +96,9 @@ namespace FrontDesk.Blazor.Shared.SchedulerComponent
             {
                 var result = JsonSerializer.Deserialize<AppointmentDto>(jsonData, JsonOptions);
                 await AppointmentService.DeleteAsync(result.AppointmentId);
-                Appointments.Remove(Appointments.First(x => x.AppointmentId == result.AppointmentId));
-                await CallJSMethod();
-            }
-            
-
-
+                SchedulerService.Appointments.Remove(SchedulerService.Appointments.First(x => x.AppointmentId == result.AppointmentId));
+                CallJSMethod();
+            }            
         }
     }
 }

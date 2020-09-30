@@ -1,11 +1,14 @@
 using AutoMapper;
 using BlazorShared;
+using FrontDesk.Api.Hubs;
+using FrontDesk.Core.Events;
 using FrontDesk.Core.Interfaces;
 using FrontDesk.Infrastructure.Data;
 using FrontDesk.SharedKernel.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +17,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FrontDesk.Api
 {
@@ -90,6 +94,8 @@ namespace FrontDesk.Api
         {
             services.AddScoped(typeof(IRepository), typeof(EfRepository));
 
+            services.AddSignalR();
+
             services.AddMemoryCache(); 
 
             var baseUrlConfig = new BaseUrlConfiguration();
@@ -109,6 +115,12 @@ namespace FrontDesk.Api
 
             services.AddControllers();
             services.AddMediatR(typeof(Startup).Assembly);
+
+            services.AddResponseCompression(opts =>
+            {
+                opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+                    new[] { "application/octet-stream" });
+            });
 
             // Wire up application settings
             services.AddSingleton(typeof(IApplicationSettings), typeof(OfficeSettings));            
@@ -153,6 +165,8 @@ namespace FrontDesk.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseResponseCompression();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -177,6 +191,7 @@ namespace FrontDesk.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ScheduleHub>("/schedulehub");
             });
         }
     }

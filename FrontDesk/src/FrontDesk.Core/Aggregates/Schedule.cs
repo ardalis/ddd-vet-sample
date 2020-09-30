@@ -37,9 +37,6 @@ namespace FrontDesk.Core.Aggregates
             ClinicId = clinicId;
             _appointments = appointments == null ? new List<Appointment>() : new List<Appointment>(appointments);
             MarkConflictingAppointments();
-
-            //TODO: fix that
-            //DomainEvents.Register<AppointmentUpdatedEvent>(Handle);
         }
 
         private Schedule() // required for EF
@@ -60,8 +57,6 @@ namespace FrontDesk.Core.Aggregates
             MarkConflictingAppointments();
 
             var appointmentScheduledEvent = new AppointmentScheduledEvent(appointment);
-            //TODO: fix that
-            //DomainEvents.Raise(appointmentScheduledEvent);
 
             return appointment;
         }
