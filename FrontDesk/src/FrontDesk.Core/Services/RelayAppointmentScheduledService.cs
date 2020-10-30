@@ -1,33 +1,43 @@
-﻿using FrontDesk.Core.Events;
+﻿using FrontDesk.Core.Aggregates;
+using FrontDesk.Core.Events;
+using FrontDesk.Core.Interfaces;
 using FrontDesk.SharedKernel.Interfaces;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace FrontDesk.Core.Services
 {
     /// <summary>
-    /// Post appointmentscheduledevent to message bus to allow confirmation emails to be sent
+    /// Post CreateConfirmationEmailMessage to message bus/queue to allow confirmation emails to be sent
     /// </summary>
     public class RelayAppointmentScheduledService : INotificationHandler<AppointmentScheduledEvent>
     {
         private readonly IRepository _apptRepository;
+        private readonly IMessagePublisher _messagePublisher;
 
-        public RelayAppointmentScheduledService(IRepository apptRepository)
+        public RelayAppointmentScheduledService(IRepository apptRepository,
+            IMessagePublisher messagePublisher)
         {
             this._apptRepository = apptRepository;
+            _messagePublisher = messagePublisher;
         }
 
         public async Task Handle(AppointmentScheduledEvent appointmentScheduledEvent, CancellationToken cancellationToken)
         {
-            //TODO: need to do this
-            //AppointmentDTO appointment = _apptRepository.GetFromAppointment(appointmentScheduledEvent.AppointmentScheduled);
-
             // we are translating from a domain event to an application event here
-            //var newEvent = new Model.ApplicationEvents.AppointmentScheduledEvent(appointment);
+            var newMessage = new CreateConfirmationEmailMessage();
 
-            //_messagePublisher.Publish(newEvent);
+            var doctor = await _apptRepository.GetByIdAsync<Doctor, int>(appointmentScheduledEvent.AppointmentScheduled.DoctorId.Value);
+
+            newMessage.AppointmentDateTime = appointmentScheduledEvent.AppointmentScheduled.TimeRange.Start;
+            newMessage.ClientName = appointmentScheduledEvent.AppointmentScheduled.Client.FullName;
+            newMessage.ClientEmailAddress = appointmentScheduledEvent.AppointmentScheduled.Client.EmailAddress;
+            newMessage.DoctorName = doctor.Name;
+            newMessage.PatientName = appointmentScheduledEvent.AppointmentScheduled.Patient.Name;
+            newMessage.ProcedureName = appointmentScheduledEvent.AppointmentScheduled.AppointmentType.Name;
+
+            _messagePublisher.Publish(newMessage);
         }
     }
 }
